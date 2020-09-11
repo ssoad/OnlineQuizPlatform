@@ -1,43 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  {% load static %}
-  <link rel="stylesheet" href="{% static "OnlineQuiz/assets/bootstrap/css/bootstrap.min.css" %}">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Acme">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
-  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  
-
-     <!--
-       
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
-    -->
-    <meta charset="UTF-8">
-    <title>Online Quiz Platform</title>
-</head>
-<body>
-  <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
-    <div class="container"><a class="navbar-brand logo" href="#" style="font-size: 43px;font-family: Lato, sans-serif;">Online Quiz Platfrom</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-        <div
-            class="collapse navbar-collapse" id="navbarNav">
-            <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html">Home</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="projects-grid-cards.html">Sign Up</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="projects-grid-cards.html">Login</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="cv.html">Contact</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="hire-me.html">About</a></li>
-            </ul>
-    </div>
-    </div>
-</nav>
-  <main class="page lanidng-page">
+{%  extends 'Base.html' %}
+{% block content %}
+    {% load static %}
+    <main class="page lanidng-page">
     <section class="portfolio-block block-intro" style="background-color:whitesmoke; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;">
         <div class="container d-xl-flex align-items-xl-center">
 
-            <img src="{% static "OnlineQuiz/img/quiz.png" %}" alt="My image">
+            <img style="width: 300px; height: 300px; padding: 30px" src="{% static "OnlineQuiz/img/quiz.png" %}" alt="My image">
 
             <div class="about-me">
                 <p style="filter: brightness(0%);box-shadow: 0px 0px;">Create online quizzes Always wanted to make a quiz, but couldn't find an easy quiz creator to help you out? With our online quiz tool it’s easy to make a quiz in less than five minutes. Just follow these simple steps to create online
@@ -123,18 +91,18 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-12 col-lg-5 offset-lg-1 text">
-                <h3>Access Everywhere</h3>
+                <h3>Access From Anywhere & Anytimes</h3>
                 <p></p>
             </div>
             <div class="row">
                 <div class="portfolio-laptop-mockup">
                     <div class="screen" style="border-radius: 10px;">
-      
+
                         <div class="screen-content" style="border-radius: 10px; background-image:url(&quot;{% static "OnlineQuiz/assets/img/quizHome.png"%} &quot;);"></div>
                     </div>
                     <div class="keyboard"></div>
                 </div>
-                <div class="portfolio-phone-mockup" style="height: 210px; width: 100px;"> 
+                <div class="portfolio-phone-mockup" style="height: 210px; width: 100px;">
                   <div class="phone-screen" style="border-color: #FFFF;  height: 180px; width: 85px;border-radius: 10; background-image:url(&quot;{% static "OnlineQuiz/assets/img/phonequiz.png"%} &quot;);">
                 </div>
                 </div>
@@ -142,18 +110,5 @@
         </div>
     </div>
 </section>
-<footer class="page-footer">
-    <div class="container">
-        <div class="links"><a href="#">About me</a><a href="#">Contact me</a><a href="#">Projects</a></div>
-        <div class="social-icons"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-instagram-outline"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a></div>
-    </div>
-</footer>
+{%  endblock content %}
 
-<script src="{% static "OnlineQuiz/assets/js/jquery.min.js" %}"></script>
-<script src="{% static "OnlineQuiz/assets/bootstrap/js/bootstrap.min.js" %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
-<script src="{% static  "OnlineQuiz/assets/js/theme.js" %}"></script>
-  
-
-</body>
-</html>
