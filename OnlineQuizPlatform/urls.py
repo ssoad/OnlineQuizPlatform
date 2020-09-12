@@ -19,5 +19,6 @@ from OnlineQuiz import views
 
 urlpatterns = [
     path('',views.showHome),
+path('login/',views.showLogin),
     path('admin/', admin.site.urls),
 ]
