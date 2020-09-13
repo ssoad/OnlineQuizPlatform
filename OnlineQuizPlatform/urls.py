@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from OnlineQuiz import views
+from Accounts import views as acc_views
 
 urlpatterns = [
-    path('',views.showHome),
-path('login/',views.showLogin),
+    path('', views.showHome),
+    path('login/', acc_views.login_view),
+    path('signup/', acc_views.register_view),
+    path('logout/', acc_views.logout_view),
+    path('dashboard/', acc_views.user_dash),
     path('admin/', admin.site.urls),
 ]
