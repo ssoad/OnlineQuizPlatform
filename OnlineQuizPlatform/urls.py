@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from OnlineQuiz import views
 from Accounts import views as acc_views
+from ExamManagement import views as Exam_views
 
 urlpatterns = [
     path('', views.showHome),
@@ -25,4 +26,5 @@ urlpatterns = [
     path('logout/', acc_views.logout_view),
     path('dashboard/', acc_views.user_dash),
     path('admin/', admin.site.urls),
+    path('exams/',Exam_views.showExams)
 ]

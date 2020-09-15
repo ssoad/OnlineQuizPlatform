@@ -15,3 +15,4 @@ class Exam(models.Model):
 
     def __str__(self):
         return self.exam_title
+
