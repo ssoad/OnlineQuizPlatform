@@ -16,3 +16,10 @@ class Exam(models.Model):
     def __str__(self):
         return self.exam_title
 
+
+class AttemptedExam(models.Model):
+    exam = models.ForeignKey(Exam, on_delete=models.SET_NULL, null=True)
+    examinee = models.ForeignKey(Examinee, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.exam.exam_title + " " + self.examinee.user.username)
