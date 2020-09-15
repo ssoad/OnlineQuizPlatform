@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'OnlineQuiz.apps.OnlinequizConfig',
     'Accounts.apps.AccountsConfig',
-    'ExamManagement.apps.ExammanagementConfig'
+    'ExamManagement.apps.ExammanagementConfig',
+    'ResultsManagement.apps.ResultsmanagementConfig'
 
 ]
 
