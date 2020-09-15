@@ -60,6 +60,9 @@ def logout_view(request):
 
 def user_dash(request):
     if request.user.is_authenticated:
-        return render(request, 'user_dash_base.html')
+        context = {
+            "user": request.user}
+
+        return render(request, 'user_dash_base.html', context)
     else:
         return redirect('/')
