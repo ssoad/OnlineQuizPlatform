@@ -22,3 +22,19 @@ class Rank(models.Model):
 
     def __str__(self):
         return str(self.examinee.user.username + " " + self.exam.exam_title + " " + str(self.marks))
+
+
+class ExamineeHistory(models.Model):
+    examinee = models.ForeignKey(Examinee, on_delete=models.CASCADE, default=1)
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE, default=1)
+    date = models.DateField(null=False)
+    marks = models.FloatField(null=False, default=0)
+    right= models.IntegerField(null=False)
+    wrong = models.IntegerField(null=False)
+    # question = models.ForeignKey()
+
+    def __str__(self):
+        return str(self.examinee.user.username + " " + self.exam.exam_title + " " + str(self.marks))
+
+
+
