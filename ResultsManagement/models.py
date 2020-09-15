@@ -12,3 +12,13 @@ class Result(models.Model):
 
     def __str__(self):
         return str(self.examinee.user.username + " " + self.exam.exam_title + " " + str(self.marks))
+
+
+class Rank(models.Model):
+    examinee = models.ForeignKey(Examinee, on_delete=models.CASCADE, default=1)
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE, default=1)
+    marks = models.FloatField(null=False, default=0)
+    time = models.IntegerField(null=False, default=1)
+
+    def __str__(self):
+        return str(self.examinee.user.username + " " + self.exam.exam_title + " " + str(self.marks))
