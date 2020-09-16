@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2> ALL QUESTIONS </h2>
+{% for item in all_questions %}
+<p>
+    Exam Name : {{ item.exam.exam_title }}<br>
+    Marks : {{ item.marks }}<br>
+    Duration : {{ item.time_limit }}<br><br>
+
+</p>
+{% endfor %}
+
+</body>
+</html>
