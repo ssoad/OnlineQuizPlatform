@@ -26,5 +26,7 @@ urlpatterns = [
     path('logout/', acc_views.logout_view),
     path('dashboard/', acc_views.user_dash),
     path('admin/', admin.site.urls),
-    path('exams/',Exam_views.showExams)
+    path('exams/',Exam_views.showExams),
+    path('attexams/',Exam_views.showAttemptedExam)
+
 ]
