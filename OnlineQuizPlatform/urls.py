@@ -18,6 +18,7 @@ from django.urls import path
 from OnlineQuiz import views
 from Accounts import views as acc_views
 from ExamManagement import views as Exam_views
+from AnswerManagement import views as Answer_views
 
 urlpatterns = [
     path('', views.showHome),
@@ -28,6 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('exams/',Exam_views.showExams),
     path('attexams/',Exam_views.showAttemptedExam),
+
 
 
 
