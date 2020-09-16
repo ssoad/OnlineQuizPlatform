@@ -48,5 +48,16 @@ def showMCQQuestions(request):
     return render(request, 'ExamManagement/showMCQQuestions.html',context)
 
 
+def showCustomQuestions(request):
+
+    Customquestions = Custom_Questions.objects.all()
+
+    context = {
+        'all_customquestions' : Customquestions
+    }
+
+    return render(request, 'ExamManagement/showCustomQuestion.html',context)
+
+
 
 
