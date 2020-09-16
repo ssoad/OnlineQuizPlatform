@@ -30,4 +30,7 @@ urlpatterns = [
     path('exams/', exam_views.showExams, name='exams'),
     path('attexams/', exam_views.showAttemptedExam, name='attempt_exams'),
 
+
+
+
 ]
