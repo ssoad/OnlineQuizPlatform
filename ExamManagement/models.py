@@ -26,12 +26,12 @@ class AttemptedExam(models.Model):
 
 
 class Questions(models.Model):
-    marks = models.IntegerField(null= False, default=100)
-    time_limit = models.IntegerField(null=False,default=60)
+    marks = models.IntegerField(null=False, default=100)
+    time_limit = models.IntegerField(null=False, default=60)
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.exam.exam_title)
+        return str(self.id)
 
 
 class MCQ_Questions(models.Model):
