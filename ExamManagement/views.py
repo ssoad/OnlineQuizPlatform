@@ -37,5 +37,16 @@ def showQuestions(request):
     return render(request, 'ExamManagement/showQuestion.html',context)
 
 
+def showMCQQuestions(request):
+
+    MCQquestions = MCQ_Questions.objects.all()
+
+    context = {
+        'all_mcqquestions' : MCQquestions
+    }
+
+    return render(request, 'ExamManagement/showMCQQuestions.html',context)
+
+
 
 
