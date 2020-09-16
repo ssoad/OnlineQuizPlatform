@@ -23,3 +23,12 @@ class AttemptedExam(models.Model):
 
     def __str__(self):
         return str(self.exam.exam_title + " " + self.examinee.user.username)
+
+
+class Questions(models.Model):
+    marks = models.IntegerField(null= False, default=100)
+    time_limit = models.IntegerField(null=False,default=60)
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.exam.exam_title)
