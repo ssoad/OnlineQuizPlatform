@@ -32,5 +32,6 @@ urlpatterns = [
     path('attexams/', exam_views.showAttemptedExam, name='attempt_exams'),
     path('results/', result_views.showResults, name='results'),
     path('history/', result_views.showExaminee_History, name='history'),
+    path('rank/', result_views.showRank, name='rank'),
 
 ]

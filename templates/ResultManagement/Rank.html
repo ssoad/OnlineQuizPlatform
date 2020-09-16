@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exam Ranking</title>
+</head>
+{% for position in rank %}
+    <p style="font-weight: bold">
+        Exam : {{ position.exam.exam_title }}
+        Examinee: {{ position.examinee.user.username }}
+        Marks: {{ position.marks }}
+        Time: {{ position.time }}
+    </p>
+
+{% endfor %}
+<body>
+
+</body>
+</html>
