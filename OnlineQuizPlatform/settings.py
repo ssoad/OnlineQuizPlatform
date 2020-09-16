@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'OnlineQuiz.apps.OnlinequizConfig',
     'Accounts.apps.AccountsConfig',
     'ExamManagement.apps.ExammanagementConfig',
-    'ResultsManagement.apps.ResultsmanagementConfig'
+    'ResultsManagement.apps.ResultsmanagementConfig',
+    'AnswerManagement.apps.AnswermanagementConfig',
+
 
 ]
 
