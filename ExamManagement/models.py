@@ -32,3 +32,17 @@ class Questions(models.Model):
 
     def __str__(self):
         return str(self.exam.exam_title)
+
+
+class MCQ_Questions(models.Model):
+    question_text = models.CharField(max_length=200)
+    option1 = models.CharField(max_length=200)
+    option2 = models.CharField(max_length=200)
+    option3 = models.CharField(max_length=200)
+    option4 = models.CharField(max_length=200)
+    question = models.ForeignKey(Questions, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.question_text+"("+self.question.exam.exam_title+")")
+
+
