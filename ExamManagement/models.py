@@ -31,7 +31,7 @@ class Questions(models.Model):
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.id) + " " + self.exam.exam_title
 
 
 class MCQ_Questions(models.Model):
