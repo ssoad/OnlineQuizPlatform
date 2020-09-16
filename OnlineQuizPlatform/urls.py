@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from OnlineQuiz import views
+
 from Accounts import views as acc_views
-from ExamManagement import views as Exam_views
+from ExamManagement import views as exam_views
+from OnlineQuiz import views
 
 urlpatterns = [
     path('', views.showHome),
@@ -26,8 +27,7 @@ urlpatterns = [
     path('logout/', acc_views.logout_view),
     path('dashboard/', acc_views.user_dash),
     path('admin/', admin.site.urls),
-    path('exams/',Exam_views.showExams),
-    path('attexams/',Exam_views.showAttemptedExam),
-
+    path('exams/', exam_views.showExams, name='exams'),
+    path('attexams/', exam_views.showAttemptedExam, name='attempt_exams'),
 
 ]
