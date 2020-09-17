@@ -11,7 +11,7 @@ class UserLoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
-    def clean(self, *args, **kwargs):
+    def clean(self):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
 
@@ -23,7 +23,7 @@ class UserLoginForm(forms.Form):
                 raise forms.ValidationError('Incorrect password')
             if not user.is_active:
                 raise forms.ValidationError('This user is not active')
-        return super(UserLoginForm, self).clean(*args, **kwargs)
+        return super(UserLoginForm, self).clean()
 
 
 class UserRegisterForm(forms.ModelForm):
@@ -32,7 +32,7 @@ class UserRegisterForm(forms.ModelForm):
     email = forms.EmailField(label='Email address')
     email2 = forms.EmailField(label='Confirm Email')
     password = forms.CharField(widget=forms.PasswordInput)
-    role = forms.BooleanField
+    role = forms.ChoiceField(choices=(('1', 'Examinee'), ('2', 'Examiner')))
 
     class Meta:
         model = User
@@ -45,7 +45,7 @@ class UserRegisterForm(forms.ModelForm):
             'password',
         ]
 
-    def clean(self, *args, **kwargs):
+    def clean(self):
         email = self.cleaned_data.get('email')
         email2 = self.cleaned_data.get('email2')
         if email != email2:
@@ -54,4 +54,4 @@ class UserRegisterForm(forms.ModelForm):
         if email_qs.exists():
             raise forms.ValidationError(
                 "This email has already been registered")
-        return super(UserRegisterForm, self).clean(*args, **kwargs)
+        return super(UserRegisterForm, self).clean()
