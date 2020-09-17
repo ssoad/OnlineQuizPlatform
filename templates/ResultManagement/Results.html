@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Exam Results</title>
-</head>
-{% for result in results %}
-    {{ result }}
-{% endfor %}
-<body>
+{% extends 'ResultManagement/Result_base.html' %}
+{% block content %}
+    <center><h3>Results</h3></center>
+    {% for result in results %}
+        {{ result }}
+    {% endfor %}
+{%  endblock content %}
 
-</body>
-</html>
