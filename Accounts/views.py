@@ -28,7 +28,7 @@ def login_view(request):
     context = {
         'form': form,
     }
-    return render(request, "login.html", context)
+    return render(request, "UserManagement/login.html", context)
 
 
 def register_view(request):
@@ -50,7 +50,7 @@ def register_view(request):
     context = {
         'form': form,
     }
-    return render(request, "signup.html", context)
+    return render(request, "UserManagement/signup.html", context)
 
 
 def logout_view(request):
@@ -63,6 +63,6 @@ def user_dash(request):
         context = {
             "user": request.user}
 
-        return render(request, 'user_dash_base.html', context)
+        return render(request, 'UserManagement/user_dash_base.html', context)
     else:
         return redirect('/')

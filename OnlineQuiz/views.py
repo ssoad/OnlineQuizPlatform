@@ -7,4 +7,4 @@ def showHome(request):
 
 
 def showLogin(request):
-    return render(request, 'login.html')
+    return render(request, 'UserManagement/login.html')
