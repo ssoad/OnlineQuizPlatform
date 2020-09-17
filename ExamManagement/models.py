@@ -22,7 +22,7 @@ class AttemptedExam(models.Model):
     examinee = models.ForeignKey(Examinee, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.exam.exam_title + " " + self.examinee.user.username)
+        return str("Exam:-"+self.exam.exam_title + ",Examinee:-" + self.examinee.user.username)
 
 
 class Question(models.Model):
@@ -43,7 +43,7 @@ class MCQQuestion(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.question_text + "(" + self.question.exam.exam_title + ")")
+        return str(self.id)+"."+str(self.question_text + "(" + self.question.exam.exam_title + ")")
 
 
 class CustomQuestion(models.Model):
