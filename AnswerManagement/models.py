@@ -6,7 +6,7 @@ from Accounts.models import Examinee
 
 class Answer(models.Model):
     corr_ans = models.CharField(max_length=200)
-    question = models.ForeignKey(MCQ_Questions, on_delete=models.CASCADE)
+    question = models.ForeignKey(MCQ_Questions, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return str(self.id)+".Answer of question:"+str(self.question.question_text)+str("("+self.question.question.exam.exam_title+")")
