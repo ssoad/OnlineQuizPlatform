@@ -12,3 +12,14 @@ def showAnswer(request):
     }
 
     return render(request, 'AnswerManagement/showAnswer.html',context)
+
+
+def showMcqAnswer(request):
+
+    Mcqanswer = ExamineeMCQAnswer.objects.all()
+
+    context = {
+        'all_mcqanswer' : Mcqanswer
+    }
+
+    return render(request, 'AnswerManagement/showMcqAnswer.html')

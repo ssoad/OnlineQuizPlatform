@@ -19,6 +19,8 @@ from Accounts import views as acc_views
 from ExamManagement import views as exam_views
 from OnlineQuiz import views
 from ResultManagement import views as result_views
+from AnswerManagement import views as answer_views
+
 
 urlpatterns = [
     path('', views.showHome),
@@ -32,5 +34,7 @@ urlpatterns = [
     path('results/', result_views.showResults, name='results'),
     path('history/', result_views.showExaminee_History, name='history'),
     path('rank/', result_views.showRank, name='rank'),
+    path('mcqanswer/', answer_views.showMcqAnswer, name='mcqanswer'),
+
 
 ]
