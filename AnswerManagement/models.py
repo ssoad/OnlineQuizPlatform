@@ -14,13 +14,13 @@ class Answer(models.Model):
             "(" + self.question.question.exam.exam_title + ")")
 
 
-# class ExamineeMCQAnswer(models.Model):
-#     submitted_option = models.CharField(max_length=200, blank=True, null=True)
-#     mcq_question = models.ForeignKey(MCQQuestion, on_delete=models.SET_NULL, null=True, default=1)
-#     examinee = models.ForeignKey(Examinee, on_delete=models.CASCADE, default=1)
-#
-#     def __str__(self):
-#         return str(self.id) + ".Answer Script:" + str(self.examinee.user.username)
+class ExamineeMCQAnswer(models.Model):
+    submitted_option = models.CharField(max_length=200, blank=True, null=True)
+    mcq_question = models.ForeignKey(MCQQuestion, on_delete=models.SET_NULL, null=True, default=1)
+    examinee = models.ForeignKey(Examinee, on_delete=models.CASCADE, default=1)
+
+    def __str__(self):
+        return str(self.id) + ".Answer Script:" + str(self.examinee.user.username)
 
 
 class ExamineeCustomAnswer(models.Model):
