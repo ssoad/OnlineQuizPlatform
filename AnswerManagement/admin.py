@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Answer, ExamineeMCQAnswer, ExamineeCustomAnswer
+from .models import Answer, ExamineeCustomAnswer
 
 # Register your models here.
 
-admin.site.register([Answer, ExamineeMCQAnswer, ExamineeCustomAnswer])
+admin.site.register([Answer, ExamineeCustomAnswer])

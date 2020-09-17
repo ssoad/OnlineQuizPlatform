@@ -15,11 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
 from Accounts import views as acc_views
 from ExamManagement import views as exam_views
 from OnlineQuiz import views
-from ResultsManagement import views as result_views
+from ResultManagement import views as result_views
 
 urlpatterns = [
     path('', views.showHome),
