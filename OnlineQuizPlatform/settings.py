@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'Accounts.apps.AccountsConfig',
     'ExamManagement.apps.ExammanagementConfig',
     'ResultsManagement.apps.ResultsmanagementConfig',
-    'AnswerManagement.apps.AnswermanagementConfig',
+     'AnswerManagement.apps.AnswermanagementConfig',
 
 
 ]

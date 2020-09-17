@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Exam,AttemptedExam,Questions,Custom_Questions,MCQ_Questions
+from .models import Exam,AttemptedExam,Question,CustomQuestion,MCQQuestion
 
 
 # Create your views here.
@@ -28,7 +28,7 @@ def showAttemptedExam(request):
 
 def showQuestions(request):
 
-    questions = Questions.objects.all()
+    questions = Question.objects.all()
 
     context={
         'all_questions' : questions
@@ -39,7 +39,7 @@ def showQuestions(request):
 
 def showMCQQuestions(request):
 
-    MCQquestions = MCQ_Questions.objects.all()
+    MCQquestions = MCQQuestion.objects.all()
 
     context = {
         'all_mcqquestions' : MCQquestions
@@ -50,10 +50,10 @@ def showMCQQuestions(request):
 
 def showCustomQuestions(request):
 
-    Customquestions = Custom_Questions.objects.all()
+    customquestion = CustomQuestion.objects.all()
 
     context = {
-        'all_customquestions' : Customquestions
+        'all_customquestions' : customquestion
     }
 
     return render(request, 'ExamManagement/showCustomQuestion.html',context)

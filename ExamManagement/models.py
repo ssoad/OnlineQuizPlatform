@@ -25,7 +25,7 @@ class AttemptedExam(models.Model):
         return str(self.exam.exam_title + " " + self.examinee.user.username)
 
 
-class Questions(models.Model):
+class Question(models.Model):
     marks = models.IntegerField(null=False, default=100)
     time_limit = models.IntegerField(null=False, default=60)
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
@@ -34,21 +34,21 @@ class Questions(models.Model):
         return str(self.id) + " " + self.exam.exam_title
 
 
-class MCQ_Questions(models.Model):
+class MCQQuestion(models.Model):
     question_text = models.CharField(max_length=200)
     option1 = models.CharField(max_length=200)
     option2 = models.CharField(max_length=200)
     option3 = models.CharField(max_length=200)
     option4 = models.CharField(max_length=200)
-    question = models.ForeignKey(Questions, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.question_text + "(" + self.question.exam.exam_title + ")")
 
 
-class Custom_Questions(models.Model):
+class CustomQuestion(models.Model):
     question_text = models.CharField(max_length=200)
-    question = models.ForeignKey(Questions, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.id) + "." + str(self.question_text + "(" + self.question.exam.exam_title + ")")
