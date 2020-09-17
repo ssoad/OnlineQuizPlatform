@@ -36,6 +36,7 @@ urlpatterns = [
     path('rank/', result_views.showRank, name='rank'),
     path('mcqanswer/', answer_views.showMcqAnswer, name='mcqanswer'),
     path('cusquestion/',exam_views.showCustomQuestions),
+    path('question/', exam_views.showQuestions),
 
 
 ]
