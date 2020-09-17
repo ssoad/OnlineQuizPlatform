@@ -23,3 +23,15 @@ def showMcqAnswer(request):
     }
 
     return render(request, 'AnswerManagement/showMcqAnswer.html')
+
+
+def showCustomAnswer(request):
+
+    Customanswer = ExamineeCustomAnswer.objects.all()
+
+    context = {
+        'all_customanswer' : Customanswer
+    }
+
+    return render(request, 'AnswerManagement/showCustomAnswer.html', context)
+

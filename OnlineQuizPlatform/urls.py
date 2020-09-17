@@ -35,8 +35,12 @@ urlpatterns = [
     path('history/', result_views.showExaminee_History, name='history'),
     path('rank/', result_views.showRank, name='rank'),
     path('mcqanswer/', answer_views.showMcqAnswer, name='mcqanswer'),
-    path('cusquestion/',exam_views.showCustomQuestions),
-    path('question/', exam_views.showQuestions),
+    path('cusquestion/',exam_views.showCustomQuestions, name='cusquestion'),
+    path('question/', exam_views.showQuestions, name='question'),
+    path('mcqquestion/', exam_views.showMCQQuestions, name='mcqquestion'),
+    path('answer/', answer_views.showAnswer, name='answer'),
+    path('cusanswer/', answer_views.showCustomAnswer, name='cusanswer'),
+
 
 
 ]
