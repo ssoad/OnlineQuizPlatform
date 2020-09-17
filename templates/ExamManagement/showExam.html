@@ -7,14 +7,14 @@
 <body>
 <h2> ALL EXAMS </h2>
 {% for item in all_exams %}
-<p>
-    examiner: {{ item.examiner }}<br>
-    exam_code: {{ item.exam_code }}<br>
-    exam_title: {{ item.exam_title }}<br>
-    exam_marks:{{ item.exam_marks }}<br>
-    exam_date_time:{{ item.exam_date_time }}<br>
-    exam_duration:{{ item.exam_duration }}<br><br>
-</p>
+    <p>
+        Examiner: {{ item.examiner }}<br>
+        Exam Code: {{ item.exam_code }}<br>
+        Exam Title: {{ item.exam_title }}<br>
+        Exam Marks:{{ item.exam_marks }}<br>
+        Exam Date Time:{{ item.exam_date_time }}<br>
+        Exam Duration:{{ item.exam_duration }}<br><br>
+    </p>
 {% endfor %}
 </body>
 </html>
