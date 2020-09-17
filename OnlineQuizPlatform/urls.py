@@ -38,7 +38,7 @@ urlpatterns = [
     path('cusquestion/',exam_views.showCustomQuestions, name='cusquestion'),
     path('question/', exam_views.showQuestions, name='question'),
     path('mcqquestion/', exam_views.showMCQQuestions, name='mcqquestion'),
-
+    path('answer/', answer_views.showAnswer, name='answer'),
 
 
 
