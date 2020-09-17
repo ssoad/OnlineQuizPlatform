@@ -22,7 +22,7 @@ class AttemptedExam(models.Model):
     examinee = models.ForeignKey(Examinee, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.exam.exam_title + " " + self.examinee.user.username)
+        return str("Exam:-"+self.exam.exam_title + ",Examinee:-" + self.examinee.user.username)
 
 
 class Question(models.Model):
