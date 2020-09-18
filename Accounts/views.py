@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import UserLoginForm, UserRegisterForm
+from .models import Examinee, Examiner
 from django.contrib.auth import (
     authenticate,
     get_user_model,
@@ -66,3 +67,12 @@ def user_dash(request):
         return render(request, 'UserManagement/user_dash_base.html', context)
     else:
         return redirect('/')
+
+def show_all_user(request):
+    examinee = Examinee.objects.all()
+    examiner = Examiner.objects.all()
+    context = {
+        'examiner': examiner,
+        'examinee': examinee
+    }
+    return render(request, 'UserManagement/show_all_user.html', context)
