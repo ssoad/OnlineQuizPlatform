@@ -40,6 +40,7 @@ class MCQQuestion(models.Model):
     option2 = models.CharField(max_length=200)
     option3 = models.CharField(max_length=200)
     option4 = models.CharField(max_length=200)
+    ques_marks = models.IntegerField(blank=False, null=False,default=1)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -48,6 +49,7 @@ class MCQQuestion(models.Model):
 
 class CustomQuestion(models.Model):
     question_text = models.CharField(max_length=200)
+    ques_marks = models.IntegerField(blank=False, null=False,default=1)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     def __str__(self):
