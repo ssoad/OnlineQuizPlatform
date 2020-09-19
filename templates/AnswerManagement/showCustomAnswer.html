@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'Base.html' %}
+{%  block content %}
+    <h2> ALL EXAMINEE CUSTOM ANSWER </h2>
+    {% for item in all_customanswer %}
+        <p>
+            Examinee Name : {{ item.examinee.user.username }}
+            {{ item.custom_question.id }}.Question : {{ item.custom_question.question_text }}<br>
+            Given Answer : {{ item.submitted_answer }}<br><br>
 
-<h2> ALL EXAMINEE CUSTOM ANSWER </h2>
-{% for item in all_customanswer %}
-<p>
-    Examinee Name : {{ item.examinee.user.username }}
-    {{ item.custom_question.id }}.Question : {{ item.custom_question.question_text }}<br>
-    Given Answer : {{ item.submitted_answer}}<br><br>
-
-</p>
-{% endfor %}
-
-</body>
-</html>
+        </p>
+    {% endfor %}
+{%  endblock content %}

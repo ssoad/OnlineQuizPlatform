@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h2> ALL ANSWERS </h2>
-{% for item in all_answer %}
-<p>
-    {{ item.question.id }}.Question : {{ item.question.question_text }}<br>
-    Correct Answer : {{ item.corr_ans}}<br><br>
+{% extends 'Base.html' %}
+{% block content %}
+<center>
+    <h2> ALL ANSWERS </h2>
+    {% for item in all_answer %}
+        <p>
+            {{ item.question.id }}.Question : {{ item.question.question_text }}<br>
+            Correct Answer : {{ item.corr_ans }}<br><br>
 
-</p>
-{% endfor %}
-</body>
-</html>
+        </p>
+    {% endfor %}
+</center>
+
+{% endblock content %}
+
+

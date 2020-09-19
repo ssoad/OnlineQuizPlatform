@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{%  extends 'Base.html' %}
+{% block content %}
 <h2> ALL EXAMINEE MCQ ANSWER </h2>
 {% for item in all_mcqanswer %}
 <p>
     Examinee Name : {{ item.examinee.user.username }}
     {{ item.mcq_question.id }}.Question : {{ item.mcq_question.question_text }}<br>
     Given Answer : {{ item.submitted_option}}<br><br>
-
 </p>
 {% endfor %}
-
-</body>
-</html>
+{% endblock content %}
