@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import UserLoginForm, UserRegisterForm
+from .models import Examinee, Examiner
 from django.contrib.auth import (
     authenticate,
     get_user_model,
@@ -38,10 +39,20 @@ def register_view(request):
     form = UserRegisterForm(request.POST or None)
     if form.is_valid():
         user = form.save(commit=False)
+        t = int(form.cleaned_data.get('role'))  # Return Index of Choice
+        #print('REST:', t)
         password = form.cleaned_data.get('password')
         user.set_password(password)
         user.save()
         new_user = authenticate(username=user.username, password=password)
+        if t == 1:
+            #print('It Works')
+            examinee = Examinee(user=new_user, organization=form.cleaned_data.get('organization'))
+            examinee.save()
+        if t == 2:
+            #print('It Works')
+            examiner = Examiner(user=new_user, organization=form.cleaned_data.get('organization'))
+            examiner.save()
         login(request, new_user)
         if next:
             return redirect(next)
@@ -66,3 +77,13 @@ def user_dash(request):
         return render(request, 'UserManagement/user_dash_base.html', context)
     else:
         return redirect('/')
+
+
+def show_all_user(request):
+    examinee = Examinee.objects.all()
+    examiner = Examiner.objects.all()
+    context = {
+        'examiner': examiner,
+        'examinee': examinee
+    }
+    return render(request, 'UserManagement/show_all_user.html', context)
