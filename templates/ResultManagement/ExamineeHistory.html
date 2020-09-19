@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Examinee History</title>
-</head>
+{% extends 'Base.html' %}
+{% block content %}
+<h2>Examinee History</h2>
 {% for history in ExamineeHistory %}
     {{ history }}
 {% endfor %}
-<body>
-
-</body>
-</html>
+{% endblock content %}

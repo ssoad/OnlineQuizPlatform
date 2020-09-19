@@ -1,13 +1,18 @@
 {% extends 'Base.html' %}
 {% block content %}
-    <center>
-    <section style="align-content: start">
-     <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" />
-    </form>
+    <section style="align-content: center">
+        <center>
+            <h2>Register Here!</h2>
+            <br>
+        <div class="col-sm-7" style="align-content: start">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit"/>
+            </form>
+        </div>
+        </center>
     </section>
-    </center>
+
 
 {% endblock content %}

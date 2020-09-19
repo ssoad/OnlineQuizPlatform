@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Exam Ranking</title>
-</head>
+{% extends 'Base.html' %}
+{% block content %}
+<h2>Exam Ranking</h2>
 {% for position in rank %}
     <p style="font-weight: bold">
         Exam : {{ position.exam.exam_title }}
@@ -13,7 +10,4 @@
     </p>
 
 {% endfor %}
-<body>
-
-</body>
-</html>
+{% endblock content %}
