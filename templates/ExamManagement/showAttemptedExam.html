@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'Base.html' %}
+{% block content %}
 <h2> ALL ATTEMPTED EXAMS </h2>
 {% for item in all_att_exams %}
 <p>
@@ -12,6 +7,4 @@
     Attempted Exam : {{ item.exam.exam_title }}<br><br>
 </p>
 {% endfor %}
-
-</body>
-</html>
+{% endblock content %}

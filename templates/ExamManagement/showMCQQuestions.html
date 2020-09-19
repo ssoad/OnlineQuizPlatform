@@ -1,23 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h2> ALL MCQ QUESTIONS </h2>
-{% for item in all_mcqquestions %}
-<p>
-    Exam Title : {{ item.question.exam.exam_title }}<br>
-     {{ item.id }}.Question : {{ item.question_text }}<br>
-     a : {{ item.option1 }}<br>
-     b : {{ item.option2 }}<br>
-     c : {{ item.option3 }}<br>
-     d : {{ item.option4 }}<br>
+{% extends 'Base.html' %}
+{% block content %}
+    {% for item in all_mcqquestions %}
+        <p>
+            Exam Title : {{ item.question.exam.exam_title }}<br>
+            {{ item.id }}.Question : {{ item.question_text }}<br>
+            a : {{ item.option1 }}<br>
+            b : {{ item.option2 }}<br>
+            c : {{ item.option3 }}<br>
+            d : {{ item.option4 }}<br>
 
 
-</p>
-{% endfor %}
-
-</body>
-</html>
+        </p>
+    {% endfor %}
+{% endblock content %}
