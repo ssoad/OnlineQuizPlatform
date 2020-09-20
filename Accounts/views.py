@@ -87,3 +87,6 @@ def show_all_user(request):
         'examinee': examinee
     }
     return render(request, 'UserManagement/show_all_user.html', context)
+
+
+
