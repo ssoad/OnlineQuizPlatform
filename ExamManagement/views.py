@@ -90,11 +90,11 @@ def insertMcqQuestion(request):
     message = "Insert Question"
     if request.method == "POST":
         form = AddMCQquestionform(request.POST)
-        message = "Not Successful"
+        message = "Insert Unsuccessful"
         if form.is_valid():
             form.save()
             form = AddMCQquestionform()
-            message = "Successful"
+            message = "Insert Completed"
 
     context = {
         'form' : form,

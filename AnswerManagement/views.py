@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Answer,ExamineeCustomAnswer,ExamineeMCQAnswer
+from .forms import insertAnswerform
 
 # Create your views here.
 
@@ -34,4 +35,27 @@ def showCustomAnswer(request):
     }
 
     return render(request, 'AnswerManagement/showCustomAnswer.html', context)
+
+
+def insertAnswer(request):
+
+    form = insertAnswerform()
+    message = "Insert Answer"
+    if request.method == "POST":
+        form = insertAnswerform(request.POST)
+        message = "Insert Unsuccessful"
+        if form.is_valid():
+            form.save()
+            form = insertAnswerform()
+            message = "Insert Completed"
+
+    context = {
+        'form' : form,
+        'message' : message
+
+    }
+
+
+    return render(request,'AnswerManagement/insertAnswer.html',context)
+
 
