@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Set Custom Question</h1>
-{{ CustomQuestion }}
-</body>
-</html>
+{% extends 'Base.html' %}
+
+{% block content %}
+
+<h1>Set Custom Question</h1><br>
+    {{ CustomQuestion }}<br>
+    <input type="submit">
+
+</form>
+
+ {% endblock content %}
+

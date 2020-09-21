@@ -31,8 +31,8 @@ class AddMCQquestionform(forms.ModelForm):
 
 
 class AddQuestionForm(forms.Form):
-    qus_id = forms.IntegerField()
-    exam_id = forms.IntegerField()
+    #qus_id = forms.IntegerField()
+    #exam_id = forms.IntegerField()
     qus_marks = forms.IntegerField()
     time_limit = forms.IntegerField()
 
@@ -50,7 +50,7 @@ class AddQuestionForm(forms.Form):
 
 
 class AddCustomQuestionForm(forms.Form):
-    qus_id=forms.IntegerField()
+    #qus_id=forms.IntegerField()
     qus_text=forms.CharField()
 
     class Meta:
