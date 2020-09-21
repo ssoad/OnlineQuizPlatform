@@ -1,5 +1,5 @@
 from django import forms
-from .models import Exam
+from .models import Exam,MCQQuestion
 
 
 class AddExamForm(forms.Form):
@@ -21,3 +21,11 @@ class AddExamForm(forms.Form):
 
     def clean(self):
         return super(AddExamForm, self).clean()
+
+
+
+class AddMCQquestionform(forms.ModelForm):
+    class Meta:
+        model = MCQQuestion
+        fields = ('question_text','option1','option2','option3','option4','ques_marks','question')
+

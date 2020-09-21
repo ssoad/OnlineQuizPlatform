@@ -1,7 +1,7 @@
 import datetime
 from django.shortcuts import render
 from Accounts.models import Examiner
-from .forms import AddExamForm
+from .forms import AddExamForm,AddMCQquestionform
 from .models import Exam, AttemptedExam, Question, CustomQuestion, MCQQuestion
 
 
@@ -82,3 +82,23 @@ def addExam(request):
         else:
             return render(request, '404.html')
     return render(request, '404.html')
+
+
+def insertMcqQuestion(request):
+
+    form = AddMCQquestionform()
+    message = "Insert Question"
+    if request.method == "POST":
+        form = AddMCQquestionform(request.POST)
+        message = "Not Successful"
+        if form.is_valid():
+            form.save()
+            form = AddMCQquestionform()
+            message = "Successful"
+
+    context = {
+        'form' : form,
+        'message' : message
+    }
+
+    return render(request,'ExamManagement/insertMcqQuestionform.html',context)
