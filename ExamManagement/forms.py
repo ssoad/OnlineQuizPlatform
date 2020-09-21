@@ -29,3 +29,36 @@ class AddMCQquestionform(forms.ModelForm):
         model = MCQQuestion
         fields = ('question_text','option1','option2','option3','option4','ques_marks','question')
 
+
+class AddQuestionForm(forms.Form):
+    qus_id = forms.IntegerField()
+    exam_id = forms.IntegerField()
+    qus_marks = forms.IntegerField()
+    time_limit = forms.IntegerField()
+
+    class Meta:
+        model = Exam
+        fields = [
+            'qus_id',
+            'exam_id',
+            'qus_marks',
+            'time_limit',
+        ]
+
+    def clean(self):
+        return super(AddQuestionForm, self).clean()
+
+
+class AddCustomQuestionForm(forms.Form):
+    qus_id=forms.IntegerField()
+    qus_text=forms.CharField()
+
+    class Meta:
+        model = Exam
+        fields = [
+            'qus_id',
+            'qus_text',
+        ]
+
+    def clean(self):
+        return super(AddCustomQuestionForm, self).clean()

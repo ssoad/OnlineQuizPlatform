@@ -1,7 +1,7 @@
 import datetime
 from django.shortcuts import render
 from Accounts.models import Examiner
-from .forms import AddExamForm,AddMCQquestionform
+from .forms import AddExamForm,AddMCQquestionform, AddQuestionForm, AddCustomQuestionForm
 from .models import Exam, AttemptedExam, Question, CustomQuestion, MCQQuestion
 
 
@@ -102,3 +102,22 @@ def insertMcqQuestion(request):
     }
 
     return render(request,'ExamManagement/insertMcqQuestionform.html',context)
+
+def AddQuestion(request):
+    addqus= AddQuestionForm()
+
+    context={
+        'Question': addqus
+    }
+
+    return render(request, 'ExamManagement/addQuestion.html', context)
+
+
+def AddCustomQuestion(request):
+    addcus_qus=AddCustomQuestionForm()
+
+    context = {
+        'CustomQuestion': addcus_qus
+    }
+
+    return render(request, 'ExamManagement/addCustomQuestion.html', context)
