@@ -44,6 +44,8 @@ urlpatterns = [
     path('addexam/', exam_views.addExam),
     path('addmcqquestion/', exam_views.insertMcqQuestion),
     path('addanswer/', answer_views.insertAnswer),
+    path('addquestion/', exam_views.AddQuestion),
+    path('addcustomquestion/', exam_views.AddCustomQuestion),
 
 
 
