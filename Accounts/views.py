@@ -41,17 +41,17 @@ def register_view(request):
     if form.is_valid():
         user = form.save(commit=False)
         t = int(form.cleaned_data.get('role'))  # Return Index of Choice
-        #print('REST:', t)
+        # print('REST:', t)
         password = form.cleaned_data.get('password')
         user.set_password(password)
         user.save()
         new_user = authenticate(username=user.username, password=password)
         if t == 1:
-            #print('It Works')
+            # print('It Works')
             examinee = Examinee(user=new_user, organization=form.cleaned_data.get('organization'))
             examinee.save()
         if t == 2:
-            #print('It Works')
+            # print('It Works')
             examiner = Examiner(user=new_user, organization=form.cleaned_data.get('organization'))
             examiner.save()
         login(request, new_user)
@@ -69,11 +69,22 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
+
 @login_required
 def user_dash(request):
     if request.user.is_authenticated:
-        context = {
-            "user": request.user}
+        examinee = Examinee.objects.filter(user=request.user)
+        examiner = Examiner.objects.filter(user=request.user)
+        if examinee:
+            context = {
+                "user": request.user,
+                "examinee": examinee[0],
+            }
+        else:
+            context = {
+                "user": request.user,
+                "examiner": examiner[0]
+            }
 
         return render(request, 'UserManagement/user_dash_base.html', context)
     else:
@@ -88,6 +99,3 @@ def show_all_user(request):
         'examinee': examinee
     }
     return render(request, 'UserManagement/show_all_user.html', context)
-
-
-
