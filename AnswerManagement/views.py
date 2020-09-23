@@ -1,44 +1,43 @@
 from django.shortcuts import render
-from .models import Answer,ExamineeCustomAnswer,ExamineeMCQAnswer
+from .models import Answer, ExamineeCustomAnswer, ExamineeMCQAnswer
 from .forms import insertAnswerform
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
 def showAnswer(request):
-
     answer = Answer.objects.all()
 
     context = {
-        'all_answer' : answer
+        'all_answer': answer
     }
 
-    return render(request, 'AnswerManagement/showAnswer.html',context)
+    return render(request, 'AnswerManagement/showAnswer.html', context)
 
 
 def showMcqAnswer(request):
-
     Mcqanswer = ExamineeMCQAnswer.objects.all()
 
     context = {
-        'all_mcqanswer' : Mcqanswer
+        'all_mcqanswer': Mcqanswer
     }
 
     return render(request, 'AnswerManagement/showMcqAnswer.html')
 
 
 def showCustomAnswer(request):
-
     Customanswer = ExamineeCustomAnswer.objects.all()
 
     context = {
-        'all_customanswer' : Customanswer
+        'all_customanswer': Customanswer
     }
 
     return render(request, 'AnswerManagement/showCustomAnswer.html', context)
 
 
+@login_required
 def insertAnswer(request):
-
     form = insertAnswerform()
     message = "Insert Answer"
     if request.method == "POST":
@@ -50,12 +49,9 @@ def insertAnswer(request):
             message = "Insert Completed"
 
     context = {
-        'form' : form,
-        'message' : message
+        'form': form,
+        'message': message
 
     }
 
-
-    return render(request,'AnswerManagement/insertAnswer.html',context)
-
-
+    return render(request, 'AnswerManagement/insertAnswer.html', context)

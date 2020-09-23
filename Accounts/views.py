@@ -7,6 +7,7 @@ from django.contrib.auth import (
     login,
     logout
 )
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -68,7 +69,7 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-
+@login_required
 def user_dash(request):
     if request.user.is_authenticated:
         context = {
