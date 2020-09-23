@@ -28,6 +28,11 @@ urlpatterns = [
     path('login/', acc_views.login_view),
     path('signup/', acc_views.register_view),
     path('logout/', acc_views.logout_view),
+    path('change-password/', auth_views.PasswordChangeView.as_view()),
+    path('reset-password/', auth_views.PasswordResetView.as_view()),
+    path('change-password-done/', auth_views.PasswordChangeDoneView.as_view()),
+    path('reset-password-done/', auth_views.PasswordResetDoneView.as_view()),
+    path('reset-password-complete/', auth_views.PasswordResetCompleteView.as_view()),
     path('dashboard/', acc_views.user_dash),
     path('admin/', admin.site.urls),
     path('exams/', exam_views.showExams, name='exams'),
@@ -47,9 +52,5 @@ urlpatterns = [
     path('addanswer/', answer_views.insertAnswer),
     path('addquestion/', exam_views.AddQuestion),
     path('addcustomquestion/', exam_views.AddCustomQuestion),
-    path('change-password/', auth_views.PasswordChangeView.as_view()),
-    path('reset-password/', auth_views.PasswordResetView.as_view()),
-    path('change-password-done/', auth_views.PasswordChangeDoneView.as_view()),
-    path('reset-password-done/', auth_views.PasswordResetDoneView.as_view()),
-    path('reset-password-complete/', auth_views.PasswordResetCompleteView.as_view()),
+
 ]
