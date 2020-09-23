@@ -14,7 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.contrib.auth import views as auth_views
 from Accounts import views as acc_views
 from ExamManagement import views as exam_views
 from OnlineQuiz import views
@@ -46,9 +47,9 @@ urlpatterns = [
     path('addanswer/', answer_views.insertAnswer),
     path('addquestion/', exam_views.AddQuestion),
     path('addcustomquestion/', exam_views.AddCustomQuestion),
-
-
-
-
-
+    path('change-password/', auth_views.PasswordChangeView.as_view()),
+    path('reset-password/', auth_views.PasswordResetView.as_view()),
+    path('change-password-done/', auth_views.PasswordChangeDoneView.as_view()),
+    path('reset-password-done/', auth_views.PasswordResetDoneView.as_view()),
+    path('reset-password-complete/', auth_views.PasswordResetCompleteView.as_view()),
 ]
