@@ -1,9 +1,10 @@
 import datetime
 from django.shortcuts import render
-from Accounts.models import Examiner
-from .forms import AddExamForm,AddMCQquestionform, AddQuestionForm, AddCustomQuestionForm
+from Accounts.models import Examiner, Examinee
+from .forms import AddExamForm, AddMCQquestionform, AddQuestionForm, AddCustomQuestionForm
 from .models import Exam, AttemptedExam, Question, CustomQuestion, MCQQuestion
 from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 @login_required
@@ -65,7 +66,7 @@ def addExam(request):
     if request.user.is_authenticated:
         examiner = Examiner.objects.get(user_id=request.user.id)
 
-        #print('TEST:',examiner[0])
+        # print('TEST:',examiner[0])
         if examiner:
             form = AddExamForm(request.POST or None)
             if request.method == 'POST':
@@ -74,9 +75,10 @@ def addExam(request):
                     title = form.cleaned_data.get('exam_title')
                     code = int(form.cleaned_data.get('exam_code'))
                     marks = int(form.cleaned_data.get('exam_marks'))
-                    date_time = datetime.datetime.now() #For Testing purpose
+                    date_time = datetime.datetime.now()  # For Testing purpose
                     duration = int(form.cleaned_data.get('exam_duration'))
-                    exam = Exam(exam_title=title, examiner=examiner, exam_code=code, exam_marks=marks, exam_duration=duration, exam_date_time=date_time)
+                    exam = Exam(exam_title=title, examiner=examiner, exam_code=code, exam_marks=marks,
+                                exam_duration=duration, exam_date_time=date_time)
                     exam.save()
                     form = AddExamForm()
             context = {
@@ -101,18 +103,18 @@ def insertMcqQuestion(request):
             message = "Insert Completed"
 
     context = {
-        'form' : form,
-        'message' : message
+        'form': form,
+        'message': message
     }
 
-    return render(request,'ExamManagement/insertMcqQuestionform.html',context)
+    return render(request, 'ExamManagement/insertMcqQuestionform.html', context)
 
 
 @login_required
 def AddQuestion(request):
-    addqus= AddQuestionForm()
+    addqus = AddQuestionForm()
 
-    context={
+    context = {
         'Question': addqus
     }
 
@@ -121,10 +123,30 @@ def AddQuestion(request):
 
 @login_required
 def AddCustomQuestion(request):
-    addcus_qus=AddCustomQuestionForm()
-
+    addcus_qus = AddCustomQuestionForm()
     context = {
         'CustomQuestion': addcus_qus
     }
 
     return render(request, 'ExamManagement/addCustomQuestion.html', context)
+
+
+@login_required
+def ExamHistory(request):
+    examinee = Examinee.objects.filter(user=request.user)
+    examiner = Examiner.objects.filter(user=request.user)
+    if examinee:
+        exams = AttemptedExam.objects.filter(examinee__user_id=request.user.id)
+        print(exams[0].exam.exam_title)
+        context = {
+            'exam': exams,
+            'examinee': True
+        }
+    else:
+        exams = Exam.objects.filter(examiner__user_id=request.user.id)
+        print(exams)
+        context = {
+            'exam': exams,
+            'Examiner': True
+        }
+    return render(request, 'ExamManagement/ExamHistory.html', context)
