@@ -1,0 +1,43 @@
+{% extends 'UserManagement/user_dash_base.html' %}
+{% block content %}
+    <center>
+        <h2> ALL EXAMS </h2>
+        <br>
+    </center>
+    {% if examiner %}
+        {% for item in exam %}
+            <div class="card" style="width: 1000px; border-radius: 20px">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.exam_title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ item.examiner }}</h6>
+                    <p class="card-text">
+                        Exam Code: {{ item.exam_code }}<br>
+                        Exam Marks:{{ item.exam_marks }}<br>
+                        Exam Date Time:{{ item.exam_date_time }}<br>
+                        Exam Duration:{{ item.exam_duration }}<br>
+                    </p>
+                    <a href="#" class="card-link">View Details</a>
+                    <a href="#" class="card-link">Analyse</a>
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+    {% endif %}
+    {% if examinee %}
+        {% for item in exam %}
+            <div class="card" style="width: 1000px; border-radius: 20px">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.exam.exam_title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ item.examiner }}</h6>
+                    <p class="card-text">
+                        Exam Code: {{ item.exam.exam_code }}<br>
+                        Exam Marks:{{ item.exam.exam_marks }}<br>
+                        Exam Date Time:{{ item.exam.exam_date_time }}<br>
+                        Exam Duration:{{ item.exam.exam_duration }}<br>
+                    </p>
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}
