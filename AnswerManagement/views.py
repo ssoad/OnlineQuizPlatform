@@ -16,6 +16,7 @@ def showAnswer(request):
     return render(request, 'AnswerManagement/showAnswer.html', context)
 
 
+@login_required
 def showMcqAnswer(request):
     Mcqanswer = ExamineeMCQAnswer.objects.all()
 
@@ -26,6 +27,7 @@ def showMcqAnswer(request):
     return render(request, 'AnswerManagement/showMcqAnswer.html')
 
 
+@login_required
 def showCustomAnswer(request):
     Customanswer = ExamineeCustomAnswer.objects.all()
 

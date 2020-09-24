@@ -91,11 +91,11 @@ def user_dash(request):
         return redirect('/')
 
 
-def show_all_user(request):
-    examinee = Examinee.objects.all()
-    examiner = Examiner.objects.all()
-    context = {
-        'examiner': examiner,
-        'examinee': examinee
-    }
-    return render(request, 'UserManagement/show_all_user.html', context)
+# def show_all_user(request):
+#     examinee = Examinee.objects.all()
+#     examiner = Examiner.objects.all()
+#     context = {
+#         'examiner': examiner,
+#         'examinee': examinee
+#     }
+#     return render(request, 'UserManagement/show_all_user.html', context)

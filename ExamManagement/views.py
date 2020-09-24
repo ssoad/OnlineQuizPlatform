@@ -18,6 +18,7 @@ def showExams(request):
     return render(request, 'ExamManagement/showExam.html', context)
 
 
+@login_required
 def showAttemptedExam(request):
     att_exams = AttemptedExam.objects.all()
 

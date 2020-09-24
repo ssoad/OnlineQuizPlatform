@@ -46,7 +46,7 @@ urlpatterns = [
     path('mcqquestion/', exam_views.showMCQQuestions, name='mcqquestion'),
     path('answer/', answer_views.showAnswer, name='answer'),
     path('cusanswer/', answer_views.showCustomAnswer, name='cusanswer'),
-    path('users/', acc_views.show_all_user, name='showuser' ),
+    # path('users/', acc_views.show_all_user, name='showuser' ),
     path('addexam/', exam_views.addExam),
     path('addmcqquestion/', exam_views.insertMcqQuestion),
     path('addanswer/', answer_views.insertAnswer),
