@@ -52,5 +52,5 @@ urlpatterns = [
     path('addanswer/', answer_views.insertAnswer),
     path('addquestion/', exam_views.AddQuestion),
     path('addcustomquestion/', exam_views.AddCustomQuestion),
-
+    path('examshistory/', exam_views.ExamHistory),
 ]
