@@ -17,3 +17,11 @@ class Examiner(models.Model):
 
     def __str__(self):
         return str(self.user.first_name + " " + self.user.last_name)
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    pro_pic = models.ImageField(upload_to='images/profile', default='images/profile/Default.jpg')
+    contact_number = models.CharField(max_length=15, null=True)
+
+    def __str__(self):
+        return str(self.user.first_name + " " + self.user.last_name)
