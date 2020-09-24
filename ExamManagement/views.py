@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required
 def showExams(request):
-    exams = Exam.objects.all()
+    exams = Exam.objects.filter(examiner__user_id=request.user.id)
 
     context = {
         'all_exams': exams
