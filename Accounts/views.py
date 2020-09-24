@@ -78,12 +78,12 @@ def user_dash(request):
         if examinee:
             context = {
                 "user": request.user,
-                "examinee": examinee[0],
+                "examinee": True,
             }
         else:
             context = {
                 "user": request.user,
-                "examiner": examiner[0]
+                "examiner": True
             }
 
         return render(request, 'UserManagement/user_dash_base.html', context)
