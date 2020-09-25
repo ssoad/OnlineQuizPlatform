@@ -7,6 +7,7 @@ from django.contrib.auth import (
     login,
     logout
 )
+from .models import Profile
 from django.contrib.auth.decorators import login_required
 
 
@@ -111,4 +112,14 @@ def create_profile(request):
     context = {
         'form': form,
     }
-    return render(request, "UserManagement/createprofile.html",context)
+    return render(request, "UserManagement/createprofile.html", context)
+
+
+@login_required
+def show_profile(request):
+    profile = Profile.objects.get(user=request.user)
+    print(profile.pro_pic.url)
+    context = {
+        'profile': profile,
+    }
+    return render(request, "UserManagement/showprofile.html", context)

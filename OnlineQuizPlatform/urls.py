@@ -21,7 +21,8 @@ from ExamManagement import views as exam_views
 from OnlineQuiz import views
 from ResultManagement import views as result_views
 from AnswerManagement import views as answer_views
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.showHome),
@@ -54,4 +55,9 @@ urlpatterns = [
     path('addcustomquestion/', exam_views.AddCustomQuestion),
     path('examshistory/', exam_views.ExamHistory),
     path('createprofile/', acc_views.create_profile),
-]
+    path('showprofile/', acc_views.show_profile),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+#For Testing Purpose
+# if settings.DEBUG == True:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
