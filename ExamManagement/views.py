@@ -140,10 +140,10 @@ def AddCustomQuestion(request):
 @login_required
 def ExamHistory(request):
     examinee = Examinee.objects.filter(user=request.user)
-    examiner = Examiner.objects.filter(user=request.user)
+    # examiner = Examiner.objects.filter(user=request.user)
     if examinee:
         exams = AttemptedExam.objects.filter(examinee__user_id=request.user.id)
-        print(exams[0].exam.exam_title)
+        #print(exams[0].exam.exam_title)
         context = {
             'exam': exams,
             'examinee': True

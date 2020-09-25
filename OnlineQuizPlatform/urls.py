@@ -53,4 +53,5 @@ urlpatterns = [
     path('addquestion/', exam_views.AddQuestion),
     path('addcustomquestion/', exam_views.AddCustomQuestion),
     path('examshistory/', exam_views.ExamHistory),
+    path('createprofile/', acc_views.create_profile),
 ]

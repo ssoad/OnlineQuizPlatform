@@ -3,6 +3,8 @@ from django.contrib.auth import (
     authenticate,
     get_user_model
 )
+from django.forms import ModelForm
+from .models import Profile
 
 User = get_user_model()
 
@@ -56,3 +58,12 @@ class UserRegisterForm(forms.ModelForm):
             raise forms.ValidationError(
                 "This email has already been registered")
         return super(UserRegisterForm, self).clean()
+
+
+class CreateProfileForm(forms.ModelForm):
+    pro_pic = forms.ImageField(allow_empty_file=True, label='Profile Picture',)
+    contact_number = forms.CharField(label='Contact No')
+
+    class Meta:
+        model = Profile
+        fields = ['pro_pic', 'contact_number']

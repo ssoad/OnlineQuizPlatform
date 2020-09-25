@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import UserLoginForm, UserRegisterForm
+from .forms import UserLoginForm, UserRegisterForm, CreateProfileForm
 from .models import Examinee, Examiner
 from django.contrib.auth import (
     authenticate,
@@ -99,3 +99,16 @@ def user_dash(request):
 #         'examinee': examinee
 #     }
 #     return render(request, 'UserManagement/show_all_user.html', context)
+@login_required
+def create_profile(request):
+    form = CreateProfileForm()
+    if request.method == "POST":
+        form = CreateProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+    context = {
+        'form': form,
+    }
+    return render(request, "UserManagement/createprofile.html",context)
