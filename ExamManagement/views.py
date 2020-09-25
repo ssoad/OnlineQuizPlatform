@@ -65,7 +65,7 @@ def showCustomQuestions(request):
 @login_required
 def addExam(request):
     if request.user.is_authenticated:
-        examiner = Examiner.objects.filter(user_id=request.user.id)
+        examiner = Examiner.objects.get(user_id=request.user.id)
 
         # print('TEST:',examiner[0])
         if examiner:
@@ -94,7 +94,9 @@ def addExam(request):
 @login_required
 def insertMcqQuestion(request):
     if request.user.is_authenticated:
-        examiner = Examiner.objects.filter(user_id=request.user.id)
+        examiner = Examiner.objects.get(user_id=request.user.id)
+
+        # print('TEST:',examiner[0])
         if examiner:
             form = AddMCQquestionform()
             message = "Insert Question"
@@ -107,13 +109,11 @@ def insertMcqQuestion(request):
                     message = "Insert Completed"
 
             context = {
-                    'form': form,
-                    'message': message
-                    }
+                'form': form,
+                'message': message
+            }
+
             return render(request, 'ExamManagement/insertMcqQuestionform.html', context)
-        else:
-            return render(request, '404.html')
-    return render(request, '404.html')
 
 
 @login_required
