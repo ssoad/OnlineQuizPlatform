@@ -93,22 +93,27 @@ def addExam(request):
 
 @login_required
 def insertMcqQuestion(request):
-    form = AddMCQquestionform()
-    message = "Insert Question"
-    if request.method == "POST":
-        form = AddMCQquestionform(request.POST)
-        message = "Insert Unsuccessful"
-        if form.is_valid():
-            form.save()
+    if request.user.is_authenticated:
+        examiner = Examiner.objects.get(user_id=request.user.id)
+
+        # print('TEST:',examiner[0])
+        if examiner:
             form = AddMCQquestionform()
-            message = "Insert Completed"
+            message = "Insert Question"
+            if request.method == "POST":
+                form = AddMCQquestionform(request.POST)
+                message = "Insert Unsuccessful"
+                if form.is_valid():
+                    form.save()
+                    form = AddMCQquestionform()
+                    message = "Insert Completed"
 
-    context = {
-        'form': form,
-        'message': message
-    }
+            context = {
+                'form': form,
+                'message': message
+            }
 
-    return render(request, 'ExamManagement/insertMcqQuestionform.html', context)
+            return render(request, 'ExamManagement/insertMcqQuestionform.html', context)
 
 
 @login_required
