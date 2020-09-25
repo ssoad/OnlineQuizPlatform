@@ -55,7 +55,7 @@ urlpatterns = [
     path('addcustomquestion/', exam_views.AddCustomQuestion),
     path('examshistory/', exam_views.ExamHistory),
     path('createprofile/', acc_views.create_profile),
-    path('showprofile/', acc_views.show_profile),
+    path('profile/', acc_views.show_profile),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #For Testing Purpose
