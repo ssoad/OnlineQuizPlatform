@@ -27,16 +27,35 @@
                 {% if not examiner %}
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="/">Home</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="/dashboard">Dashboard</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/exams">Exams</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/examshistory">Exam History</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Exams
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/joinexam">Join Exam</a>
+                            <a class="dropdown-item" href="/examshistory">Exam History</a>
+{#                            <a class="dropdown-item" href="#">Something else here</a>#}
+                        </div>
+                    </li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/profile">My Profile</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">Logout</a></li>
                 {% else %}
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="/">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/addexam">Create Exams</a></li>
-{#                    <li class="nav-item" role="presentation"><a class="nav-link" href="/quizes">Add Question</a></li>#}
-{#                    <li class="nav-item" role="presentation"><a class="nav-link" href="/quizes">View Quizes</a></li>#}
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/exams">Exams History</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Exams
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/addexam">Create Exam</a>
+                            <a class="dropdown-item" href="/examshistory">Exam History</a>
+                            <a class="dropdown-item" href="/results">Exam Results</a>
+
+                        </div>
+                    </li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/profile">My Profile</a></li>
 {#                    <li class="nav-item" role="presentation"><a class="nav-link" href="/setting">About</a></li>#}
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">Logout</a></li>

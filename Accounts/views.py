@@ -118,13 +118,18 @@ def create_profile(request):
 
 @login_required
 def show_profile(request):
+    examiner = Examiner.objects.filter(user=request.user)
+    if examiner:
+        examiner = True
     profile = Profile.objects.filter(user=request.user)
     if profile:
         context = {
-        'profile': profile[0],
+            'examiner': examiner,
+            'profile': profile[0],
         }
         return render(request, "UserManagement/showprofile.html", context)
     context = {
+        'examiner': True,
         'message': "You Didn't Create Profile",
     }
     return render(request, "UserManagement/noprofile.html", context)

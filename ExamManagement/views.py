@@ -12,6 +12,7 @@ def showExams(request):
     exams = Exam.objects.filter(examiner__user_id=request.user.id)
 
     context = {
+        'examiner': True,
         'all_exams': exams
     }
 
@@ -65,7 +66,7 @@ def showCustomQuestions(request):
 @login_required
 def addExam(request):
     if request.user.is_authenticated:
-        examiner = Examiner.objects.get(user_id=request.user.id)
+        examiner = Examiner.objects.filter(user_id=request.user.id)
 
         # print('TEST:',examiner[0])
         if examiner:
@@ -78,11 +79,12 @@ def addExam(request):
                     marks = int(form.cleaned_data.get('exam_marks'))
                     date_time = datetime.datetime.now()  # For Testing purpose
                     duration = int(form.cleaned_data.get('exam_duration'))
-                    exam = Exam(exam_title=title, examiner=examiner, exam_code=code, exam_marks=marks,
+                    exam = Exam(exam_title=title, examiner=examiner[0], exam_code=code, exam_marks=marks,
                                 exam_duration=duration, exam_date_time=date_time)
                     exam.save()
                     form = AddExamForm()
             context = {
+                'examiner': True,
                 'form': form
             }
             return render(request, 'ExamManagement/addExam.html', context)
@@ -165,6 +167,6 @@ def ExamHistory(request):
         print(exams)
         context = {
             'exam': exams,
-            'Examiner': True
+            'examiner': True
         }
     return render(request, 'ExamManagement/ExamHistory.html', context)

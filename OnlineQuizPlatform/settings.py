@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'ExamManagement.apps.ExammanagementConfig',
     'ResultManagement.apps.ResultmanagementConfig',
     'AnswerManagement.apps.AnswermanagementConfig',
-
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -52,8 +52,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
 
+]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 ROOT_URLCONF = 'OnlineQuizPlatform.urls'
 
 TEMPLATES = [
@@ -86,6 +87,7 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
