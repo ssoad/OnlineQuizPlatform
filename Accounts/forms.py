@@ -61,8 +61,8 @@ class UserRegisterForm(forms.ModelForm):
 
 
 class CreateProfileForm(forms.ModelForm):
-    pro_pic = forms.ImageField(allow_empty_file=True, label='Profile Picture',)
-    contact_number = forms.CharField(label='Contact No')
+    # pro_pic = forms.ImageField(label='Profile Picture',)
+    # contact_number = forms.CharField(label='Contact No')
 
     class Meta:
         model = Profile

@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import UserLoginForm, UserRegisterForm, CreateProfileForm
 from .models import Examinee, Examiner
@@ -117,9 +118,13 @@ def create_profile(request):
 
 @login_required
 def show_profile(request):
-    profile = Profile.objects.get(user=request.user)
-    print(profile.pro_pic.url)
+    profile = Profile.objects.filter(user=request.user)
+    if profile:
+        context = {
+        'profile': profile[0],
+        }
+        return render(request, "UserManagement/showprofile.html", context)
     context = {
-        'profile': profile,
+        'message': "You Didn't Create Profile",
     }
-    return render(request, "UserManagement/showprofile.html", context)
+    return render(request, "UserManagement/noprofile.html", context)
