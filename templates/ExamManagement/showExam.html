@@ -4,9 +4,10 @@
         <h2> ALL EXAMS </h2>
         <br>
     </center>
+    <div class="card-deck">
 
     {% for item in all_exams %}
-        <div class="card" style="width: 1000px; border-radius: 20px">
+        <div class="card" style="border-radius: 10px; margin: 5px">
             <div class="card-body">
                 <h5 class="card-title">{{ item.exam_title }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{ item.examiner }}</h6>
@@ -22,4 +23,5 @@
         </div>
         <br>
     {% endfor %}
+    </div>
 {% endblock content %}

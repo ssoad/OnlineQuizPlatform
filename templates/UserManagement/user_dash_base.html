@@ -24,10 +24,10 @@
         <div
             class="collapse navbar-collapse" id="navbarNav">
             <ul class="nav navbar-nav ml-auto">
-                {% if examinee %}
+                {% if not examiner %}
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="/">Home</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="/dashboard">Dashboard</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/quizes">Exams</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/exams">Exams</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/examshistory">Exam History</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/profile">My Profile</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">Logout</a></li>
@@ -36,7 +36,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/addexam">Create Exams</a></li>
 {#                    <li class="nav-item" role="presentation"><a class="nav-link" href="/quizes">Add Question</a></li>#}
 {#                    <li class="nav-item" role="presentation"><a class="nav-link" href="/quizes">View Quizes</a></li>#}
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/examshistory">Exams History</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/exams">Exams History</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/profile">My Profile</a></li>
 {#                    <li class="nav-item" role="presentation"><a class="nav-link" href="/setting">About</a></li>#}
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">Logout</a></li>

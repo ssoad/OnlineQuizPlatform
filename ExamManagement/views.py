@@ -94,7 +94,7 @@ def addExam(request):
 @login_required
 def insertMcqQuestion(request):
     if request.user.is_authenticated:
-        examiner = Examiner.objects.get(user_id=request.user.id)
+        examiner = Examiner.objects.filter(user_id=request.user.id)
 
         # print('TEST:',examiner[0])
         if examiner:
@@ -114,27 +114,39 @@ def insertMcqQuestion(request):
             }
 
             return render(request, 'ExamManagement/insertMcqQuestionform.html', context)
+        else:
+            return render(request, '404.html')
+    return render(request, '404.html')
 
 
 @login_required
 def AddQuestion(request):
-    addqus = AddQuestionForm()
+    examiner = Examiner.objects.filter(user_id=request.user.id)
 
-    context = {
-        'Question': addqus
-    }
-
-    return render(request, 'ExamManagement/addQuestion.html', context)
+    # print('TEST:',examiner[0])
+    if examiner:
+        addqus = AddQuestionForm()
+        context = {
+            'Question': addqus
+        }
+        return render(request, 'ExamManagement/addQuestion.html', context)
+    else:
+        return render(request, '404.html')
 
 
 @login_required
 def AddCustomQuestion(request):
-    addcus_qus = AddCustomQuestionForm()
-    context = {
-        'CustomQuestion': addcus_qus
-    }
+    examiner = Examiner.objects.filter(user_id=request.user.id)
 
-    return render(request, 'ExamManagement/addCustomQuestion.html', context)
+    # print('TEST:',examiner[0])
+    if examiner:
+        addcus_qus = AddCustomQuestionForm()
+        context = {
+            'CustomQuestion': addcus_qus
+        }
+        return render(request, 'ExamManagement/addCustomQuestion.html', context)
+    else:
+        return render(request, '404.html')
 
 
 @login_required
