@@ -1,12 +1,15 @@
 {% extends 'UserManagement/user_dash_base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
     <br>
     <br>
 
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
-    <input type="submit">
+        {{ form|crispy }}
+
+        <button type="button" class="btn btn-outline-primary">Create</button>
+
     </form>
 
 {% endblock content %}
