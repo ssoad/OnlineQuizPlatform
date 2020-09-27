@@ -36,6 +36,7 @@ urlpatterns = [
     path('reset-password-done/', auth_views.PasswordResetDoneView.as_view()),
     path('reset-password-complete/', auth_views.PasswordResetCompleteView.as_view()),
     path('dashboard/', acc_views.user_dash),
+    path('contact/', views.contact_us),
     path('admin/', admin.site.urls),
     path('exams/', exam_views.showExams, name='exams'),
     path('attexams/', exam_views.showAttemptedExam, name='attempt_exams'),

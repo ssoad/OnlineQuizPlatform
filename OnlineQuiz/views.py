@@ -6,5 +6,5 @@ def showHome(request):
     return render(request, 'Index.html')
 
 
-def showLogin(request):
-    return render(request, 'UserManagement/login.html')
+def contact_us(request):
+    return render(request, 'contactus.html')
