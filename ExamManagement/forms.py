@@ -1,5 +1,5 @@
 from django import forms
-from .models import Exam, MCQQuestion
+from .models import Exam, MCQQuestion, AttemptedExam
 
 
 class AddExamForm(forms.Form):
@@ -63,3 +63,7 @@ class AddCustomQuestionForm(forms.Form):
 
     def clean(self):
         return super(AddCustomQuestionForm, self).clean()
+
+
+class JoinExam(forms.Form):
+    exam_code = forms.IntegerField(label='Exam Code')

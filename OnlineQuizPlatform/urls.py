@@ -58,6 +58,7 @@ urlpatterns = [
     path('examshistory/', exam_views.ExamHistory),
     path('createprofile/', acc_views.create_profile),
     path('profile/', acc_views.show_profile),
+    path('joinexam/', exam_views.joinExam),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #For Testing Purpose

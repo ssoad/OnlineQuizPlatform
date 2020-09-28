@@ -1,5 +1,5 @@
 from django.db import models
-from ExamManagement.models import MCQQuestion, CustomQuestion, Exam
+from ExamManagement.models import MCQQuestion, CustomQuestion, Exam, AttemptedExam
 from Accounts.models import Examinee
 
 

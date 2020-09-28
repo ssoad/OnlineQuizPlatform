@@ -2,7 +2,7 @@ import datetime
 from django.shortcuts import render
 from Accounts.models import Examiner, Examinee
 from AnswerManagement.models import ExamineeCustomAnswer
-from .forms import AddExamForm, AddMCQquestionform, AddQuestionForm, AddCustomQuestionForm
+from .forms import AddExamForm, AddMCQquestionform, AddQuestionForm, AddCustomQuestionForm, JoinExam
 from .models import Exam, AttemptedExam, Question, CustomQuestion, MCQQuestion
 from django.contrib.auth.decorators import login_required
 
@@ -166,16 +166,32 @@ def ExamHistory(request):
     # examiner = Examiner.objects.filter(user=request.user)
     if examinee:
         exams = AttemptedExam.objects.filter(examinee__user_id=request.user.id)
-        #print(exams[0].exam.exam_title)
+        # print(exams[0].exam.exam_title)
         context = {
             'exam': exams,
             'examinee': True
         }
     else:
         exams = Exam.objects.filter(examiner__user_id=request.user.id)
-        #print(exams)
+        # print(exams)
         context = {
             'exam': exams,
             'examiner': True
         }
     return render(request, 'ExamManagement/ExamHistory.html', context)
+
+
+@login_required
+def joinExam(request):
+    form = JoinExam()
+    if request.method == 'POST':
+        #print(request.POST.get('exam_code'))
+        e_code = int(request.POST.get('exam_code'))
+        exam = Exam.objects.filter(exam_code=e_code)
+        examinee = Examinee.objects.filter(user=request.user)
+        instance = AttemptedExam(exam=exam[0], examinee=examinee[0])
+        instance.save()
+    context = {
+        'form': form
+    }
+    return render(request, 'ExamManagement/join_exam.html', context)
