@@ -1,5 +1,6 @@
 {% extends 'UserManagement/user_dash_base.html' %}
 {% block content %}
+    {% load crispy_forms_tags %}
     {% if examinee %}
         <center><h2> PARTICIPATED EXAMS </h2></center>
         <br>
@@ -15,7 +16,13 @@
                             Exam Marks:{{ item.exam.exam_marks }}<br>
                             Exam Date Time:{{ item.exam.exam_date_time }}<br>
                             Exam Duration:{{ item.exam.exam_duration }}<br>
-                            Exam Question: <a href="{{ item.exam.exam_question.url }}"> Download</a>
+                            Exam Question: <a href="{{ item.exam.exam_question.url }}"> Download</a><br>
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ form| crispy}} <br>
+                                <input type="hidden" name="exam_id" value="{{ item.exam.id }}">
+                                <button type="submit" class="btn btn-outline-primary">Submit Answer</button>
+                            </form>
                         </p>
                     </div>
                 </div>

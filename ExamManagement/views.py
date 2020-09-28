@@ -1,6 +1,7 @@
 import datetime
 from django.shortcuts import render
 from Accounts.models import Examiner, Examinee
+from AnswerManagement.forms import InsertAnswerForm
 from AnswerManagement.models import ExamineeCustomAnswer
 from .forms import AddExamForm, AddMCQquestionform, AddQuestionForm, AddCustomQuestionForm, JoinExam
 from .models import Exam, AttemptedExam, Question, CustomQuestion, MCQQuestion
@@ -154,22 +155,35 @@ def AddCustomQuestion(request):
 
 @login_required
 def ExamHistory(request):
-    if request.method == 'POST':
-        e_id = request.POST.get('exam_id')
-        print(request.POST.get('exam_id'))
-        answers = ExamineeCustomAnswer.objects.filter(exam_id=e_id)
-        context = {
-            'answers': answers
-        }
-        return render(request, 'ExamManagement/showSubmission.html', context)
     examinee = Examinee.objects.filter(user=request.user)
-    # examiner = Examiner.objects.filter(user=request.user)
+    examiner = Examiner.objects.filter(user=request.user)
+    form = InsertAnswerForm()
+    if request.method == 'POST':
+        if examiner:
+            e_id = request.POST.get('exam_id')
+            print(request.POST.get('exam_id'))
+            answers = ExamineeCustomAnswer.objects.filter(exam_id=e_id)
+            context = {
+                'answers': answers
+            }
+            return render(request, 'ExamManagement/showSubmission.html', context)
+        else:
+            form = InsertAnswerForm(request.POST, request.FILES)
+            e_id = request.POST.get('exam_id')
+            exam = Exam.objects.filter(id=e_id)
+            #instance = ExamineeCustomAnswer(exam=exam, examinee=examinee, )
+            if form.is_valid():
+                answer = form.save(commit=False)
+                answer.exam = exam[0]
+                answer.examinee = examinee[0]
+                answer.save()
     if examinee:
         exams = AttemptedExam.objects.filter(examinee__user_id=request.user.id)
         # print(exams[0].exam.exam_title)
         context = {
             'exam': exams,
-            'examinee': True
+            'examinee': True,
+            'form': form
         }
     else:
         exams = Exam.objects.filter(examiner__user_id=request.user.id)
@@ -185,7 +199,7 @@ def ExamHistory(request):
 def joinExam(request):
     form = JoinExam()
     if request.method == 'POST':
-        #print(request.POST.get('exam_code'))
+        # print(request.POST.get('exam_code'))
         e_code = int(request.POST.get('exam_code'))
         exam = Exam.objects.filter(exam_code=e_code)
         examinee = Examinee.objects.filter(user=request.user)
