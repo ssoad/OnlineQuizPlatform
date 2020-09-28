@@ -8,6 +8,7 @@ class AddExamForm(forms.Form):
     exam_marks = forms.IntegerField(label='Exam Marks')
     # exam_datetime = forms.DateTimeField()
     exam_duration = forms.IntegerField(label='Exam Duration')
+    exam_question = forms.FileField(label='Exam Questions')
 
     class Meta:
         model = Exam
@@ -17,6 +18,7 @@ class AddExamForm(forms.Form):
             'exam_datetime',
             'exam_marks',
             'exam_duration',
+            'exam_question'
         ]
 
     def clean(self):

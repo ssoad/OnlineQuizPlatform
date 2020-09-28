@@ -1,6 +1,7 @@
 import datetime
 from django.shortcuts import render
 from Accounts.models import Examiner, Examinee
+from AnswerManagement.models import ExamineeCustomAnswer
 from .forms import AddExamForm, AddMCQquestionform, AddQuestionForm, AddCustomQuestionForm
 from .models import Exam, AttemptedExam, Question, CustomQuestion, MCQQuestion
 from django.contrib.auth.decorators import login_required
@@ -153,6 +154,14 @@ def AddCustomQuestion(request):
 
 @login_required
 def ExamHistory(request):
+    if request.method == 'POST':
+        e_id = request.POST.get('exam_id')
+        print(request.POST.get('exam_id'))
+        answers = ExamineeCustomAnswer.objects.filter(exam_id=e_id)
+        context = {
+            'answers': answers
+        }
+        return render(request, 'ExamManagement/showSubmission.html', context)
     examinee = Examinee.objects.filter(user=request.user)
     # examiner = Examiner.objects.filter(user=request.user)
     if examinee:
@@ -164,7 +173,7 @@ def ExamHistory(request):
         }
     else:
         exams = Exam.objects.filter(examiner__user_id=request.user.id)
-        print(exams)
+        #print(exams)
         context = {
             'exam': exams,
             'examiner': True

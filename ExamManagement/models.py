@@ -12,6 +12,7 @@ class Exam(models.Model):
     exam_marks = models.IntegerField(null=False, default=100)
     exam_date_time = models.DateTimeField()
     exam_duration = models.IntegerField(null=False, default=60)
+    exam_question = models.FileField(upload_to='exam/questions', null=False, blank=False, default='exam/questions/sample.pdf')
 
     def __str__(self):
         return self.exam_title
@@ -22,7 +23,7 @@ class AttemptedExam(models.Model):
     examinee = models.ForeignKey(Examinee, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str("Exam:-"+self.exam.exam_title + ",Examinee:-" + self.examinee.user.username)
+        return str("Exam:-" + self.exam.exam_title + ",Examinee:-" + self.examinee.user.username)
 
 
 class Question(models.Model):
@@ -40,16 +41,16 @@ class MCQQuestion(models.Model):
     option2 = models.CharField(max_length=200)
     option3 = models.CharField(max_length=200)
     option4 = models.CharField(max_length=200)
-    ques_marks = models.IntegerField(blank=False, null=False,default=1)
+    ques_marks = models.IntegerField(blank=False, null=False, default=1)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.id)+"."+str(self.question_text + "(" + self.question.exam.exam_title + ")")
+        return str(self.id) + "." + str(self.question_text + "(" + self.question.exam.exam_title + ")")
 
 
 class CustomQuestion(models.Model):
     question_text = models.CharField(max_length=200)
-    ques_marks = models.IntegerField(blank=False, null=False,default=1)
+    ques_marks = models.IntegerField(blank=False, null=False, default=1)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     def __str__(self):

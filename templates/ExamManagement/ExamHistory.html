@@ -39,9 +39,14 @@
                                 Exam Date Time:{{ item.exam_date_time }}<br>
                                 Exam Duration:{{ item.exam_duration }}<br>
                             </p>
-                            <a href="#" class="card-link">View Details</a>
-                            <a href="#" class="card-link">Analyse</a>
-                    </div>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="exam_id" value="{{ item.id }}">
+{#                            <a type="submit" class="card-link">View Details</a>#}
+{#                            <a href="#" class="card-link">Analyse</a>#}
+                                <button type="submit" class="btn btn-outline-primary">View Answer</button>
+                            </form>
+                        </div>
                 </div>
                 </div>
                 <br>

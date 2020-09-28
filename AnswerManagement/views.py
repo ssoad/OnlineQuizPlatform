@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Answer, ExamineeCustomAnswer, ExamineeMCQAnswer
-from .forms import insertAnswerform
+from .forms import InsertAnswerForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -40,14 +40,14 @@ def showCustomAnswer(request):
 
 @login_required
 def insertAnswer(request):
-    form = insertAnswerform()
+    form = InsertAnswerForm()
     message = "Insert Answer"
     if request.method == "POST":
-        form = insertAnswerform(request.POST)
+        form = InsertAnswerForm(request.POST)
         message = "Insert Unsuccessful"
         if form.is_valid():
             form.save()
-            form = insertAnswerform()
+            form = InsertAnswerForm()
             message = "Insert Completed"
 
     context = {

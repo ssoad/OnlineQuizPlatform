@@ -1,8 +1,8 @@
 from django import forms
-from .models import Answer
+from .models import Answer, ExamineeCustomAnswer
 
-class insertAnswerform(forms.ModelForm):
+
+class InsertAnswerForm(forms.ModelForm):
     class Meta:
-        model = Answer
-        fields = ('corr_ans','question')
-
+        model = ExamineeCustomAnswer
+        fields = '__all__'

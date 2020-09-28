@@ -1,5 +1,5 @@
 from django.db import models
-from ExamManagement.models import MCQQuestion, CustomQuestion
+from ExamManagement.models import MCQQuestion, CustomQuestion, Exam
 from Accounts.models import Examinee
 
 
@@ -24,10 +24,10 @@ class ExamineeMCQAnswer(models.Model):
 
 
 class ExamineeCustomAnswer(models.Model):
-    submitted_answer = models.CharField(max_length=1000, blank=True, null=True)
-
-    custom_question = models.ForeignKey(CustomQuestion, on_delete=models.SET_NULL, null=True, default=1)
-
+    # submitted_answer = models.CharField(max_length=1000, blank=True, null=True)
+    answer = models.FileField(null=False, blank=False, upload_to='exam/answers/', default='exam/answers/sample.pdf')
+    # custom_question = models.ForeignKey(CustomQuestion, on_delete=models.SET_NULL, null=True, default=1)
+    exam = models.ForeignKey(Exam, on_delete=models.SET_NULL, default=1, null=True, blank=True)
     examinee = models.ForeignKey(Examinee, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
