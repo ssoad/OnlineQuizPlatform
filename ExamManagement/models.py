@@ -12,7 +12,8 @@ class Exam(models.Model):
     exam_marks = models.IntegerField(null=False, default=100)
     exam_date_time = models.DateTimeField()
     exam_duration = models.IntegerField(null=False, default=60)
-    exam_question = models.FileField(upload_to='exam/questions', null=False, blank=False, default='exam/questions/sample.pdf')
+    exam_question = models.FileField(upload_to='exam/questions', null=False, blank=False,
+                                     default='exam/questions/sample.pdf')
 
     def __str__(self):
         return self.exam_title
@@ -21,6 +22,7 @@ class Exam(models.Model):
 class AttemptedExam(models.Model):
     exam = models.ForeignKey(Exam, on_delete=models.SET_NULL, null=True)
     examinee = models.ForeignKey(Examinee, on_delete=models.CASCADE)
+    submit = models.BooleanField(default=False, null=False, blank=False)
 
     def __str__(self):
         return str("Exam:-" + self.exam.exam_title + ",Examinee:-" + self.examinee.user.username)

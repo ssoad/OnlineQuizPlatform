@@ -3,6 +3,7 @@ from django.shortcuts import render
 from Accounts.models import Examiner, Examinee
 from AnswerManagement.forms import InsertAnswerForm
 from AnswerManagement.models import ExamineeCustomAnswer
+from ResultManagement.forms import ResultForm
 from .forms import AddExamForm, AddMCQquestionform, AddQuestionForm, AddCustomQuestionForm, JoinExam
 from .models import Exam, AttemptedExam, Question, CustomQuestion, MCQQuestion
 from django.contrib.auth.decorators import login_required
@@ -69,22 +70,23 @@ def showCustomQuestions(request):
 def addExam(request):
     if request.user.is_authenticated:
         examiner = Examiner.objects.filter(user_id=request.user.id)
-
         # print('TEST:',examiner[0])
         if examiner:
-            form = AddExamForm(request.POST or None)
+            form = AddExamForm(request.POST, request.FILES)
             if request.method == 'POST':
                 if form.is_valid():
-                    # form.save()
-                    title = form.cleaned_data.get('exam_title')
-                    code = int(form.cleaned_data.get('exam_code'))
-                    marks = int(form.cleaned_data.get('exam_marks'))
-                    date_time = datetime.datetime.now()  # For Testing purpose
-                    duration = int(form.cleaned_data.get('exam_duration'))
-                    exam = Exam(exam_title=title, examiner=examiner[0], exam_code=code, exam_marks=marks,
-                                exam_duration=duration, exam_date_time=date_time)
+                    exam = form.save(commit=False)
+                    # title = form.cleaned_data.get('exam_title')
+                    # code = int(form.cleaned_data.get('exam_code'))
+                    # marks = int(form.cleaned_data.get('exam_marks'))
+                      # For Testing purpose
+                    # duration = int(form.cleaned_data.get('exam_duration'))
+                    # exam = Exam(exam_title=title, examiner=examiner[0], exam_code=code, exam_marks=marks,
+                    #             exam_duration=duration, exam_date_time=date_time)
+                    date_time = datetime.datetime.now()
+                    exam.exam_date_time = date_time
                     exam.save()
-                    form = AddExamForm()
+            form = AddExamForm()
             context = {
                 'examiner': True,
                 'form': form
@@ -161,22 +163,55 @@ def ExamHistory(request):
     if request.method == 'POST':
         if examiner:
             e_id = request.POST.get('exam_id')
-            print(request.POST.get('exam_id'))
-            answers = ExamineeCustomAnswer.objects.filter(exam_id=e_id)
-            context = {
-                'answers': answers
-            }
-            return render(request, 'ExamManagement/showSubmission.html', context)
+            exm_id = request.POST.get('exm_id')
+            examinee_id = request.POST.get('examinee_id')
+            form = ResultForm()
+            # print(request.POST.get('exam_id'))
+            if e_id:
+                answers = ExamineeCustomAnswer.objects.filter(exam_id=e_id)
+
+                context = {
+                    'examiner': True,
+                    'answers': answers,
+                    'form': form
+                    }
+                return render(request, 'ExamManagement/showSubmission.html', context)
+            elif exm_id and examinee_id:
+                form = ResultForm(request.POST)
+                exam_ = Exam.objects.filter(id=exm_id)
+                examinee_ = Examinee.objects.filter(id=examinee_id)
+                # answers = ExamineeCustomAnswer.objects.filter(exam_id=e_id)
+                # context = {
+                #     'answers': answers,
+                #     'form': form
+                # }
+                if form.is_valid:
+                    result = form.save(commit=False)
+                    result.examinee = examinee_[0]
+                    result.exam = exam_[0]
+                    #print(result.marks)
+                    result.save()
+                    #print(form.cleaned_data.get('marks'))
+                    ExamineeCustomAnswer.objects.filter(examinee=examinee_[0], exam=exam_[0]).update(marks=True)
+                    answers = ExamineeCustomAnswer.objects.filter(exam_id=exam_[0].id)
+
+                    context = {
+                        'examiner': True,
+                        'answers': answers,
+                        'form': form
+                    }
+                    return render(request, 'ExamManagement/showSubmission.html', context)
         else:
             form = InsertAnswerForm(request.POST, request.FILES)
             e_id = request.POST.get('exam_id')
             exam = Exam.objects.filter(id=e_id)
-            #instance = ExamineeCustomAnswer(exam=exam, examinee=examinee, )
+            # instance = ExamineeCustomAnswer(exam=exam, examinee=examinee, )
             if form.is_valid():
                 answer = form.save(commit=False)
                 answer.exam = exam[0]
                 answer.examinee = examinee[0]
                 answer.save()
+                AttemptedExam.objects.filter(examinee=examinee[0], exam=exam[0]).update(submit=True)
     if examinee:
         exams = AttemptedExam.objects.filter(examinee__user_id=request.user.id)
         # print(exams[0].exam.exam_title)

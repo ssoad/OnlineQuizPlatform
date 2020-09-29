@@ -2,7 +2,7 @@ from django import forms
 from .models import Exam, MCQQuestion, AttemptedExam
 
 
-class AddExamForm(forms.Form):
+class AddExamForm(forms.ModelForm):
     exam_title = forms.CharField(label='Exam Title')
     exam_code = forms.IntegerField(label='Exam Code')
     exam_marks = forms.IntegerField(label='Exam Marks')
@@ -15,7 +15,6 @@ class AddExamForm(forms.Form):
         fields = [
             'exam_title',
             'exam_code',
-            'exam_datetime',
             'exam_marks',
             'exam_duration',
             'exam_question'
