@@ -11,7 +11,12 @@
             <h6 class="card-subtitle mb-2 text-muted">{{ answer.examinee.user.get_full_name }}</h6>
             <p class="card-text">
             Date : {{ answer.exam.exam_date_time }}<br>
-            Answer Script: <a href="{{ answer.answer.url }}"> Download</a>
+            Answer Script: <a class="text-primary" href="{{ answer.answer.url}} "> Download</a><br><br>
+            {% if answer.marks %}
+                <a style="color: #28a745;font-weight: bold">Graded</a>
+            {% else %}
+                <a style="color:coral ;font-weight: bold">Not Graded</a>
+            {% endif %}
             </p>
         </div>
         </div>

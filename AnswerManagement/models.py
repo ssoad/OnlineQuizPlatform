@@ -29,6 +29,7 @@ class ExamineeCustomAnswer(models.Model):
     # custom_question = models.ForeignKey(CustomQuestion, on_delete=models.SET_NULL, null=True, default=1)
     exam = models.ForeignKey(Exam, on_delete=models.SET_NULL, default=1, null=True, blank=True)
     examinee = models.ForeignKey(Examinee, on_delete=models.CASCADE, default=1)
+    marks = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.id) + ".Answer Script:" + str(self.examinee.user.username)
