@@ -17,12 +17,14 @@
                             Exam Date Time:{{ item.exam.exam_date_time }}<br>
                             Exam Duration:{{ item.exam.exam_duration }}<br>
                             Exam Question: <a href="{{ item.exam.exam_question.url }}"> Download</a><br>
+                        {% if not item.submit %}
                             <form method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
-                                {{ form| crispy}} <br>
+                                {{ form| crispy }} <br>
                                 <input type="hidden" name="exam_id" value="{{ item.exam.id }}">
                                 <button type="submit" class="btn btn-outline-primary">Submit Answer</button>
                             </form>
+                        {% endif %}
                         </p>
                     </div>
                 </div>

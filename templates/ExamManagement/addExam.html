@@ -4,7 +4,7 @@
     {% load crispy_forms_tags %}
     <h2> ADD EXAM</h2>
     <div class="col-md-8">
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|crispy }}
     <input type="submit">
