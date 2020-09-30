@@ -1,14 +1,21 @@
 {% extends 'UserManagement/user_dash_base.html' %}
 
 {% block content %}
+    {% load crispy_forms_field %}       {# import bootstrap4/bootstrap3 #}
+{#    {% bootstrap_css %}         {# Embed Bootstrap CSS #}
+{#    {% bootstrap_javascript jquery='full' %}  {# Embed Bootstrap JS+jQuery #}
+             {# Adds date-picker required JS and CSS #}
     {% load crispy_forms_tags %}
     <h2> ADD EXAM</h2>
     <div class="col-md-8">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|crispy }}
-    <input type="submit">
+        {{ form.media }}
+        <input type="submit">
     </form>
     </div>
+
+
 
 {% endblock content %}

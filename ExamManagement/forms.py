@@ -6,7 +6,9 @@ class AddExamForm(forms.ModelForm):
     exam_title = forms.CharField(label='Exam Title')
     exam_code = forms.IntegerField(label='Exam Code')
     exam_marks = forms.IntegerField(label='Exam Marks')
-    # exam_datetime = forms.DateTimeField()
+    exam_date_time = forms.DateTimeField(widget=forms.TextInput({
+        'type': 'datetime-local',
+        'class': 'form-control'}))
     exam_duration = forms.IntegerField(label='Exam Duration')
     exam_question = forms.FileField(label='Exam Questions')
 
@@ -16,9 +18,13 @@ class AddExamForm(forms.ModelForm):
             'exam_title',
             'exam_code',
             'exam_marks',
+            'exam_date_time',
             'exam_duration',
-            'exam_question'
+            'exam_question',
         ]
+        # widgets = {
+        #     'exam_date_time': DateTimePickerInput(),
+        # }
 
     def clean(self):
         return super(AddExamForm, self).clean()

@@ -56,6 +56,9 @@ MIDDLEWARE = [
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 ROOT_URLCONF = 'OnlineQuizPlatform.urls'
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
 
 TEMPLATES = [
     {

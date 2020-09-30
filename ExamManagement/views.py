@@ -79,12 +79,13 @@ def addExam(request):
                     # title = form.cleaned_data.get('exam_title')
                     # code = int(form.cleaned_data.get('exam_code'))
                     # marks = int(form.cleaned_data.get('exam_marks'))
-                      # For Testing purpose
+                    # For Testing purpose
                     # duration = int(form.cleaned_data.get('exam_duration'))
                     # exam = Exam(exam_title=title, examiner=examiner[0], exam_code=code, exam_marks=marks,
                     #             exam_duration=duration, exam_date_time=date_time)
-                    date_time = datetime.datetime.now()
-                    exam.exam_date_time = date_time
+                    # date_time = datetime.datetime.now()
+                    # exam.exam_date_time = date_time
+                    # print(exam.exam_date_time)
                     exam.save()
             form = AddExamForm()
             context = {
@@ -174,7 +175,7 @@ def ExamHistory(request):
                     'examiner': True,
                     'answers': answers,
                     'form': form
-                    }
+                }
                 return render(request, 'ExamManagement/showSubmission.html', context)
             elif exm_id and examinee_id:
                 form = ResultForm(request.POST)
@@ -189,9 +190,9 @@ def ExamHistory(request):
                     result = form.save(commit=False)
                     result.examinee = examinee_[0]
                     result.exam = exam_[0]
-                    #print(result.marks)
+                    # print(result.marks)
                     result.save()
-                    #print(form.cleaned_data.get('marks'))
+                    # print(form.cleaned_data.get('marks'))
                     ExamineeCustomAnswer.objects.filter(examinee=examinee_[0], exam=exam_[0]).update(marks=True)
                     answers = ExamineeCustomAnswer.objects.filter(exam_id=exam_[0].id)
 
