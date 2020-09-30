@@ -9,7 +9,7 @@ class AddExamForm(forms.ModelForm):
     exam_date_time = forms.DateTimeField(widget=forms.TextInput({
         'type': 'datetime-local',
         'class': 'form-control'}))
-    exam_duration = forms.IntegerField(label='Exam Duration')
+    exam_duration = forms.IntegerField(label='Exam Duration (Min)')
     exam_question = forms.FileField(label='Exam Questions')
 
     class Meta:
