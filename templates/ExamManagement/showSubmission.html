@@ -1,11 +1,12 @@
 {% extends 'UserManagement/user_dash_base.html' %}
 {% block content %}
+    <div class="container-fluid">
     <center><h2> Submitted Answers </h2></center>
     <br>
     <div class="row row-cols-1 row-cols-md-2">
     {% for answer in answers %}
         <div class="col mb-8">
-        <div class="card" style="border-radius: 10px; margin: 5px">
+        <div class="card" style="border-radius: 10px; margin: 10px">
         <div class="card-body">
             <h5 class="card-title">{{ answer.exam.exam_title }}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ answer.examinee.user.get_full_name }}</h6>
@@ -34,6 +35,7 @@
 
 
 
+    </div>
     </div>
 
 {% endblock content %}
