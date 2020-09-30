@@ -72,3 +72,7 @@ class AddCustomQuestionForm(forms.Form):
 
 class JoinExam(forms.Form):
     exam_code = forms.IntegerField(label='Exam Code')
+
+
+class SearchExam(forms.Form):
+    exam_title = forms.CharField(label="Exam Title")

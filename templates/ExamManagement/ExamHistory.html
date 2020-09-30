@@ -2,6 +2,16 @@
 {% block content %}
     {% load crispy_forms_tags %}
     {% if examinee %}
+            <div class="col-md-4 float-lg-right">
+                <form method="GET">
+                    {% csrf_token %}
+                    {{ form2 }}
+                    <input type="submit">
+                    {#                <button type="submit" class="btn btn-primary">Search</button>#}
+                </form>
+            </div>
+
+
         <center><h2> PARTICIPATED EXAMS </h2></center>
         <br>
         <div class="row row-cols-1 row-cols-md-2">
@@ -34,6 +44,14 @@
         </div>
         </div>
         {% else %}
+        <div class="col-md-4 float-lg-right">
+            <form method="GET">
+                {% csrf_token %}
+                {{ form2 }}
+                <input type="submit" value="Search">
+                {#                <button type="submit" class="btn btn-primary">Search</button>#}
+            </form>
+        </div>
         <center><h2> CREATED EXAMS </h2></center>
         <br>
         <div class="row row-cols-1 row-cols-md-2">

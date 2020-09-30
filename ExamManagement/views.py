@@ -4,7 +4,7 @@ from Accounts.models import Examiner, Examinee
 from AnswerManagement.forms import InsertAnswerForm
 from AnswerManagement.models import ExamineeCustomAnswer
 from ResultManagement.forms import ResultForm
-from .forms import AddExamForm, AddMCQquestionform, AddQuestionForm, AddCustomQuestionForm, JoinExam
+from .forms import AddExamForm, AddMCQquestionform, AddQuestionForm, AddCustomQuestionForm, JoinExam, SearchExam
 from .models import Exam, AttemptedExam, Question, CustomQuestion, MCQQuestion
 from django.contrib.auth.decorators import login_required
 
@@ -161,6 +161,31 @@ def ExamHistory(request):
     examinee = Examinee.objects.filter(user=request.user)
     examiner = Examiner.objects.filter(user=request.user)
     form = InsertAnswerForm()
+    form2 = SearchExam()
+    if request.method == 'GET':
+        title = request.GET.get('exam_title')
+        #print(request.GET.get('exam_title'))
+        if title:
+            if examinee:
+                exams = AttemptedExam.objects.filter(examinee__user_id=request.user.id,exam__exam_title__contains=title)
+                # print(exams[0].exam.exam_title)
+                context = {
+                    'exam': exams,
+                    'examinee': True,
+                    'form': form,
+                    'form2': form2
+                }
+                return render(request, 'ExamManagement/ExamHistory.html', context)
+            else:
+                exams = Exam.objects.filter(examiner__user_id=request.user.id, exam_title__contains=title)
+                # print(exams)
+                context = {
+                    'exam': exams,
+                    'examiner': True,
+                    'form2': form2
+                }
+            return render(request, 'ExamManagement/ExamHistory.html', context)
+
     if request.method == 'POST':
         if examiner:
             e_id = request.POST.get('exam_id')
@@ -174,7 +199,8 @@ def ExamHistory(request):
                 context = {
                     'examiner': True,
                     'answers': answers,
-                    'form': form
+                    'form': form,
+                    'form2': form2
                 }
                 return render(request, 'ExamManagement/showSubmission.html', context)
             elif exm_id and examinee_id:
@@ -199,7 +225,8 @@ def ExamHistory(request):
                     context = {
                         'examiner': True,
                         'answers': answers,
-                        'form': form
+                        'form': form,
+                        'form2': form2
                     }
                     return render(request, 'ExamManagement/showSubmission.html', context)
         else:
@@ -219,14 +246,16 @@ def ExamHistory(request):
         context = {
             'exam': exams,
             'examinee': True,
-            'form': form
+            'form': form,
+            'form2': form2
         }
     else:
         exams = Exam.objects.filter(examiner__user_id=request.user.id)
         # print(exams)
         context = {
             'exam': exams,
-            'examiner': True
+            'examiner': True,
+            'form2': form2
         }
     return render(request, 'ExamManagement/ExamHistory.html', context)
 
