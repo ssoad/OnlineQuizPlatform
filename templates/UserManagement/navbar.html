@@ -1,0 +1,70 @@
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
+    <div class="container"><a class="navbar-brand logo" href="#" style="font-size: 43px;font-family: Lato, sans-serif;">Online
+        Quiz Platfrom</a>
+        <button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span
+                class="navbar-toggler-icon"></span></button>
+        <div
+                class="collapse navbar-collapse" id="navbarNav">
+            <ul class="nav navbar-nav ml-auto">
+                {% if not examiner %}
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="/">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Exams
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/joinexam">Join Exam</a>
+                            <a class="dropdown-item" href="/examshistory">Exam History</a>
+
+                            {#                            <a class="dropdown-item" href="#">Something else here</a>#}
+                        </div>
+                    </li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="/profile">Profile</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/profile" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Settings
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/change-password">Change Password</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">Logout</a></li>
+                {% else %}
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="/">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Exams
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/addexam">Create Exam</a>
+                            <a class="dropdown-item" href="/examshistory">Exam History</a>
+                            <a class="dropdown-item" href="/results">Exam Results</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="/profile">Profile</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/profile" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Settings
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/change-password">Change Password</a>
+
+                        </div>
+                    </li>
+
+
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">Logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

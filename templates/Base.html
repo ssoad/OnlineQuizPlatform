@@ -23,39 +23,105 @@
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
         <div class="container"><a class="navbar-brand logo" href="/"
                                   style="font-size: 43px;font-family: Lato, sans-serif;">Online Quiz Platfrom</a>
-            <button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span
+             <button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span
                     class="navbar-toggler-icon"></span></button>
             <div
                     class="collapse navbar-collapse" id="navbarNav">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="/">Home</a></li>
                     {% if user.is_authenticated %}
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                        {% if not examiner %}
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="/">Home</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="/dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Exams
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="/joinexam">Join Exam</a>
+                                    <a class="dropdown-item" href="/examshistory">Exam History</a>
+
+                                    {#                            <a class="dropdown-item" href="#">Something else here</a>#}
+                                </div>
+                            </li>
+                            <li class="nav-item" role="presentation"><a class="nav-link active"
+                                                                        href="/profile">Profile</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="/profile" id="navbarDropdownMenuLink"
+                                   role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Settings
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="/change-password">Change Password</a>
+
+                                </div>
+                            </li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">Logout</a></li>
+                        {% else %}
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="/">Home</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="/dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Exams
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="/addexam">Create Exam</a>
+                                    <a class="dropdown-item" href="/examshistory">Exam History</a>
+                                    <a class="dropdown-item" href="/results">Exam Results</a>
+                                </div>
+                            </li>
+                            <li class="nav-item" role="presentation"><a class="nav-link active"
+                                                                        href="/profile">Profile</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="/profile" id="navbarDropdownMenuLink"
+                                   role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Settings
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="/change-password">Change Password</a>
+
+                                </div>
+                            </li>
+
+
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">Logout</a></li>
+                        {% endif %}
                     {% else %}
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/signup">Sign Up</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Login</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="/">Home</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/signup">Sign Up</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Login</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/contact">Contact</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/">About</a></li>
                     {% endif %}
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/contact">Contact</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/">About</a></li>
+
                 </ul>
 
             </div>
         </div>
     </nav>
 </section>
- <br>
- <br>
- <br>
- <br>
- <div>
+<div style="padding-top: 50px">
+{% block zero %}
+ <div style="padding-top: 150px">
     {%  block content %}
     {%  endblock content %}
  </div>
- <br>
- <br>
- <br>
- <br>
- <br>
+{% endblock zero %}
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 <footer class="page-footer" style="float: bottom">
     <div class="container">
        <!-- <div class="links"><a href="#">About me</a><a href="#">Contact me</a><a href="#">Projects</a></div> -->
