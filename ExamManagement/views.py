@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect
 from Accounts.models import Examiner, Examinee
 from AnswerManagement.forms import InsertAnswerForm
@@ -165,10 +164,11 @@ def ExamHistory(request):
     form2 = SearchExam()
     if request.method == 'GET':
         title = request.GET.get('exam_title')
-        #print(request.GET.get('exam_title'))
+        # print(request.GET.get('exam_title'))
         if title:
             if examinee:
-                exams = AttemptedExam.objects.filter(examinee__user_id=request.user.id,exam__exam_title__contains=title)
+                exams = AttemptedExam.objects.filter(examinee__user_id=request.user.id,
+                                                     exam__exam_title__contains=title)
                 # print(exams[0].exam.exam_title)
                 context = {
                     'exam': exams,
@@ -278,13 +278,11 @@ def joinExam(request):
     return render(request, 'ExamManagement/join_exam.html', context)
 
 
-
 @login_required
-def individual_result(request,exam_id):
-
+def individual_result(request, exam_id):
     result = Result.objects.filter(exam=exam_id, examinee__user=request.user)
     print(len(result))
-    if len(result)==0:
+    if len(result) == 0:
         context = {
             'message': 'Result Not Published'
         }
@@ -295,13 +293,14 @@ def individual_result(request,exam_id):
     return render(request, 'ResultManagement/IndivResult.html', context)
 
 
-
-def exam_result(request,exam_id):
-
+def exam_result(request, exam_id):
     result = Result.objects.filter(exam=exam_id)
-
+    exam = Exam.objects.filter(id=exam_id)
+    form = SearchExam()
     context = {
-        'result' : result
+        'form': form,
+        'examiner': True,
+        'result': result,
+        'exam': exam[0]
     }
-
-    return render(request,'ResultManagement/ExamResult.html',context)
+    return render(request, 'ResultManagement/ExamResult.html', context)
