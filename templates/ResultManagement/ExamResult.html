@@ -2,7 +2,18 @@
 
 {% block content %}
 <h2>Exam Result</h2>
+    <table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Marks</th>
+    </tr>
+
+
 {% for r in result  %}
-    {{ r.result.marks }}
+    <tr>
+    <td>{{ r.examinee.user.get_full_name }}</td>
+    <td>{{ r.marks }}</td>
+    </tr>
 {% endfor %}
+    </table>
 {% endblock content %}
