@@ -295,3 +295,13 @@ def individual_result(request,exam_id):
     return render(request, 'ResultManagement/IndivResult.html', context)
 
 
+
+def exam_result(request,exam_id):
+
+    result = Result.objects.filter(exam=exam_id)
+
+    context = {
+        'result' : result
+    }
+
+    return render(request,'',context)
