@@ -283,11 +283,15 @@ def joinExam(request):
 def individual_result(request,exam_id):
 
     result = Result.objects.filter(exam=exam_id, examinee__user=request.user)
-    print(result)
+    print(len(result))
+    if len(result)==0:
+        context = {
+            'message': 'Result Not Published'
+        }
+        return render(request, 'Failed.html', context)
     context = {
         'result': result[0]
     }
-
-    return render(request,'ResultManagement/IndivResult.html',context)
+    return render(request, 'ResultManagement/IndivResult.html', context)
 
 
