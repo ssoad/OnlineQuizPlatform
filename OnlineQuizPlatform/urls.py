@@ -18,14 +18,13 @@ from django.urls import path, include, reverse_lazy
 from django.contrib.auth import views as auth_views
 from Accounts import views as acc_views
 from ExamManagement import views as exam_views
-from OnlineQuiz import views
 from ResultManagement import views as result_views
 from AnswerManagement import views as answer_views
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.showHome),
+    path('', exam_views.showHome),
     path('login/', acc_views.login_view),
     path('signup/', acc_views.register_view),
     path('logout/', acc_views.logout_view),
@@ -36,7 +35,7 @@ urlpatterns = [
     path('reset-password-done/', auth_views.PasswordResetDoneView.as_view()),
     path('reset-password-complete/', auth_views.PasswordResetCompleteView.as_view()),
     path('dashboard/', acc_views.user_dash),
-    path('contact/', views.contact_us),
+    path('contact/', exam_views.contact_us),
     path('admin/', admin.site.urls),
     path('exams/', exam_views.showExams, name='exams'),
     path('attexams/', exam_views.showAttemptedExam, name='attempt_exams'),

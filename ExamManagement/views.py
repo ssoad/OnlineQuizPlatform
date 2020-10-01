@@ -306,3 +306,24 @@ def exam_result(request, exam_id):
         'exam': exam[0]
     }
     return render(request, 'ResultManagement/ExamResult.html', context)
+
+
+def showHome(request):
+    if request.user.is_authenticated:
+        examinee = Examinee.objects.filter(user=request.user)
+        examiner = Examiner.objects.filter(user=request.user)
+        if examinee:
+            context = {
+                'examinee': True
+            }
+            return render(request, 'Index.html', context)
+        elif examiner:
+            context = {
+                'examiner': True
+            }
+            return render(request, 'Index.html', context)
+    return render(request, 'Index.html')
+
+
+def contact_us(request):
+    return render(request, 'contactus.html')
