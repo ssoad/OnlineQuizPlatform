@@ -277,11 +277,9 @@ def joinExam(request):
     }
     return render(request, 'ExamManagement/join_exam.html', context)
 
+
+
 @login_required
-def individual_result(request, exam_id):
-    result = Result.objects.filter(exam=exam_id, examinee_user=request.user)
-
-
 def individual_result(request,exam_id):
 
     result = Result.objects.filter(exam=exam_id, examinee__user=request.user)
