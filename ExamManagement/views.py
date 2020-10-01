@@ -7,6 +7,7 @@ from ResultManagement.forms import ResultForm
 from .forms import AddExamForm, AddMCQquestionform, AddQuestionForm, AddCustomQuestionForm, JoinExam, SearchExam
 from .models import Exam, AttemptedExam, Question, CustomQuestion, MCQQuestion
 from django.contrib.auth.decorators import login_required
+from ResultManagement.models import Result
 
 
 # Create your views here.
@@ -275,3 +276,16 @@ def joinExam(request):
         'form': form
     }
     return render(request, 'ExamManagement/join_exam.html', context)
+
+
+def individual_result(request,exam_id):
+
+    result = Result.objects.filter(exam=exam_id, examinee_user=request.user)
+
+    context = {
+        'result' : result
+    }
+
+    return render(request,'',context)
+
+
