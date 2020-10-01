@@ -16,7 +16,7 @@
         <br>
         <div class="row row-cols-1 row-cols-md-2">
         {% for item in exam %}
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div class="card" style="border-radius: 20px; margin: 5px">
                     <div class="card-body">
                         <h5 class="card-title">{{ item.exam.exam_title }}</h5>
@@ -27,6 +27,9 @@
                             Exam Date Time:{{ item.exam.exam_date_time }}<br>
                             Exam Duration:{{ item.exam.exam_duration }}<br>
                             Exam Question: <a href="{{ item.exam.exam_question.url }}"> Download</a><br>
+                        {% if item.submit %}
+                            <a href="indivresult/{{item.exam.id}}">View Result</a>
+                        {% endif %}
                         {% if not item.submit %}
                             <form method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
