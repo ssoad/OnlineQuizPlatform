@@ -1,5 +1,5 @@
 import datetime
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from Accounts.models import Examiner, Examinee
 from AnswerManagement.forms import InsertAnswerForm
 from AnswerManagement.models import ExamineeCustomAnswer
@@ -270,6 +270,7 @@ def joinExam(request):
         examinee = Examinee.objects.filter(user=request.user)
         instance = AttemptedExam(exam=exam[0], examinee=examinee[0])
         instance.save()
+        return redirect('/examshistory')
     context = {
         'form': form
     }
