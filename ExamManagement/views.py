@@ -286,6 +286,6 @@ def individual_result(request,exam_id):
         'result' : result
     }
 
-    return render(request,'',context)
+    return render(request,'ResultManagement/IndivResult.html',context)
 
 
