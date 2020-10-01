@@ -1,8 +1,26 @@
 {% extends 'UserManagement/user_dash_base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
-    <form method="POST">
-    {% csrf_token %}
-        {{ form }}
-        <input type="submit">
-    </form>
+    <div class="container">
+        <center>
+            <h2>Join Exam</h2>
+            <br>
+            <br>
+            <br>
+
+            <div class="col-md-4 align-content-center">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="text-muted">( Enter Exam Code to Join or Contact with your Examiner for Exam Code )</div>
+                    <br>
+                    <input type="submit">
+                </form>
+            </div>
+
+        </center>
+
+
+    </div>
+
 {% endblock content %}
