@@ -59,7 +59,7 @@ urlpatterns = [
     path('createprofile/', acc_views.create_profile),
     path('profile/', acc_views.show_profile),
     path('joinexam/', exam_views.joinExam),
-    #path('indibresult/<int:exam_id>', )
+    path('indibresult/<int:exam_id>', exam_views.individual_result, name='indibresult')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #For Testing Purpose
