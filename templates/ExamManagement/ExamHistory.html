@@ -2,7 +2,12 @@
 {% block content %}
     {% load crispy_forms_tags %}
     {% if examinee %}
-            <div class="col-md-4 float-lg-right">
+        <div class="container align-items-center">
+
+        <div class="container-fluid">
+        <div class="row" style="margin-left: 50px">
+            <h2> Participated Exams </h2>
+            <div style="margin-left: 425px" class="col-md-4 float-lg-right">
                 <form method="GET">
                     {% csrf_token %}
                     {{ form2 }}
@@ -10,14 +15,13 @@
                     {#                <button type="submit" class="btn btn-primary">Search</button>#}
                 </form>
             </div>
+        </div>
 
-        <div class="container align-items-center">
-        <center><h2> PARTICIPATED EXAMS </h2></center>
         <br>
-        <div class="row row-cols-1 row-cols-md-2">
+        <div class="col row-cols-1 row-cols-md-0">
         {% for item in exam %}
-            <div class="col-md-5">
-                <div class="card" style="border-radius: 20px; margin: 5px">
+            <div class="col-md-12">
+                <div class="card" style="border-radius: 10px; margin: 5px">
                     <div class="card-body">
                         <h5 class="card-title">{{ item.exam.exam_title }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ item.exam.examiner.user.get_full_name }}</h6>
@@ -28,7 +32,8 @@
                             Exam Duration:{{ item.exam.exam_duration }}<br>
                             Exam Question: <a href="{{ item.exam.exam_question.url }}"> Download</a><br>
                         {% if item.submit %}
-                            <a href="/indivresult/{{item.exam.id}}">View Result</a>
+                            <br>
+                            <a class='btn btn-outline-primary'href="/indivresult/{{item.exam.id}}">View Result</a>
                         {% endif %}
                         {% if not item.submit %}
                             <form method="POST" enctype="multipart/form-data">
@@ -47,22 +52,25 @@
         </div>
         </div>
         </div>
+        </div>
         {% else %}
         <div class="container align-items-center">
-        <div class="col-md-4 float-lg-right">
-            <form method="GET">
-                {% csrf_token %}
-                {{ form2 }}
-                <input type="submit" value="Search">
-                {#                <button type="submit" class="btn btn-primary">Search</button>#}
-            </form>
-        </div>
-        <div class="container-fluid align-items-center">
-        <center><h2> CREATED EXAMS </h2></center>
+        <div class="container-fluid">
+            <div class="row" style="margin-left: 50px">
+                <h2> Participated Exams </h2>
+                <div style="margin-left: 425px" class="col-md-4 float-lg-right">
+                    <form method="GET">
+                        {% csrf_token %}
+                        {{ form2 }}
+                        <input style="border-radius: 5px" class="btn btn-primary btn-sm" type="submit" value="Search">
+                        {#                <button type="submit" class="btn btn-primary">Search</button>#}
+                    </form>
+                </div>
+            </div>
         <br>
-        <div class="row row-cols-1 row-cols-md-2">
+        <div class="col row-cols-1 row-cols-md-0">
             {% for item in exam %}
-                <div class="col mb-4">
+                <div class="col mb-12">
                     <div class="card" style="border-radius: 10px; margin: 5px">
                         <div class="card-body">
                             <h5 class="card-title">{{ item.exam_title }}</h5>
@@ -79,8 +87,9 @@
 {#                            <a type="submit" class="card-link">View Details</a>#}
 {#                            <a href="#" class="card-link">Analyse</a>#}
                                 <button type="submit" class="btn btn-outline-primary">View Answer</button>
+                                <a style="margin-left: 30px" class="btn btn-outline-primary" href="/examresult/{{ item.id }}">View Results</a>
                             </form>
-                            <a href="/examresult/{{ item.id }}">View Results</a>
+
                         </div>
                 </div>
                 </div>

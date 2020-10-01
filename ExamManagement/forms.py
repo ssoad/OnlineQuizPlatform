@@ -75,4 +75,4 @@ class JoinExam(forms.Form):
 
 
 class SearchExam(forms.Form):
-    exam_title = forms.CharField(label="Exam Title")
+    exam_title = forms.CharField(label="")
