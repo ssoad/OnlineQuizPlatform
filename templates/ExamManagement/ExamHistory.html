@@ -28,7 +28,7 @@
                             Exam Duration:{{ item.exam.exam_duration }}<br>
                             Exam Question: <a href="{{ item.exam.exam_question.url }}"> Download</a><br>
                         {% if item.submit %}
-                            <a href="indivresult/{{item.exam.id}}">View Result</a>
+                            <a href="/indivresult/{{item.exam.id}}">View Result</a>
                         {% endif %}
                         {% if not item.submit %}
                             <form method="POST" enctype="multipart/form-data">
