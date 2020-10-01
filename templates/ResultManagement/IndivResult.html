@@ -1,7 +1,36 @@
 {% extends 'Base.html' %}
 
 {% block content %}
-<h2>Result</h2>
-    {{ result.marks }}
-
+   <div class="container">
+        <center>
+            <div class="row" style="margin-left: 10px">
+                <h2> Exam Results </h2>
+            </div>
+            <div class="card align-content-start">
+                <div class="card-body">
+                    <h5 class="card-title font-weight-bolder">{{ exam.exam_title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ exam.examiner.user.get_full_name }}</h6>
+                    <p class="card-text font-weight-normal">
+                        Code: {{ exam.exam_code }}<br>
+                        Marks: {{ exam.exam_marks }}<br>
+                        Date Time: {{ exam.exam_date_time }}<br>
+                </div>
+            </div>
+        </center>
+        <br>
+        <table class="table">
+            <tr>
+                <th>Full Name</th>
+                <th>E-mail</th>
+                <th>Organization</th>
+                <th>Marks</th>
+            </tr>
+                <tr>
+                    <td>{{ result.examinee.user.get_full_name }}</td>
+                    <td>{{ result.examinee.user.email }}</td>
+                    <td>{{ result.examinee.organization }}</td>
+                    <td>{{ result.marks }}</td>
+                </tr>
+        </table>
+    </div>
 {% endblock content %}

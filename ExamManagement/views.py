@@ -281,6 +281,7 @@ def joinExam(request):
 @login_required
 def individual_result(request, exam_id):
     result = Result.objects.filter(exam=exam_id, examinee__user=request.user)
+    exam = Exam.objects.filter(id=exam_id)
     print(len(result))
     if len(result) == 0:
         context = {
@@ -288,7 +289,8 @@ def individual_result(request, exam_id):
         }
         return render(request, 'Failed.html', context)
     context = {
-        'result': result[0]
+        'result': result[0],
+        'exam': exam[0]
     }
     return render(request, 'ResultManagement/IndivResult.html', context)
 
