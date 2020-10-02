@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'ResultManagement.apps.ResultmanagementConfig',
     'AnswerManagement.apps.AnswermanagementConfig',
     'crispy_forms',
-    'django_email_verification',
 ]
 
 MIDDLEWARE = [
