@@ -22,6 +22,7 @@ from ResultManagement import views as result_views
 from AnswerManagement import views as answer_views
 from django.conf import settings
 from django.conf.urls.static import static
+from django_email_verification import urls as mail_urls
 
 urlpatterns = [
     path('', exam_views.showHome),
@@ -60,6 +61,8 @@ urlpatterns = [
     path('joinexam/', exam_views.joinExam),
     path('indivresult/<int:exam_id>', exam_views.individual_result, name='indivresult'),
     path('examresult/<int:exam_id>', exam_views.exam_result, name='examresult'),
+    path('verify/<str:uid>', acc_views.verify_account),
+    path('text/',acc_views.test)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #For Testing Purpose
