@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include, reverse_lazy
+from django.urls import path
 from django.contrib.auth import views as auth_views
 from Accounts import views as acc_views
 from ExamManagement import views as exam_views
@@ -22,7 +22,6 @@ from ResultManagement import views as result_views
 from AnswerManagement import views as answer_views
 from django.conf import settings
 from django.conf.urls.static import static
-from django_email_verification import urls as mail_urls
 
 urlpatterns = [
     path('', exam_views.showHome),
