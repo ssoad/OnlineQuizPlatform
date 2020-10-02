@@ -26,3 +26,11 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(self.user.first_name + " " + self.user.last_name)
+
+
+class Verification(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    uid = models.CharField(null=False, blank=False, max_length=100)
+
+    def __str__(self):
+        return str(self.user.username)

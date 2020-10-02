@@ -25,7 +25,7 @@ class UserLoginForm(forms.Form):
                     raise forms.ValidationError('This user does not exist')
                 if not Tuser[0].check_password(password):
                     raise forms.ValidationError('Incorrect password')
-                if not Tuser.is_active[0]:
+                if not Tuser[0].is_active:
                     raise forms.ValidationError('This user is not active')
         return super(UserLoginForm, self).clean()
 
