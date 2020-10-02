@@ -22,7 +22,21 @@ Now go to **127.0.0.1:8000**  from your browser
 * Data Model
 * Data Model Register with Admin
 * HTML For Check Output from Database
+* Required Forms Added
+* Proper UI Implemented
+* Profile Creation & View
+* Exam Creation
+* Exam Enrollment
+* Question & AnswerScript (Upload + Download)
+* Marks Submission
+* Show All Submission
+* Show Results
+* Searching Feature
+* Password Changing System
+* Email Verification System With UID
+
+
 
 ##### TODO :
-* Add Forms for Every Model
-* Add Forms in HTML
+* Ranking System (Exam wise)
+* Result to PDF (Download)
