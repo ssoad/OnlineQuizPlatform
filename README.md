@@ -34,9 +34,9 @@ Now go to **127.0.0.1:8000**  from your browser
 * Searching Feature
 * Password Changing System
 * Email Verification System With UID
-
+* Ranking System (Exam wise)
+* Full Exam Results Log (Examinee & Examiner)
 
 
 ##### TODO :
-* Ranking System (Exam wise)
 * Result to PDF (Download)
