@@ -1,14 +1,11 @@
 from django.core.mail import send_mail
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
-from django_email_verification import sendConfirm
 from django.conf import settings
 from .forms import UserLoginForm, UserRegisterForm, CreateProfileForm
 from .models import Examinee, Examiner, Verification
 from django.contrib.auth import (
     authenticate,
-    get_user_model,
     login,
     logout
 )
