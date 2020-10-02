@@ -62,6 +62,7 @@ urlpatterns = [
     path('examresult/<int:exam_id>', exam_views.exam_result, name='examresult'),
     path('verify/<str:uid>', acc_views.verify_account),
     path('showsubmissions/<int:exam_id>',exam_views.showSubmissions),
+    path('examranks/<int:exam_id>',exam_views.exam_ranks),
     #path('text/',acc_views.test)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

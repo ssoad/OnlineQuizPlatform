@@ -191,7 +191,7 @@ def ExamHistory(request):
         if examinee:
             form = InsertAnswerForm(request.POST, request.FILES)
             e_id = request.POST.get('exam_id')
-            exam = Exam.objects.filter(id=e_id)
+            exam = Exam.objects.filter(id=e_id).order_by('-exam_date_time')
             # instance = ExamineeCustomAnswer(exam=exam, examinee=examinee, )
             if form.is_valid():
                 answer = form.save(commit=False)
@@ -200,7 +200,7 @@ def ExamHistory(request):
                 answer.save()
                 AttemptedExam.objects.filter(examinee=examinee[0], exam=exam[0]).update(submit=True)
     if examinee:
-        exams = AttemptedExam.objects.filter(examinee__user_id=request.user.id)
+        exams = AttemptedExam.objects.filter(examinee__user_id=request.user.id).order_by('-exam_date_time')
         # print(exams[0].exam.exam_title)
         context = {
             'exam': exams,
@@ -209,7 +209,7 @@ def ExamHistory(request):
             'form2': form2
         }
     else:
-        exams = Exam.objects.filter(examiner__user_id=request.user.id)
+        exams = Exam.objects.filter(examiner__user_id=request.user.id).order_by('-exam_date_time')
         # print(exams)
         context = {
             'exam': exams,
@@ -333,3 +333,16 @@ def showSubmissions(request, exam_id):
         return render(request, 'ExamManagement/showSubmission.html', context)
     else:
         return render(request, 'Failed.html', {'message': "You're Not Allowed Here"})
+
+
+def exam_ranks(request, exam_id):
+    result = Result.objects.filter(exam=exam_id).order_by('-marks')
+    exam = Exam.objects.filter(id=exam_id)
+    form = SearchExam()
+    context = {
+        'form': form,
+        'examiner': True,
+        'result': result,
+        'exam': exam[0]
+    }
+    return render(request, 'ResultManagement/ExamResult.html', context)
