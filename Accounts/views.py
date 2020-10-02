@@ -185,5 +185,9 @@ def verify_account(request, uid):
     return render(request,'UserManagement/verification_success.html', context)
 
 
-def test(request):
-    return  render(request,'UserManagement/verification_success.html')
+
+
+
+#For Debugging
+# def test(request):
+#     return  render(request,'UserManagement/verification_success.html')

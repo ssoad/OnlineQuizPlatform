@@ -188,49 +188,7 @@ def ExamHistory(request):
             return render(request, 'ExamManagement/ExamHistory.html', context)
 
     if request.method == 'POST':
-        if examiner:
-            e_id = request.POST.get('exam_id')
-            exm_id = request.POST.get('exm_id')
-            examinee_id = request.POST.get('examinee_id')
-            form = ResultForm()
-            # print(request.POST.get('exam_id'))
-            if e_id:
-                answers = ExamineeCustomAnswer.objects.filter(exam_id=e_id)
-
-                context = {
-                    'examiner': True,
-                    'answers': answers,
-                    'form': form,
-                    'form2': form2
-                }
-                return render(request, 'ExamManagement/showSubmission.html', context)
-            elif exm_id and examinee_id:
-                form = ResultForm(request.POST)
-                exam_ = Exam.objects.filter(id=exm_id)
-                examinee_ = Examinee.objects.filter(id=examinee_id)
-                # answers = ExamineeCustomAnswer.objects.filter(exam_id=e_id)
-                # context = {
-                #     'answers': answers,
-                #     'form': form
-                # }
-                if form.is_valid:
-                    result = form.save(commit=False)
-                    result.examinee = examinee_[0]
-                    result.exam = exam_[0]
-                    # print(result.marks)
-                    result.save()
-                    # print(form.cleaned_data.get('marks'))
-                    ExamineeCustomAnswer.objects.filter(examinee=examinee_[0], exam=exam_[0]).update(marks=True)
-                    answers = ExamineeCustomAnswer.objects.filter(exam_id=exam_[0].id)
-
-                    context = {
-                        'examiner': True,
-                        'answers': answers,
-                        'form': form,
-                        'form2': form2
-                    }
-                    return render(request, 'ExamManagement/showSubmission.html', context)
-        else:
+        if examinee:
             form = InsertAnswerForm(request.POST, request.FILES)
             e_id = request.POST.get('exam_id')
             exam = Exam.objects.filter(id=e_id)
@@ -327,3 +285,51 @@ def showHome(request):
 
 def contact_us(request):
     return render(request, 'contactus.html')
+
+
+def showSubmissions(request, exam_id):
+    # examinee = Examinee.objects.filter(user=request.user)
+    examiner = Examiner.objects.filter(user=request.user)
+    # form = InsertAnswerForm()
+    form2 = SearchExam()
+    if examiner:
+        if request.method == 'POST':
+            examinee_id = request.POST.get('examinee_id')
+            form = ResultForm(request.POST)
+            exam_ = Exam.objects.filter(id=exam_id)
+            examinee_ = Examinee.objects.filter(id=examinee_id)
+            # answers = ExamineeCustomAnswer.objects.filter(exam_id=e_id)
+            # context = {
+            #     'answers': answers,
+            #     'form': form
+            # }
+            if form.is_valid:
+                result = form.save(commit=False)
+                result.examinee = examinee_[0]
+                result.exam = exam_[0]
+                # print(result.marks)
+                result.save()
+                # print(form.cleaned_data.get('marks'))
+                ExamineeCustomAnswer.objects.filter(examinee=examinee_[0], exam=exam_[0]).update(marks=True)
+                answers = ExamineeCustomAnswer.objects.filter(exam_id=exam_[0].id)
+
+                context = {
+                    'examiner': True,
+                    'answers': answers,
+                    'form': form,
+                    'form2': form2
+                }
+                return render(request, 'ExamManagement/showSubmission.html', context)
+        form = ResultForm()
+        # print(request.POST.get('exam_id'))
+        answers = ExamineeCustomAnswer.objects.filter(exam_id=exam_id)
+
+        context = {
+            'examiner': True,
+            'answers': answers,
+            'form': form,
+            'form2': form2
+        }
+        return render(request, 'ExamManagement/showSubmission.html', context)
+    else:
+        return render(request, 'Failed.html', {'message': "You're Not Allowed Here"})
