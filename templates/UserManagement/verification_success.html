@@ -1,0 +1,21 @@
+{% extends 'Base.html' %}
+{% block content %}
+    <center>
+        <div class="container">
+            <center>
+                <div class="row">
+                    <div class="col">
+                        <img src="https://i.pinimg.com/originals/90/5c/4b/905c4b6cd77f34f75c8e2829e89fd06f.png" height="200" width="500">
+                        <br><br>
+                        <h3>Dear, {{ username }}</h3>
+                        <p style="font-size:20px;color:#5C5C5C;">Your Email Verification is Successful. Now you can login</p>
+                        <a href="/login" class="btn btn-success"> Log in </a>
+                        <br><br>
+                    </div>
+
+                </div>
+            </center>
+        </div>
+    </center>
+
+{% endblock content %}

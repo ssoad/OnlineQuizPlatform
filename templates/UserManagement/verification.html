@@ -1,0 +1,24 @@
+{% extends 'Base.html' %}
+{% block content %}
+<center>
+        <div class="container">
+            <center>
+            <div class="row">
+                <div class="col">
+                    <br><br>
+                    <h2 style="color:#0fad00">Success</h2><br>
+{#                    <img src="https://freepikpsd.com/wp-content/uploads/2019/10/success.png-2-Transparent-Images.png" height="200" width="300">#}
+                    <h3>Dear, {{ username }}</h3>
+                    <p style="font-size:20px;color:#5C5C5C;">Thank you for Join with us. We have sent you an
+                        email "{{ email }}" with your details
+                        Please go to your above email for verification now and login.</p>
+                    <a href="" class="btn btn-success"> Log in </a>
+                    <br><br>
+                </div>
+
+            </div>
+            </center>
+        </div>
+</center>
+
+{% endblock content %}
