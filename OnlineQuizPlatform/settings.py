@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+from .config import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'ResultManagement.apps.ResultmanagementConfig',
     'AnswerManagement.apps.AnswermanagementConfig',
     'crispy_forms',
+    'django_email_verification',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +134,22 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = EMAIL_ACC
+EMAIL_HOST_PASSWORD = PASSWORD
+
+# EMAIL_ACTIVE_FIELD = 'is_active'
+# EMAIL_SERVER = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_ADDRESS = ''
+# EMAIL_FROM_ADDRESS = ''
+# EMAIL_PASSWORD = ''  # os.environ['password_key'] suggested
+# EMAIL_MAIL_SUBJECT = 'Confirm your email'
+# EMAIL_MAIL_HTML = 'mail_body.html'
+# EMAIL_MAIL_PLAIN = 'mail_body.txt'
+# EMAIL_PAGE_TEMPLATE = 'confirm_template.html'
+# EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000/'
