@@ -346,3 +346,16 @@ def exam_ranks(request, exam_id):
         'exam': exam[0]
     }
     return render(request, 'ResultManagement/ExamResult.html', context)
+
+
+def allresults(request):
+    result = Result.objects.filter(exam__examiner__user__id=request.user.id)
+    #exam = Exam.objects.filter(id=exam_id)
+    form = SearchExam()
+    context = {
+        'form': form,
+        'examiner': True,
+        'result': result,
+        #'exam': exam[0]
+    }
+    return render(request, 'ResultManagement/Results.html', context)

@@ -39,7 +39,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('exams/', exam_views.showExams, name='exams'),
     path('attexams/', exam_views.showAttemptedExam, name='attempt_exams'),
-    path('results/', result_views.showResults, name='results'),
+    path('results/', exam_views.allresults, name='results'),
     path('history/', result_views.showExaminee_History, name='history'),
     path('rank/', result_views.showRank, name='rank'),
     path('mcqanswer/', answer_views.showMcqAnswer, name='mcqanswer'),
@@ -63,7 +63,7 @@ urlpatterns = [
     path('verify/<str:uid>', acc_views.verify_account),
     path('showsubmissions/<int:exam_id>',exam_views.showSubmissions),
     path('examranks/<int:exam_id>',exam_views.exam_ranks),
-    #path('text/',acc_views.test)
+    #path('text/',)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #For Testing Purpose
