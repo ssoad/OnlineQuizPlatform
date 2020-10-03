@@ -76,10 +76,13 @@
                             <h5 class="card-title">{{ item.exam_title }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ item.examiner }}</h6>
                             <p class="card-text">
-                                Exam Code: {{ item.exam_code }}<br>
-                                Exam Marks:{{ item.exam_marks }}<br>
-                                Exam Date Time:{{ item.exam_date_time }}<br>
-                                Exam Duration:{{ item.exam_duration }}<br>
+                                <span class="text-body">Exam Code:</span> {{ item.exam_code }}<br>
+                                <span class="text-body">Exam Marks:</span> {{ item.exam_marks }}<br>
+                                <span class="text-body">Exam Date Time:</span> {{ item.exam_date_time }}<br>
+                                <span class="text-body">Exam Duration: </span>{{ item.exam_duration }}<br>
+                                <span class="text-body">Participant:</span> {{ item.getParticipant }}<br>
+                                <span class="text-body">Submitted:</span> {{ item.getSubmission }}<br>
+
                             </p>
                             <form method="POST">
                                 {% csrf_token %}

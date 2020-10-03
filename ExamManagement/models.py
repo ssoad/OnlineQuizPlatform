@@ -4,6 +4,8 @@ from Accounts.models import Examinee, Examiner
 
 
 # Create your models here.
+#from AnswerManagement.models import ExamineeCustomAnswer
+
 
 class Exam(models.Model):
     examiner = models.ForeignKey(Examiner, on_delete=models.SET_NULL, null=True, default=1)
@@ -14,6 +16,15 @@ class Exam(models.Model):
     exam_duration = models.IntegerField(null=False, default=60)
     exam_question = models.FileField(upload_to='exam/questions', null=False, blank=False,
                                      default='exam/questions/sample.pdf')
+
+    def getParticipant(self):
+        participant = len(AttemptedExam.objects.filter(exam_id=self.id))
+        return participant
+
+    def getSubmission(self):
+        from AnswerManagement.models import ExamineeCustomAnswer
+        submissions = len(ExamineeCustomAnswer.objects.filter(exam_id=self.id))
+        return submissions
 
     def __str__(self):
         return self.exam_title
