@@ -17,11 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from Accounts import views as acc_views
+from Accounts.models import Examiner, Examinee
 from ExamManagement import views as exam_views
 from ResultManagement import views as result_views
 from AnswerManagement import views as answer_views
 from django.conf import settings
 from django.conf.urls.static import static
+
+
 
 urlpatterns = [
     path('', exam_views.showHome),
@@ -69,3 +72,4 @@ urlpatterns = [
 #For Testing Purpose
 # if settings.DEBUG == True:
 #     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

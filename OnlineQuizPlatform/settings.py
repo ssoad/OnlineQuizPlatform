@@ -152,3 +152,8 @@ EMAIL_HOST_PASSWORD = PASSWORD
 # EMAIL_MAIL_PLAIN = 'mail_body.txt'
 # EMAIL_PAGE_TEMPLATE = 'confirm_template.html'
 # EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000/'
+
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'Accounts.processor_context.check',
+)
