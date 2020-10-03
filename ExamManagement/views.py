@@ -200,7 +200,7 @@ def ExamHistory(request):
                 answer.save()
                 AttemptedExam.objects.filter(examinee=examinee[0], exam=exam[0]).update(submit=True)
     if examinee:
-        exams = AttemptedExam.objects.filter(examinee__user_id=request.user.id).order_by('-exam_date_time')
+        exams = AttemptedExam.objects.filter(examinee__user_id=request.user.id).order_by('-exam__exam_date_time')
         # print(exams[0].exam.exam_title)
         context = {
             'exam': exams,
