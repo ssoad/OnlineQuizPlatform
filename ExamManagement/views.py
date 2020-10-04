@@ -223,18 +223,24 @@ def ExamHistory(request):
 @login_required
 def joinExam(request):
     form = JoinExam()
+    message = " "
     if request.method == 'POST':
+        message = "Not Successful"
         # print(request.POST.get('exam_code'))
         e_code = int(request.POST.get('exam_code'))
         exam = Exam.objects.filter(exam_code=e_code)
         examinee = Examinee.objects.filter(user=request.user)
         instance = AttemptedExam(exam=exam[0], examinee=examinee[0])
         instance.save()
-        return redirect('/examshistory')
-    context = {
-        'form': form
-    }
-    return render(request, 'ExamManagement/join_exam.html', context)
+        message = "Successful"
+        context = {
+            'form': form,
+            'message': message
+        }
+
+        return redirect('/examshistory',context)
+
+    return render(request, 'ExamManagement/join_exam.html')
 
 
 @login_required

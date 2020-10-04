@@ -1,0 +1,92 @@
+for login and logout:
+
+main app urls:
+path('accounts/',include('django.contrib.auth.urls')),
+
+in templates create a directory named 'registration' 
+and make 2 html files named 'login' , 'logout'
+
+login.html:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+    <form method="POST">
+{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+
+    </form>
+
+
+{% endblock content %}
+</body>
+</html>
+
+logout.html:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+create app named 'UserManagement' then create a python file named 'forms'
+
+views.py:
+from django.contrib.auth.forms import UserCreationForm
+
+def registration(request):
+
+    form = UserCreationForm()
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+
+
+    context = {
+        'forms': form
+    }
+
+    return render(request,'UserManagement/registration.html',context)
+
+
+create a directory in templates named 'Usermanagement' and create a html file
+named 'registration'.
+
+registration.html:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+    <form method="POST">
+{% csrf_token %}
+    {{ forms.as_p }}
+    <input type="submit">
+
+    </form>
+
+
+{% endblock content %}
+
+</body>
+</html>
+
+urls.py:
+from UserManagement import views as userviews
+
+path('registration/', userviews.registration,name='registration'),
