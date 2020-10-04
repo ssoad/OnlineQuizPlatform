@@ -6,8 +6,18 @@
             <h2>Join Exam</h2>
             <br>
             <br>
-            <br>
+            {% if notfound and message%}
+                <div style="padding: 10px; border-radius: 10px; width: fit-content" class="tab-pane alert-danger text-center">
+                    <h5>{{ message }}</h5>
+                </div>
+            {% endif %}
+            {% if not notfound and message  %}
+                <div style="padding: 10px; border-radius: 10px;width: fit-content" class="tab-pane alert-success text-center">
+                    <h5>{{ message }}</h5>
+                </div>
+            {% endif %}
 
+            <br>
             <div class="col-md-4 align-content-center">
                 <form method="POST">
                     {% csrf_token %}

@@ -225,22 +225,33 @@ def joinExam(request):
     form = JoinExam()
     message = " "
     if request.method == 'POST':
-        message = "Not Successful"
+        message = "Join Failed. No Such Exam"
         # print(request.POST.get('exam_code'))
         e_code = int(request.POST.get('exam_code'))
         exam = Exam.objects.filter(exam_code=e_code)
         examinee = Examinee.objects.filter(user=request.user)
-        instance = AttemptedExam(exam=exam[0], examinee=examinee[0])
-        instance.save()
-        message = "Successful"
-        context = {
-            'form': form,
-            'message': message
-        }
 
-        return redirect('/examshistory',context)
+        if exam:
+            instance = AttemptedExam(exam=exam[0], examinee=examinee[0])
+            instance.save()
+            message = "Successful"
+            context = {
+                'form': form,
+                'message': message,
+                'notfound': False
+            }
+        else:
+            context = {
+                'form': form,
+                'message': message,
+                'notfound': True
+            }
 
-    return render(request, 'ExamManagement/join_exam.html')
+        return render(request, 'ExamManagement/join_exam.html', context)
+    context={
+        'form': form,
+    }
+    return render(request, 'ExamManagement/join_exam.html',context)
 
 
 @login_required
@@ -357,12 +368,12 @@ def exam_ranks(request, exam_id):
 
 def allresults(request):
     result = Result.objects.filter(exam__examiner__user__id=request.user.id)
-    #exam = Exam.objects.filter(id=exam_id)
+    # exam = Exam.objects.filter(id=exam_id)
     form = SearchExam()
     context = {
         'form': form,
         'examiner': True,
         'result': result,
-        #'exam': exam[0]
+        # 'exam': exam[0]
     }
     return render(request, 'ResultManagement/Results.html', context)
