@@ -1,9 +1,9 @@
 from django import forms
-from .models import Answer, ExamineeCustomAnswer
+from .models import Answer, ExamineeAnswer
 
 
 class InsertAnswerForm(forms.ModelForm):
     answer = forms.FileField(label='Answer Script')
     class Meta:
-        model = ExamineeCustomAnswer
+        model = ExamineeAnswer
         fields = ['answer']
