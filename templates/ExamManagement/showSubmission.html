@@ -13,8 +13,11 @@
             <p class="card-text">
             Date : {{ answer.exam.exam_date_time }}<br>
             Full Marks : {{ answer.exam.exam_marks }}<br>
-            Answer Script: <a class="text-primary" href="{{ answer.answer.url}} "> Download</a><br><br>
-            {% if answer.marks %}
+            Answer Script: <a class="text-primary" href="{{ answer.answer.url}} "> Download</a><br>
+            {% if answer.done_late %}
+                <a style="color:#bd2130;font-weight: bold">Done Late</a><br>
+            {% endif %}
+            {% if answer.graded %}
                 <a style="color: #28a745;font-weight: bold">Graded</a>
             {% else %}
                 <form method="POST">

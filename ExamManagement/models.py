@@ -22,8 +22,8 @@ class Exam(models.Model):
         return participant
 
     def getSubmission(self):
-        from AnswerManagement.models import ExamineeCustomAnswer
-        submissions = len(ExamineeCustomAnswer.objects.filter(exam_id=self.id))
+        from AnswerManagement.models import ExamineeAnswer
+        submissions = len(ExamineeAnswer.objects.filter(exam_id=self.id))
         return submissions
 
     def __str__(self):
@@ -31,12 +31,12 @@ class Exam(models.Model):
 
 
 class AttemptedExam(models.Model):
-    exam = models.ForeignKey(Exam, on_delete=models.SET_NULL, null=True)
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE, null=True)
     examinee = models.ForeignKey(Examinee, on_delete=models.CASCADE)
     submit = models.BooleanField(default=False, null=False, blank=False)
 
     def __str__(self):
-        return str("Exam:-" + self.exam.exam_title + ",Examinee:-" + self.examinee.user.username)
+        return str("Exam: " + self.exam.exam_title + ",Examinee: " + self.examinee.user.username)
 
 
 class Question(models.Model):

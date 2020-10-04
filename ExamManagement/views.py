@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from Accounts.models import Examiner, Examinee
 from AnswerManagement.forms import InsertAnswerForm
-from AnswerManagement.models import ExamineeCustomAnswer
+from AnswerManagement.models import ExamineeAnswer
 from ResultManagement.forms import ResultForm
 from .forms import AddExamForm, AddMCQquestionform, AddQuestionForm, AddCustomQuestionForm, JoinExam, SearchExam
 from .models import Exam, AttemptedExam, Question, CustomQuestion, MCQQuestion
@@ -197,6 +197,7 @@ def ExamHistory(request):
                 answer = form.save(commit=False)
                 answer.exam = exam[0]
                 answer.examinee = examinee[0]
+                answer.checkLate()
                 answer.save()
                 AttemptedExam.objects.filter(examinee=examinee[0], exam=exam[0]).update(submit=True)
     if examinee:
@@ -310,8 +311,8 @@ def showSubmissions(request, exam_id):
                 # print(result.marks)
                 result.save()
                 # print(form.cleaned_data.get('marks'))
-                ExamineeCustomAnswer.objects.filter(examinee=examinee_[0], exam=exam_[0]).update(marks=True)
-                answers = ExamineeCustomAnswer.objects.filter(exam_id=exam_[0].id)
+                ExamineeAnswer.objects.filter(examinee=examinee_[0], exam=exam_[0]).update(graded=True)
+                answers = ExamineeAnswer.objects.filter(exam_id=exam_[0].id)
 
                 context = {
                     'examiner': True,
@@ -322,7 +323,7 @@ def showSubmissions(request, exam_id):
                 return render(request, 'ExamManagement/showSubmission.html', context)
         form = ResultForm()
         # print(request.POST.get('exam_id'))
-        answers = ExamineeCustomAnswer.objects.filter(exam_id=exam_id)
+        answers = ExamineeAnswer.objects.filter(exam_id=exam_id)
 
         context = {
             'examiner': True,
