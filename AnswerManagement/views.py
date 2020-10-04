@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Answer, ExamineeCustomAnswer, ExamineeMCQAnswer
+from .models import Answer, ExamineeAnswer, ExamineeMCQAnswer
 from .forms import InsertAnswerForm
 from django.contrib.auth.decorators import login_required
 
@@ -29,7 +29,7 @@ def showMcqAnswer(request):
 
 @login_required
 def showCustomAnswer(request):
-    Customanswer = ExamineeCustomAnswer.objects.all()
+    Customanswer = ExamineeAnswer.objects.all()
 
     context = {
         'all_customanswer': Customanswer
