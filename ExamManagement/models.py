@@ -26,6 +26,13 @@ class Exam(models.Model):
         submissions = len(ExamineeAnswer.objects.filter(exam_id=self.id))
         return submissions
 
+    def isStarted(self):
+        timezone = self.exam_date_time.tzinfo
+        now = datetime.datetime.now(timezone) + datetime.timedelta(hours=6)
+        if self.exam_date_time <= now:
+            return True
+        return False
+
     def isRunning(self):
         timezone = self.exam_date_time.tzinfo
         mins = self.exam_duration
@@ -76,7 +83,7 @@ class AttemptedExam(models.Model):
         attachment = Result.objects.filter(examinee=self.examinee, exam=self.exam)
         attachment_url = attachment[0].attachment.url
         if self.hasReturnAttachment():
-            #print("URL", attachment)
+            # print("URL", attachment)
             return attachment_url
 
     def __str__(self):

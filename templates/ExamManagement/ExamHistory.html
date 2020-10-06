@@ -40,7 +40,7 @@
                             Exam Date Time: {{ item.exam.exam_date_time }}<br>
                             Exam Duration: {{ item.exam.exam_duration }} Mins<br>
                             Exam Question: <a href="{{ item.exam.exam_question.url }}"> Download</a><br>
-
+                    {% if item.exam.isStarted %}
                         {% if item.submit %}
                             {% if item.hasReturnAttachment %}
                                 Return Attachment: <a href="{{ item.ReturnAttachment }}"> Download</a><br><br>
@@ -56,6 +56,7 @@
                                 <input type="hidden" name="exam_id" value="{{ item.exam.id }}">
                                 <button type="submit" class="btn btn-warning">Submit Answer</button>
                             </form>
+                        {% endif %}
                         {% endif %}
                         </p>
                     </div>
