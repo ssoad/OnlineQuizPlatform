@@ -313,7 +313,7 @@ def showSubmissions(request, exam_id):
     if examiner:
         if request.method == 'POST':
             examinee_id = request.POST.get('examinee_id')
-            form = ResultForm(request.POST)
+            form = ResultForm(request.POST, request.FILES)
             exam_ = Exam.objects.filter(id=exam_id)
             examinee_ = Examinee.objects.filter(id=examinee_id)
             # answers = ExamineeCustomAnswer.objects.filter(exam_id=e_id)

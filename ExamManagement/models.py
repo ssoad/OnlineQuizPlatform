@@ -1,10 +1,10 @@
 from django.db import models
-
+import datetime
 from Accounts.models import Examinee, Examiner
 
 
 # Create your models here.
-#from AnswerManagement.models import ExamineeCustomAnswer
+# from AnswerManagement.models import ExamineeCustomAnswer
 
 
 class Exam(models.Model):
@@ -26,6 +26,18 @@ class Exam(models.Model):
         submissions = len(ExamineeAnswer.objects.filter(exam_id=self.id))
         return submissions
 
+    def isRunning(self):
+        timezone = self.exam_date_time.tzinfo
+        mins = self.exam_duration
+        mins_added = datetime.timedelta(minutes=mins)
+        datetime_start = self.exam_date_time
+        future_date_and_time = datetime_start + mins_added
+        now = datetime.datetime.now(timezone) + datetime.timedelta(hours=6)
+        if now < future_date_and_time:
+            # print("Running")
+            return True
+        return False
+
     def __str__(self):
         return self.exam_title
 
@@ -34,6 +46,26 @@ class AttemptedExam(models.Model):
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE, null=True)
     examinee = models.ForeignKey(Examinee, on_delete=models.CASCADE)
     submit = models.BooleanField(default=False, null=False, blank=False)
+
+    def hasReturnAttachment(self):
+        from ResultManagement.models import Result
+        attachment = Result.objects.filter(examinee=self.examinee, exam=self.exam)
+        # print("Function:", attachment[0])
+        if attachment:
+            attachment = attachment[0].attachment
+            if attachment:
+                return True,
+            else:
+                return False
+
+    @property
+    def ReturnAttachment(self):
+        from ResultManagement.models import Result
+        attachment = Result.objects.filter(examinee=self.examinee, exam=self.exam)
+        attachment_url = attachment[0].attachment.url
+        if self.hasReturnAttachment():
+            #print("URL", attachment)
+            return attachment_url
 
     def __str__(self):
         return str("Exam: " + self.exam.exam_title + ",Examinee: " + self.examinee.user.username)
