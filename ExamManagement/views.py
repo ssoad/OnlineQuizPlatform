@@ -30,15 +30,15 @@ def showExams(request, exam_id):
                 AttemptedExam.objects.filter(examinee=examinee[0], exam=exam[0]).update(submit=True)
         exams = AttemptedExam.objects.filter(exam_id=exam_id, examinee__user=request.user)
         context = {
-            'form':form,
+            'form': form,
             'examinee': True,
             'exams': exams[0]
         }
     elif examiner:
-        exams = Exam.objects.filter(id=exam_id,examiner__user=request.user)
+        exams = Exam.objects.filter(id=exam_id, examiner__user=request.user)
         context = {
-        'examiner':True,
-        'exams': exams[0]
+            'examiner': True,
+            'exams': exams[0]
         }
     return render(request, 'ExamManagement/showExam.html', context)
 
@@ -295,6 +295,14 @@ def individual_result(request, exam_id):
 def exam_result(request, exam_id):
     result = Result.objects.filter(exam=exam_id)
     exam = Exam.objects.filter(id=exam_id)
+    title = request.GET.get('exam_title')
+    if request.method == 'GET' and title:
+        form = SearchExam(request.GET)
+        if form.is_valid:
+            result1 = Result.objects.filter(exam__exam_title__contains=title, exam_id=exam_id)
+            result2 = Result.objects.filter(examinee__user__first_name__contains=title, exam_id=exam_id)
+            result3 = Result.objects.filter(examinee__user__last_name__contains=title, exam_id=exam_id)
+            result = result1 | result2 | result3
     form = SearchExam()
     context = {
         'form': form,
