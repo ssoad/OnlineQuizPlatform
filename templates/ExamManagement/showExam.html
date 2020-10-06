@@ -36,7 +36,7 @@
                         Exam Marks: {{ exams.exam.exam_marks }}<br>
                         Exam Date Time: {{ exams.exam.exam_date_time }}<br>
                         Exam Duration: {{ exams.exam.exam_duration }} Mins<br>
-                    {% if exams.exam.isStarted %} }
+                    {% if exams.exam.isStarted %}
                         Exam Question: <a href="{{ exams.exam.exam_question.url }}"> Download</a><br>
 
                         {% if exams.submit %}

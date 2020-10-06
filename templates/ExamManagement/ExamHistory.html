@@ -39,8 +39,9 @@
                             Exam Marks: {{ item.exam.exam_marks }}<br>
                             Exam Date Time: {{ item.exam.exam_date_time }}<br>
                             Exam Duration: {{ item.exam.exam_duration }} Mins<br>
-                            Exam Question: <a href="{{ item.exam.exam_question.url }}"> Download</a><br>
+
                     {% if item.exam.isStarted %}
+                        Exam Question: <a href="{{ item.exam.exam_question.url }}"> Download</a><br>
                         {% if item.submit %}
                             {% if item.hasReturnAttachment %}
                                 Return Attachment: <a href="{{ item.ReturnAttachment }}"> Download</a><br><br>
@@ -68,7 +69,7 @@
         </div>
         </div>
         </div>
-        {% else %}
+            {% else %}
         <div class="container align-items-center">
         <div class="container-fluid">
             <div class="row" style="margin-left: 50px">
@@ -105,20 +106,15 @@
                                 <span class="text-body">Exam Date Time:</span> {{ item.exam_date_time }}<br>
                                 <span class="text-body">Exam Duration: </span>{{ item.exam_duration }}<br>
                                 <span class="text-body">Participant:</span> {{ item.getParticipant }}<br>
+                                {% if item.isStarted %}
+
                                 <span class="text-body">Submitted:</span> {{ item.getSubmission }}<br>
                             </p>
-                            <form method="POST">
-                                {% csrf_token %}
-                                <input type="hidden" name="exam_id" value="{{ item.id }}">
-{#                            <a type="submit" class="card-link">View Details</a>#}
-{#                            <a href="#" class="card-link">Analyse</a>#}
                                 <a href="/showsubmissions/{{ item.id }}" class="btn btn-primary">View Submissions</a>
                                 <a style="margin-left: 30px" class="btn btn-primary" href="/examresult/{{ item.id }}">View Results</a>
                                 <a style="margin-left: 30px" class="btn btn-primary" href="/examranks/{{ item.id }}">View Ranking</a>
                                 <a style="margin-left: 30px" class="btn btn-primary" href="/analyse/{{ item.id }}">Analyse</a>
-
-                            </form>
-
+                                {% endif %}
                         </div>
                 </div>
                 </div>
