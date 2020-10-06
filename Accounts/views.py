@@ -2,6 +2,8 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.conf import settings
+
+from ExamManagement.models import AttemptedExam
 from .forms import UserLoginForm, UserRegisterForm, CreateProfileForm
 from .models import Examinee, Examiner, Verification
 from django.contrib.auth import (
@@ -13,6 +15,7 @@ from .models import Profile
 from django.contrib.auth.decorators import login_required
 import uuid
 from django.contrib.auth.models import User
+
 
 # Create your views here.
 
@@ -52,7 +55,7 @@ def register_view(request):
         user.set_password(password)
         user.is_active = False
         user.save()
-        #print(username, password, email)
+        # print(username, password, email)
         # user = get_user_model().objects.create(username=username, password=password, email=email)
         s_uuid = str(uuid.uuid4()) + "-" + username
         verify = Verification(user=user, uid=s_uuid)
@@ -81,7 +84,7 @@ def register_view(request):
             user_message = 'Failed! Try again please!'
             print(user_message)
 
-        #new_user = authenticate(username=user.username, password=password)
+        # new_user = authenticate(username=user.username, password=password)
         if t == 1:
             # print('It Works')
             examinee = Examinee(user=user, organization=form.cleaned_data.get('organization'))
@@ -90,15 +93,15 @@ def register_view(request):
             # print('It Works')
             examiner = Examiner(user=user, organization=form.cleaned_data.get('organization'))
             examiner.save()
-        #login(request, new_user)
-        #if next:
-            #return redirect(next)
+        # login(request, new_user)
+        # if next:
+        # return redirect(next)
         logout(request)
         context = {
             'email': email,
             'username': user.get_full_name(),
         }
-        return render(request,'UserManagement/verification.html',context)
+        return render(request, 'UserManagement/verification.html', context)
 
     context = {
         'form': form,
@@ -117,7 +120,9 @@ def user_dash(request):
         examinee = Examinee.objects.filter(user=request.user)
         examiner = Examiner.objects.filter(user=request.user)
         if examinee:
+            exams = AttemptedExam.objects.filter(examinee=examinee[0])
             context = {
+                "exams": exams,
                 "user": request.user,
                 "examinee": True,
             }
@@ -177,17 +182,13 @@ def show_profile(request):
 def verify_account(request, uid):
     user_ = Verification.objects.get(uid=uid)
     user = User.objects.filter(id=user_.user.id).update(is_active=True)
-    username= user_.user.get_full_name
+    username = user_.user.get_full_name
     user_.delete()
-    context={
+    context = {
         'username': username
     }
-    return render(request,'UserManagement/verification_success.html', context)
+    return render(request, 'UserManagement/verification_success.html', context)
 
-
-
-
-
-#For Debugging
+# For Debugging
 # def test(request):
 #     return  render(request,'UserManagement/verification_success.html')
