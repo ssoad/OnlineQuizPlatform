@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.conf import settings
 
-from ExamManagement.models import AttemptedExam
+from AnswerManagement.forms import InsertAnswerForm
+from ExamManagement.models import AttemptedExam, Exam
 from .forms import UserLoginForm, UserRegisterForm, CreateProfileForm
 from .models import Examinee, Examiner, Verification
 from django.contrib.auth import (
@@ -119,15 +120,19 @@ def user_dash(request):
     if request.user.is_authenticated:
         examinee = Examinee.objects.filter(user=request.user)
         examiner = Examiner.objects.filter(user=request.user)
+        form = InsertAnswerForm()
         if examinee:
             exams = AttemptedExam.objects.filter(examinee=examinee[0])
             context = {
+                "form": form,
                 "exams": exams,
                 "user": request.user,
                 "examinee": True,
             }
         else:
+            exams = Exam.objects.filter(examiner__user=request.user)
             context = {
+                "exams": exams,
                 "user": request.user,
                 "examiner": True
             }
