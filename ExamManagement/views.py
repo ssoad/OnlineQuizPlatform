@@ -11,14 +11,35 @@ from ResultManagement.models import Result
 
 # Create your views here.
 @login_required
-def showExams(request):
-    exams = Exam.objects.filter(examiner__user_id=request.user.id)
-
-    context = {
-        'examiner': True,
-        'all_exams': exams
-    }
-
+def showExams(request, exam_id):
+    examinee = Examinee.objects.filter(user=request.user)
+    examiner = Examiner.objects.filter(user=request.user)
+    form = InsertAnswerForm()
+    if examinee:
+        if request.method == 'POST':
+            form = InsertAnswerForm(request.POST, request.FILES)
+            e_id = request.POST.get('exam_id')
+            exam = Exam.objects.filter(id=e_id).order_by('-exam_date_time')
+            # instance = ExamineeCustomAnswer(exam=exam, examinee=examinee, )
+            if form.is_valid():
+                answer = form.save(commit=False)
+                answer.exam = exam[0]
+                answer.examinee = examinee[0]
+                answer.checkLate()
+                answer.save()
+                AttemptedExam.objects.filter(examinee=examinee[0], exam=exam[0]).update(submit=True)
+        exams = AttemptedExam.objects.filter(exam_id=exam_id, examinee__user=request.user)
+        context = {
+            'form':form,
+            'examinee': True,
+            'exams': exams[0]
+        }
+    elif examiner:
+        exams = Exam.objects.filter(id=exam_id,examiner__user=request.user)
+        context = {
+        'examiner':True,
+        'exams': exams[0]
+        }
     return render(request, 'ExamManagement/showExam.html', context)
 
 
@@ -248,10 +269,10 @@ def joinExam(request):
             }
 
         return render(request, 'ExamManagement/join_exam.html', context)
-    context={
+    context = {
         'form': form,
     }
-    return render(request, 'ExamManagement/join_exam.html',context)
+    return render(request, 'ExamManagement/join_exam.html', context)
 
 
 @login_required

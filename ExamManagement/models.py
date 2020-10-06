@@ -33,7 +33,19 @@ class Exam(models.Model):
         datetime_start = self.exam_date_time
         future_date_and_time = datetime_start + mins_added
         now = datetime.datetime.now(timezone) + datetime.timedelta(hours=6)
-        if now < future_date_and_time:
+        if now < future_date_and_time and not now < datetime_start:
+            # print("Running")
+            return True
+        return False
+
+    def isUpcoming(self):
+        timezone = self.exam_date_time.tzinfo
+        mins = self.exam_duration
+        mins_added = datetime.timedelta(minutes=mins)
+        datetime_start = self.exam_date_time
+        future_date_and_time = datetime_start + mins_added
+        now = datetime.datetime.now(timezone) + datetime.timedelta(hours=6)
+        if now < datetime_start:
             # print("Running")
             return True
         return False
