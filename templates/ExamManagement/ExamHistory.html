@@ -21,7 +21,16 @@
         <div class="col row-cols-1 row-cols-md-0">
         {% for item in exam %}
             <div class="col-md-12">
-                <div class="card" style="border-radius: 10px; margin: 5px">
+                <div class="card shadow" style="border-radius: 10px; margin: 5px">
+                {% if item.exam.isUpcoming %}
+                    <div style="border-radius:10px 10px 0px 0px;" class="card-header bg-info text-white">Upcoming Exam
+                    </div>
+                {% elif not item.submit %}
+                <div style="border-radius:10px 10px 0px 0px;" class="card-header bg-warning ">Submission Pending</div>
+                {% elif item.submit %}
+                    <div style="border-radius:10px 10px 0px 0px;" class="card-header bg-success text-white">Submission Completed
+                    </div>
+                {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ item.exam.exam_title }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ item.exam.examiner.user.get_full_name }}</h6>
@@ -31,16 +40,21 @@
                             Exam Date Time: {{ item.exam.exam_date_time }}<br>
                             Exam Duration: {{ item.exam.exam_duration }} Mins<br>
                             Exam Question: <a href="{{ item.exam.exam_question.url }}"> Download</a><br>
+
                         {% if item.submit %}
-                            <br>
-                            <a class='btn btn-outline-primary'href="/indivresult/{{item.exam.id}}">View Result</a>
+                            {% if item.hasReturnAttachment %}
+                                Return Attachment: <a href="{{ item.ReturnAttachment }}"> Download</a><br><br>
+                            {% else %}
+                                <br>
+                            {% endif %}
+                            <a class='btn btn-primary 'href="/indivresult/{{item.exam.id}}">View Result</a>
                         {% endif %}
                         {% if not item.submit %}
                             <form method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 {{ form| crispy }} <br>
                                 <input type="hidden" name="exam_id" value="{{ item.exam.id }}">
-                                <button type="submit" class="btn btn-outline-primary">Submit Answer</button>
+                                <button type="submit" class="btn btn-warning">Submit Answer</button>
                             </form>
                         {% endif %}
                         </p>
@@ -71,7 +85,16 @@
         <div class="col row-cols-1 row-cols-md-0">
             {% for item in exam %}
                 <div class="col mb-12">
-                    <div class="card" style="border-radius: 10px; margin: 5px">
+                    <div class="card shadow" style="border-radius: 10px; margin: 5px">
+                        {% if item.isRunning %}
+                        <div style="border-radius: 10px 10px 0px 0px" class="card-header bg-warning">Running Exam</div>
+                        {% elif item.isUpcoming %}
+                            <div style="border-radius: 10px 10px 0px 0px" class="card-header bg-info text-white ">
+                                Upcoming Exam
+                            </div>
+                        {% else %}
+                             <div style="border-radius: 10px 10px 0px 0px" class="card-header bg-success text-white ">Exam Ended</div>
+                        {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ item.exam_title }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ item.examiner }}</h6>
@@ -88,9 +111,10 @@
                                 <input type="hidden" name="exam_id" value="{{ item.id }}">
 {#                            <a type="submit" class="card-link">View Details</a>#}
 {#                            <a href="#" class="card-link">Analyse</a>#}
-                                <a href="/showsubmissions/{{ item.id }}" class="btn btn-outline-primary">View Submissions</a>
-                                <a style="margin-left: 30px" class="btn btn-outline-primary" href="/examresult/{{ item.id }}">View Results</a>
-                                <a style="margin-left: 30px" class="btn btn-outline-primary" href="/examranks/{{ item.id }}">View Ranking</a>
+                                <a href="/showsubmissions/{{ item.id }}" class="btn btn-primary">View Submissions</a>
+                                <a style="margin-left: 30px" class="btn btn-primary" href="/examresult/{{ item.id }}">View Results</a>
+                                <a style="margin-left: 30px" class="btn btn-primary" href="/examranks/{{ item.id }}">View Ranking</a>
+                                <a style="margin-left: 30px" class="btn btn-primary" href="/analyse/{{ item.id }}">Analyse</a>
 
                             </form>
 

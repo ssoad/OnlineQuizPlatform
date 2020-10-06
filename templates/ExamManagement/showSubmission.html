@@ -1,4 +1,5 @@
 {% extends 'UserManagement/user_dash_base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
     <div class="container">
     <center><h2> Submitted Answers </h2></center>
@@ -6,7 +7,7 @@
     <div class="row row-cols-1 row-cols-md-2">
     {% for answer in answers %}
         <div class="col mb-4">
-        <div class="card" style="border-radius: 10px; margin: 10px">
+        <div class="card shadow-sm" style="border-radius: 10px; margin: 10px">
         <div class="card-body">
             <h5 class="card-title">{{ answer.exam.exam_title }}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ answer.examinee.user.get_full_name }}</h6>
@@ -20,9 +21,9 @@
             {% if answer.graded %}
                 <a style="color: #28a745;font-weight: bold">Graded</a>
             {% else %}
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form }}
+                        {{ form|crispy }}
                     <input type="hidden" name="exm_id" value="{{ answer.exam.id }}">
                     <input type="hidden" name="examinee_id" value="{{ answer.examinee.id }}">
                     <input type="submit">

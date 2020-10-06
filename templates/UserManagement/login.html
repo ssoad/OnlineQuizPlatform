@@ -1,19 +1,17 @@
 {% extends 'Base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <br>
-    <br>
+
 <center>
     <section style="height: 300px">
-         <h1>Login</h1>
-        <br>
-        <br>
-        <div class="col-md-4 ">
+         <h4>ACCOUNT LOGIN</h4><br>
+        <div style="padding: 20px;padding-top: 40px; border-radius: 15px" class="col-md-4 card bg-transparent shadow-lg">
     <form method="POST">
         {% csrf_token %}
         {{ form|crispy }}
+        <a href="#" class="float-lg-right">Reset Password</a>
         <br>
-        <button type="submit" class="btn btn-outline-primary">Login</button>
+        <button style="border-radius:15px" type="submit" class="btn btn-primary">Login</button>
     </form>
         </div>
     </section>

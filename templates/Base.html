@@ -3,6 +3,7 @@
 <head>
   {% load static %}
   <link rel="stylesheet" href="{% static "ExamManagement/assets/bootstrap/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "ExamManagement/assets/bootstrap/css/custom.css" %}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Acme">
@@ -128,7 +129,12 @@
         <div class="social-icons"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-instagram-outline"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a></div>
     </div>
 </footer>
-
+<script>
+    function myGeeks() {
+        var g = document.getElementById("agree").required;
+        document.getElementById("agree").innerHTML = g;
+    }
+</script>
 <script src="{% static "ExamManagement/assets/js/jquery.min.js" %}"></script>
 <script src="{% static "ExamManagement/assets/bootstrap/js/bootstrap.min.js" %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>

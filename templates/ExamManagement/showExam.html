@@ -1,27 +1,134 @@
-{% extends 'UserManagement/user_dash_base.html' %}
+{% extends 'Base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
+    <div class="container">
+    {% if examinee %}
     <center>
-        <h2> ALL EXAMS </h2>
+        <h2> {{ exams.exam.exam_title }} </h2>
         <br>
     </center>
-    <div class="card-deck">
+    {% endif %}
+    {% if examiner %}
+        <center>
+            <h2> {{ exams.exam_title }} </h2>
+        </center>
+    {% endif %}
+   {% if examinee %}
+        <div class="col-md-12">
+            <div class="card shadow" style="border-radius: 10px; margin: 5px">
+                {% if exams.exam.isUpcoming %}
+                    <div style="border-radius: 10px 10px 0px 0px"
+                         class="card-header bg-info text-white ">Exam Upcoming
+                    </div>
+                {% elif not exams.submit %}
+                    <div style="border-radius:10px 10px 0px 0px;" class="card-header bg-warning ">Submission Pending
+                    </div>
+                {% else %}
+                    <div style="border-radius:10px 10px 0px 0px;" class="card-header bg-success text-white">Submission
+                        Completed
+                    </div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ exams.exam.exam_title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ item.exam.examiner.user.get_full_name }}</h6>
+                    <p class="card-text font-weight-normal">
+                        Exam Code: {{ exams.exam.exam_code }}<br>
+                        Exam Marks: {{ exams.exam.exam_marks }}<br>
+                        Exam Date Time: {{ exams.exam.exam_date_time }}<br>
+                        Exam Duration: {{ exams.exam.exam_duration }} Mins<br>
+                        Exam Question: <a href="{{ exams.exam.exam_question.url }}"> Download</a><br>
 
-    {% for item in all_exams %}
-        <div class="card" style="border-radius: 10px; margin: 5px">
-            <div class="card-body">
-                <h5 class="card-title">{{ item.exam_title }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ item.examiner }}</h6>
-                <p class="card-text">
-                    Exam Code: {{ item.exam_code }}<br>
-                    Exam Marks:{{ item.exam_marks }}<br>
-                    Exam Date Time:{{ item.exam_date_time }}<br>
-                    Exam Duration:{{ item.exam_duration }}<br>
-                </p>
-                <a href="#" class="card-link">View Details</a>
-                <a href="#" class="card-link">Analyse</a>
+                        {% if exams.submit %}
+                            {% if exams.hasReturnAttachment %}
+                                Return Attachment: <a href="{{ exams.ReturnAttachment }}"> Download</a><br><br>
+                            {% else %}
+                                <br>
+                            {% endif %}
+                            <a class='btn btn-primary ' href="/indivresult/{{ exams.exam.id }}">View Result</a>
+                        {% endif %}
+                        {% if not exams.submit %}
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ form| crispy }} <br>
+                                <input type="hidden" name="exam_id" value="{{ exams.exam.id }}">
+                                <button type="submit" class="btn btn-warning">Submit Answer</button>
+                            </form>
+                        {% endif %}
+                    </p>
+                </div>
             </div>
         </div>
-        <br>
-    {% endfor %}
+   {% endif %}
+
+
+    {% if examiner %}
+        <div class="container align-items-center">
+            <div class="container-fluid">
+                <div class="row" style="margin-left: 50px">
+                    <div style="margin-left: 470px" class="col-md-4 float-lg-right">
+{#                        <form method="GET">#}
+{#                            {% csrf_token %}#}
+{#                            {{ form2 }}#}
+{#                            <input style="border-radius: 5px" class="btn btn-primary btn-sm" type="submit"#}
+{#                                   value="Search">#}
+                            {#                <button type="submit" class="btn btn-primary">Search</button>#}
+{#                        </form>#}
+                    </div>
+                </div>
+                <br>
+                <div class="col row-cols-1 row-cols-md-0">
+
+                        <div class="col mb-12">
+                            <div class="card shadow" style="border-radius: 10px; margin: 5px">
+                                {% if exams.isRunning %}
+                                    <div style="border-radius: 10px 10px 0px 0px" class="card-header bg-warning">Exam
+                                        Running
+                                    </div>
+                                {% elif exams.isUpcoming %}
+                                    <div style="border-radius: 10px 10px 0px 0px"
+                                         class="card-header bg-info text-white ">Exam Upcoming
+                                    </div>
+                                {% else %}
+                                    <div style="border-radius: 10px 10px 0px 0px"
+                                         class="card-header bg-success text-white ">Exam Ended
+                                    </div>
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ exams.exam_title }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ item.examiner }}</h6>
+                                    <p class="card-text">
+                                        <span class="text-body">Exam Code:</span> {{ exams.exam_code }}<br>
+                                        <span class="text-body">Exam Marks:</span> {{ exams.exam_marks }}<br>
+                                        <span class="text-body">Exam Date Time:</span> {{ exams.exam_date_time }}<br>
+                                        <span class="text-body">Exam Duration: </span>{{ exams.exam_duration }}<br>
+                                        <span class="text-body">Participant:</span> {{ exams.getParticipant }}<br>
+                                        <span class="text-body">Submitted:</span> {{ exams.getSubmission }}<br>
+                                    </p>
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="exam_id" value="{{ exams.id }}">
+                                        {#                            <a type="submit" class="card-link">View Details</a>#}
+                                        {#                            <a href="#" class="card-link">Analyse</a>#}
+                                        <a href="/showsubmissions/{{ exams.id }}" class="btn btn-primary">View
+                                            Submissions</a>
+                                        <a style="margin-left: 30px" class="btn btn-primary"
+                                           href="/examresult/{{ exams.id }}">View Results</a>
+                                        <a style="margin-left: 30px" class="btn btn-primary"
+                                           href="/examranks/{{ exams.id }}">View Ranking</a>
+                                        <a style="margin-left: 30px" class="btn btn-primary"
+                                           href="/analyse/{{ exams.id }}">Analyse</a>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
     </div>
 {% endblock content %}

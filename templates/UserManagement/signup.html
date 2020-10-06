@@ -3,15 +3,16 @@
 {% block content %}
     <section style="align-content: center">
         <center>
-            <br>
-            <h2>Register Here!</h2>
-            <br>
-        <div class="col-md-4" style="align-content: start">
+            <h2>REGISTER HERE!</h2><br>
+        <div class="card col-md-5 shadow-lg" style="align-content: start;padding: 50px; border-radius: 10px">
             <form method="POST">
                 {% csrf_token %}
-                {{ form|crispy }}
+                {{ form|crispy }}<br>
+                <input type="checkbox" name="checkbox" value="check" id="agree" required/> I have read and agree to the Terms and
+                Conditions and Privacy Policy
                 <br>
-                <button type="submit" class="btn btn-outline-primary">Sign Up</button>
+                <br>
+                <button style="border-radius: 15px" type="submit" class="btn btn-primary">Sign Up</button>
             </form>
         </div>
         </center>
