@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ResultManagement.apps.ResultmanagementConfig',
     'AnswerManagement.apps.AnswermanagementConfig',
     'crispy_forms',
+    'matplotlib'
 ]
 
 MIDDLEWARE = [
