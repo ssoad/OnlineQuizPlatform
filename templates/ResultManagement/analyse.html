@@ -1,0 +1,14 @@
+{% extends 'Base.html' %}
+{% block content %}
+    <div class="container">
+        <center><h3>EXAM ANALYSIS</h3><br><br>
+
+    <div style="border-radius: 10px" class="card col-md-8 shadow-sm">
+       <br> <center><h4>Exam Results Chart</h4></center><br>
+        <center><img src="data:image/png;base64,{{ data }}" alt="" width="600" height="500"></center>
+    </div>
+    </center>
+
+    </div>
+
+{% endblock content %}

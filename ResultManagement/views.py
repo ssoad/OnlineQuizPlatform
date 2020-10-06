@@ -48,4 +48,4 @@ def showGraph(request, exam_id):
     buf.seek(0)
     string = base64.b64encode(buf.read())
     url = urllib.parse.quote(string)
-    return render(request,'contactus.html',context={'data':url})
+    return render(request,'ResultManagement/analyse.html',context={'data':url})
