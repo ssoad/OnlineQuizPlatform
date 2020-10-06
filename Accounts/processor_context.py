@@ -6,6 +6,6 @@ def check(request):
     examiner = Examiner.objects.filter(user=request.user)
     if examinee:
         return {'examinee': True}
-    if examiner:
+    elif examiner:
         return {'examiner': True}
     return None
