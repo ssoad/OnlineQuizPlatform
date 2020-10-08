@@ -416,10 +416,11 @@ def allresults(request):
     }
     return render(request, 'ResultManagement/Results.html', context)
 
-def showParticipant(request,exam_id):
+
+def showParticipant(request, exam_id):
     participant = AttemptedExam.objects.filter(exam_id=exam_id)
-    context={
-        'participant':participant,
+    context = {
+        'participant': participant,
         'exam': participant[0].exam
     }
-    return render(request,'ExamManagement/show_participant.html',context)
+    return render(request, 'ExamManagement/show_participant.html', context)
