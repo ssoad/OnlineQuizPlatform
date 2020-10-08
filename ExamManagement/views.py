@@ -397,7 +397,16 @@ def exam_ranks(request, exam_id):
 
 def allresults(request):
     result = Result.objects.filter(exam__examiner__user__id=request.user.id)
-    # exam = Exam.objects.filter(id=exam_id)
+    title = request.GET.get('exam_title')
+    if request.method == 'GET' and title:
+        form = SearchExam(request.GET)
+        if form.is_valid:
+            result1 = Result.objects.filter(exam__exam_title__contains=title, exam__examiner__user__id=request.user.id)
+            result2 = Result.objects.filter(examinee__user__first_name__contains=title,
+                                            exam__examiner__user__id=request.user.id)
+            result3 = Result.objects.filter(examinee__user__last_name__contains=title,
+                                            exam__examiner__user__id=request.user.id)
+            result = result1 | result2 | result3
     form = SearchExam()
     context = {
         'form': form,
