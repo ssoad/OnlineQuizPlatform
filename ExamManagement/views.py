@@ -90,29 +90,56 @@ def showCustomQuestions(request):
 @login_required
 def addExam(request):
     if request.user.is_authenticated:
+        done = False
+        is_Post=False
+        message = "Exam was successfully created"
         examiner = Examiner.objects.filter(user_id=request.user.id)
         # print('TEST:',examiner[0])
         if examiner:
             form = AddExamForm(request.POST, request.FILES)
             if request.method == 'POST':
+                is_Post = True
                 if form.is_valid():
                     exam = form.save(commit=False)
-                    # title = form.cleaned_data.get('exam_title')
-                    # code = int(form.cleaned_data.get('exam_code'))
-                    # marks = int(form.cleaned_data.get('exam_marks'))
-                    # For Testing purpose
-                    # duration = int(form.cleaned_data.get('exam_duration'))
-                    # exam = Exam(exam_title=title, examiner=examiner[0], exam_code=code, exam_marks=marks,
-                    #             exam_duration=duration, exam_date_time=date_time)
-                    # date_time = datetime.datetime.now()
-                    # exam.exam_date_time = date_time
-                    # print(exam.exam_date_time)
                     exam.save()
+                    done = True
+                    # form = AddExamForm()
+                    # context = {
+                    #     'done':True,
+                    #     'message': "Exam was successfully created",
+                    #     'examiner': True,
+                    #     'form': form
+                    # }
+                    # return render(request, 'ExamManagement/addExam.html', context)
+                else:
+                    done = False
+                    error = True
+                    message = "Exam creation failed. Exam Code already exist"
+                    # form = AddExamForm()
+                    # context = {
+                    #     'done': False,
+                    #     'message': "Exam creation failed. Exam Code already exist",
+                    #     'examiner': True,
+                    #     'form': form
+                    # }
+                    # return render(request, 'ExamManagement/addExam.html', context)
+
             form = AddExamForm()
-            context = {
-                'examiner': True,
-                'form': form
-            }
+            if is_Post:
+                context = {
+                    'done': done,
+                    'message': message,
+                    'examiner': True,
+                    'form': form
+                         }
+            else:
+                context = {
+                    # 'done': done,
+                    # 'message': message,
+                    'examiner': True,
+                    'form': form
+                }
+
             return render(request, 'ExamManagement/addExam.html', context)
         else:
             return render(request, '404.html')
