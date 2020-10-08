@@ -66,7 +66,8 @@ urlpatterns = [
     path('verify/<str:uid>', acc_views.verify_account),
     path('showsubmissions/<int:exam_id>',exam_views.showSubmissions),
     path('examranks/<int:exam_id>',exam_views.exam_ranks),
-    path('analyse/<int:exam_id>',result_views.showGraph,)
+    path('analyse/<int:exam_id>',result_views.showGraph,),
+    path('participant/<int:exam_id>', exam_views.showParticipant, )
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #For Testing Purpose

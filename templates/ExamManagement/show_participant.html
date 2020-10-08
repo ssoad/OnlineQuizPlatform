@@ -1,0 +1,47 @@
+{% extends 'Base.html' %}
+
+{% block content %}
+    <div class="container">
+        <center>
+            <div class="row" style="margin-left: 10px">
+                <h2> Exam Participant </h2>
+                <div style="margin-left: 500px" class="col-md-4 float-lg-right">
+                    <form method="GET">
+                        {% csrf_token %}
+{#                        {{ form }}#}
+                        <input class="select2-search--inline" id="exam_title" name="exam_title">
+                        <input style="border-radius: 5px" class="btn btn-primary btn-sm" type="submit" value="Search">
+                        {#                <button type="submit" class="btn btn-primary">Search</button>#}
+                    </form>
+                </div>
+            </div>
+            <div class="card align-content-start">
+                <div class="card-body">
+                    <h5 class="card-title font-weight-bolder">{{ exam.exam_title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ exam.examiner.user.get_full_name }}</h6>
+                    <p class="card-text font-weight-normal">
+                        Code: {{ exam.exam_code }}<br>
+                        Marks: {{ exam.exam_marks }}<br>
+                        Date Time: {{ exam.exam_date_time }}<br>
+                </div>
+            </div>
+        </center>
+        <br>
+        <table class="table">
+            <tr>
+                <th>Full Name</th>
+                <th>E-mail</th>
+                <th>Organization</th>
+            </tr>
+
+
+            {% for r in participant %}
+                <tr>
+                    <td>{{ r.examinee.user.get_full_name }}</td>
+                    <td>{{ r.examinee.user.email }}</td>
+                    <td>{{ r.examinee.organization }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock content %}

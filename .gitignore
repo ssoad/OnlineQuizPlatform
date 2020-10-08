@@ -1,6 +1,5 @@
 /.idea
 /venv
-
 /todo
 /db.sqlite3
 __pycache__/
