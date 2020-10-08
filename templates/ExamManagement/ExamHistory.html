@@ -110,10 +110,13 @@
 
                                 <span class="text-body">Submitted:</span> {{ item.getSubmission }}<br>
                             </p>
-                                <a href="/showsubmissions/{{ item.id }}" class="btn btn-primary">View Submissions</a>
+                                <a href="/participant/{{ item.id }}" class="btn btn-primary">View Participant</a>
+                                <a style="margin-left: 30px" href="/showsubmissions/{{ item.id }}" class="btn btn-primary">View Submissions</a>
                                 <a style="margin-left: 30px" class="btn btn-primary" href="/examresult/{{ item.id }}">View Results</a>
                                 <a style="margin-left: 30px" class="btn btn-primary" href="/examranks/{{ item.id }}">View Ranking</a>
                                 <a style="margin-left: 30px" class="btn btn-primary" href="/analyse/{{ item.id }}">Analyse</a>
+                                {% else %}
+                                    <br><a href="/participant/{{ item.id }}" class="btn btn-primary">View Participant</a>
                                 {% endif %}
                         </div>
                 </div>
