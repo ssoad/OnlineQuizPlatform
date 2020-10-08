@@ -91,7 +91,7 @@ def showCustomQuestions(request):
 def addExam(request):
     if request.user.is_authenticated:
         done = False
-        is_Post=False
+        is_Post = False
         message = "Exam was successfully created"
         examiner = Examiner.objects.filter(user_id=request.user.id)
         # print('TEST:',examiner[0])
@@ -113,7 +113,6 @@ def addExam(request):
                     # return render(request, 'ExamManagement/addExam.html', context)
                 else:
                     done = False
-                    error = True
                     message = "Exam creation failed. Exam Code already exist"
                     # form = AddExamForm()
                     # context = {
@@ -131,7 +130,7 @@ def addExam(request):
                     'message': message,
                     'examiner': True,
                     'form': form
-                         }
+                }
             else:
                 context = {
                     # 'done': done,
