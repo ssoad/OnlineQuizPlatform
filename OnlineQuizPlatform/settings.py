@@ -26,7 +26,8 @@ SECRET_KEY = 'i_x-#xe=e6xo64m&(=p6nis^9b13xhr)*n1332g6+e16*ddwam'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-STATIC_ROOT = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 # Application definition
 
