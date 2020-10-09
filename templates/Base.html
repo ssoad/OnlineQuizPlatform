@@ -135,7 +135,37 @@
         document.getElementById("agree").innerHTML = g;
     }
 </script>
-<script src="{% static "ExamManagement/assets/js/jquery.min.js" %}"></script>
+<script>
+    jQuery("#confirm").click(function () {
+        $("<div></div>").appendTo('body')
+            .html('<div><h3> write your message for confirm dialog</h3></div>')
+            .dialog({
+                title: "Confotm Dialog",
+                width: 500, height: 300,
+                modal: true,
+                resizable: false,
+                show: {effect: 'drop', direction: "left"},
+                hide: {effect: 'blind'}
+
+                buttons: {
+                    Yes: function () {
+                        jQuery.ajax({
+                            type: "POST", //post data
+                            data: {'key': key}, //if you want to send any data to view
+                            url: '/get_viewerModal/' // your url that u write in action in form tag
+                        }).done(function (result) {
+                            alert("am done") //this will executes after your view executed
+                        })
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+    });
+    </script >
+
+    <script src="{% static "ExamManagement/assets/js/jquery.min.js" %}"></script>
 <script src="{% static "ExamManagement/assets/bootstrap/js/bootstrap.min.js" %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
 <script src="{% static  "ExamManagement/assets/js/theme.js" %}"></script>
