@@ -26,7 +26,8 @@
         </div>
     </center>
     <br>
-    <table class="table">
+    {% if examiner %}
+    <table class="table table-striped">
     <tr>
         <th>Full Name</th>
         <th>E-mail</th>
@@ -44,5 +45,21 @@
     </tr>
 {% endfor %}
     </table>
+ {% else %}
+        <table class="table table-striped">
+            <tr>
+                <th>Full Name</th>
+                <th>Organization</th>
+            </tr>
+
+
+            {% for r in result %}
+                <tr>
+                    <td>{{ r.examinee.user.get_full_name }}</td>
+                    <td>{{ r.examinee.organization }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
     </div>
 {% endblock content %}
