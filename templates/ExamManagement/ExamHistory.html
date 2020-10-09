@@ -49,6 +49,7 @@
                                 <br>
                             {% endif %}
                             <a class='btn btn-primary 'href="/indivresult/{{item.exam.id}}">View Result</a>
+                            <a style="margin: 30px" class='btn btn-primary ' href="/examrank/{{ item.exam.id }}">View Ranking</a>
                         {% endif %}
                         {% if not item.submit %}
                             <form method="POST" enctype="multipart/form-data">
@@ -116,7 +117,12 @@
                                 <a style="margin-left: 30px" class="btn btn-primary" href="/examranks/{{ item.id }}">View Ranking</a>
                                 <a style="margin-left: 30px" class="btn btn-primary" href="/analyse/{{ item.id }}">Analyse</a>
                                 {% else %}
-                                    <br><a href="/participant/{{ item.id }}" class="btn btn-primary">View Participant</a>
+                                    <form style="padding: 0px 0px 0px 0px;margin: 0px" method="POST">
+                                    {% csrf_token %}
+                                        <a href="/participant/{{ item.id }}" class="btn btn-primary">View Participant</a>
+                                        <input type="hidden" name="del_exam_id" value="{{ item.id }}">
+                                        <button style="margin: 30px" type="submit" class="btn btn-danger">Delete Exam</button>
+                                    </form>
                                 {% endif %}
                         </div>
                 </div>
