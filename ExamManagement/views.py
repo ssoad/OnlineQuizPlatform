@@ -247,6 +247,12 @@ def ExamHistory(request):
                 answer.checkLate()
                 answer.save()
                 AttemptedExam.objects.filter(examinee=examinee[0], exam=exam[0]).update(submit=True)
+        if examiner:
+            del_exam = request.POST.get('del_exam_id')
+            if del_exam:
+                print(del_exam)
+                exam = Exam.objects.get(id=int(del_exam))
+                exam.delete()
     if examinee:
         exams = AttemptedExam.objects.filter(examinee__user_id=request.user.id).order_by('-exam__exam_date_time')
         # print(exams[0].exam.exam_title)
@@ -414,11 +420,10 @@ def exam_ranks(request, exam_id):
     form = SearchExam()
     context = {
         'form': form,
-        'examiner': True,
         'result': result,
         'exam': exam[0]
     }
-    return render(request, 'ResultManagement/ExamResult.html', context)
+    return render(request, 'ResultManagement/ExamRank.html', context)
 
 
 def allresults(request):
@@ -444,9 +449,10 @@ def allresults(request):
 
 
 def showParticipant(request, exam_id):
+    exam = Exam.objects.get(id=exam_id)
     participant = AttemptedExam.objects.filter(exam_id=exam_id)
     context = {
         'participant': participant,
-        'exam': participant[0].exam
+        'exam': exam
     }
     return render(request, 'ExamManagement/show_participant.html', context)
