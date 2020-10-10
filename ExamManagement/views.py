@@ -101,6 +101,7 @@ def addExam(request):
                 is_Post = True
                 if form.is_valid():
                     exam = form.save(commit=False)
+                    exam.examiner = examiner[0]
                     exam.save()
                     done = True
                     # form = AddExamForm()
