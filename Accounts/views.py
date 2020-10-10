@@ -178,7 +178,7 @@ def show_profile(request):
         }
         return render(request, "UserManagement/showprofile.html", context)
     context = {
-        'examiner': True,
+        # 'examiner': True,
         'message': "You Didn't Create Profile",
     }
     return render(request, "UserManagement/noprofile.html", context)

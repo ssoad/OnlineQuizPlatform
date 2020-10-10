@@ -3,13 +3,18 @@
 {% block content %}
     <br>
     <br>
+    <div style="padding-left:200px;padding-right:200px " class="container">
+        <div style="padding:50px;border-radius: 20px" class="card shadow">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-primary">Create</button>
 
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form|crispy }}
+            </form>
 
-        <button type="submit" class="btn btn-outline-primary">Create</button>
+        </div>
 
-    </form>
+    </div>
+
 
 {% endblock content %}

@@ -42,24 +42,31 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="/joinexam">Join Exam</a>
                                     <a class="dropdown-item" href="/examshistory">Exam History</a>
+                                    <a class="dropdown-item" href="/results">Exam Results</a>
 
                                     {#                            <a class="dropdown-item" href="#">Something else here</a>#}
                                 </div>
                             </li>
-                            <li class="nav-item" role="presentation"><a class="nav-link active"
-                                                                        href="/profile">Profile</a>
+{#                            <li class="nav-item" role="presentation"><a class="nav-link active"#}
+{#                                                                        href="/profile">Profile</a>#}
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="/profile" id="navbarDropdownMenuLink"
                                    role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Settings
+                                    {{ request.user.username }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" type="submit" name="examinee" value="True" href="/profile">Profile</a>
                                     <a class="dropdown-item" type="submit" name="examinee" value="True" href="/change-password">Change Password</a>
+                                    <a class="dropdown-item" type="submit" name="examinee" value="True" href="/logout">Logout</a>
 
                                 </div>
                             </li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">Logout</a></li>
+{#                            <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">Logout</a>#}
+{#                            </li>#}
+{#                            <li role="button"#}
+{#                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 10px" class="nav-item"><div style="border-radius: 30px" class="card"><a style="font-size:medium; color: #1a61e8;padding-left: 10px;padding-right: 10px"#}
+{#                                                                                                class="ion-person">  {{ request.user.username }}</a></div></li>#}
                         {% else %}
                             <li class="nav-item" role="presentation"><a class="nav-link active" href="/">Home</a></li>
                             <li class="nav-item" role="presentation"><a class="nav-link active" href="/dashboard">Dashboard</a>
@@ -75,22 +82,19 @@
                                     <a class="dropdown-item" href="/results">Exam Results</a>
                                 </div>
                             </li>
-                            <li class="nav-item" role="presentation"><a class="nav-link active"
-                                                                        href="/profile">Profile</a>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="/profile" id="navbarDropdownMenuLink"
                                    role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Settings
+                                    {{ request.user.username }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="/change-password">Change Password</a>
+                                    <a class="dropdown-item" type="submit" name="examinee" value="True" href="/profile">Profile</a>
+                                    <a class="dropdown-item" type="submit" name="examinee" value="True"
+                                       href="/change-password">Change Password</a>
+                                    <a class="dropdown-item" type="submit" name="examinee" value="True" href="/logout">Logout</a>
 
                                 </div>
-                            </li>
-
-
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">Logout</a></li>
                         {% endif %}
                     {% else %}
                         <li class="nav-item" role="presentation"><a class="nav-link active" href="/">Home</a></li>

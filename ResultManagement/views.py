@@ -3,13 +3,19 @@ import urllib
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 import matplotlib.pyplot as plt
+
+from Accounts.models import Examinee
 from .models import Result, ExamineeHistory, Rank
 import io
 import base64
 # Create your views here.
 @login_required
 def showResults(request):
-    result = Result.objects.all()
+    examinee = Examinee.objects.filter(user=request.user)
+    if examinee:
+        result = Result.objects.filter(examinee=examinee[0])
+    else:
+        result = Result.objects.all()
     context = {
         'results': result
     }
