@@ -106,10 +106,10 @@
                                         <span class="text-body">Participant:</span> {{ exams.getParticipant }}<br>
                                         <span class="text-body">Submitted:</span> {{ exams.getSubmission }}<br>
                                     </p>
-                                    {% if exams.isStarted %}
+                                    {% if exam.isStarted %}
                                     <a href="/participant/{{ exams.id }}" class="btn btn-primary">View
                                         Participant</a>
-                                        <a style="margin-left: 30px" href="/showsubmissions/{{ exams.id }}" class="btn btn-primary">View
+                                        <a href="/showsubmissions/{{ exams.id }}" class="btn btn-primary">View
                                             Submissions</a>
                                         <a style="margin-left: 30px" class="btn btn-primary"
                                            href="/examresult/{{ exams.id }}">View Results</a>
