@@ -446,7 +446,7 @@ def allresults(request):
     form = SearchExam()
     context = {
         'form': form,
-        'examiner': True,
+        # 'examiner': True,
         'result': result,
         # 'exam': exam[0]
     }
