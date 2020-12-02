@@ -1,2 +1,2 @@
-EMAIL_ACC = "onlinequizplatfom@gmail.com"
-PASSWORD = "@Soad2020"
+EMAIL_ACC = "onlinequizplatfom@gmail.com" #User Your Own Email
+PASSWORD = "" #Enter Password
