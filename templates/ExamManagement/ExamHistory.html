@@ -56,7 +56,7 @@
                                 {% csrf_token %}
                                 {{ form| crispy }} <br>
                                 <input type="hidden" name="exam_id" value="{{ item.exam.id }}">
-                                <button type="submit" class="btn btn-warning">Submit Answer</button>
+                                <button type="submit" name="sub-btn" class="btn btn-warning">Submit Answer</button>
                             </form>
                         {% endif %}
                         {% endif %}

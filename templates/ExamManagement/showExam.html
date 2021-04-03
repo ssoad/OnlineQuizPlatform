@@ -106,7 +106,7 @@
                                         <span class="text-body">Participant:</span> {{ exams.getParticipant }}<br>
                                         <span class="text-body">Submitted:</span> {{ exams.getSubmission }}<br>
                                     </p>
-                                    {% if exam.isStarted %}
+                                    {% if exams.isStarted %}
                                     <a href="/participant/{{ exams.id }}" class="btn btn-primary">View
                                         Participant</a>
                                         <a href="/showsubmissions/{{ exams.id }}" class="btn btn-primary">View

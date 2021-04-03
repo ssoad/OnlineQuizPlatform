@@ -9,12 +9,12 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Acme">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  
+
 
      <!--
-       
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     -->
     <meta charset="UTF-8">
     <title>Online Quiz Platform</title>
@@ -35,14 +35,14 @@
                             <li class="nav-item" role="presentation"><a class="nav-link active" href="/dashboard">Dashboard</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                <a class="nav-link dropdown-toggle" href="#" id="examdropdown" role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Exams
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="/joinexam">Join Exam</a>
-                                    <a class="dropdown-item" href="/examshistory">Exam History</a>
-                                    <a class="dropdown-item" href="/results">Exam Results</a>
+                                    <a class="dropdown-item" name="join_exam" href="/joinexam">Join Exam</a>
+                                    <a class="dropdown-item" name="exam_history" href="/examshistory">Exam History</a>
+                                    <a class="dropdown-item" name="exam_results" href="/results">Exam Results</a>
 
                                     {#                            <a class="dropdown-item" href="#">Something else here</a>#}
                                 </div>
@@ -50,15 +50,15 @@
 {#                            <li class="nav-item" role="presentation"><a class="nav-link active"#}
 {#                                                                        href="/profile">Profile</a>#}
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="/profile" id="navbarDropdownMenuLink"
+                                <a class="nav-link dropdown-toggle" href="/profile" id="profiledropdown"
                                    role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ request.user.username }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" type="submit" name="examinee" value="True" href="/profile">Profile</a>
-                                    <a class="dropdown-item" type="submit" name="examinee" value="True" href="/change-password">Change Password</a>
-                                    <a class="dropdown-item" type="submit" name="examinee" value="True" href="/logout">Logout</a>
+                                    <a class="dropdown-item" type="submit" name="profile" value="True" href="/profile">Profile</a>
+                                    <a class="dropdown-item" type="submit" name="changepass" value="True" href="/change-password">Change Password</a>
+                                    <a class="dropdown-item" type="submit" name="logout" value="True" href="/logout">Logout</a>
 
                                 </div>
                             </li>
@@ -72,36 +72,36 @@
                             <li class="nav-item" role="presentation"><a class="nav-link active" href="/dashboard">Dashboard</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                <a class="nav-link dropdown-toggle" href="#" id="examdropdown" role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Exams
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="/addexam">Create Exam</a>
-                                    <a class="dropdown-item" href="/examshistory">Exam History</a>
-                                    <a class="dropdown-item" href="/results">Exam Results</a>
+                                    <a class="dropdown-item" name="create_exam" href="/addexam">Create Exam</a>
+                                    <a class="dropdown-item" name="exam_history" href="/examshistory">Exam History</a>
+                                    <a class="dropdown-item" name="exam_results" href="/results">Exam Results</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="/profile" id="navbarDropdownMenuLink"
+                                <a class="nav-link dropdown-toggle" href="/profile" id="profiledropdown"
                                    role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ request.user.username }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" type="submit" name="examinee" value="True" href="/profile">Profile</a>
-                                    <a class="dropdown-item" type="submit" name="examinee" value="True"
+                                    <a class="dropdown-item" type="submit" name="profile" value="True" href="/profile">Profile</a>
+                                    <a class="dropdown-item" type="submit" name="changepass" value="True"
                                        href="/change-password">Change Password</a>
-                                    <a class="dropdown-item" type="submit" name="examinee" value="True" href="/logout">Logout</a>
+                                    <a class="dropdown-item" type="submit" name="logout" value="True" href="/logout">Logout</a>
 
                                 </div>
                         {% endif %}
                     {% else %}
-                        <li class="nav-item" role="presentation"><a class="nav-link active" href="/">Home</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="/signup">Sign Up</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Login</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="/contact">Contact</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="/">About</a></li>
+                        <li class="nav-item" name="home" role="presentation"><a class="nav-link active" href="/">Home</a></li>
+                        <li class="nav-item" name="signup" role="presentation"><a class="nav-link" href="/signup">Sign Up</a></li>
+                        <li class="nav-item" name="login" role="presentation"><a class="nav-link" href="/login">Login</a></li>
+                        <li class="nav-item" name="contact" role="presentation"><a class="nav-link" href="/contact">Contact</a></li>
+                        <li class="nav-item" name="about" role="presentation"><a class="nav-link" href="/">About</a></li>
                     {% endif %}
 
                 </ul>
