@@ -43,4 +43,4 @@ Now go to **127.0.0.1:8000**  from your browser
 * Result to PDF (Download)
 
 ##### Software Test Report
-![View Test Report](/Test/Report.html)
+[View Test Report](/Test/Report.html)
