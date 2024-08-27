@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Automation Report</title>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    <style>
+        body {
+            background-color: #F2F2F2;
+        }
+        #tests td:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <!--Nav Bar-->
+        <div class="navbar-fixed">
+            <nav class="white">
+                <div class="nav-wrapper">
+                    <div class="container">
+                        <h6 class="brand-logo green-text"><b>Automation Report</b></h6>
+                        <ul class="right">
+                            <li><a href="#" class="green-text">Module: <b>Login Module</b></a></li>
+                            <li><a href="#" class="green-text">Release: <b>Release 1</b></a></li>
+                            <li><a href="#" class="green-text">Run Date: <b>04:04:2021</b></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container section">
+            <!--Status Cards-->
+            <div class="row">
+                <div class="col l3 m6 s12">
+                    <div class="card grey lighten-2 z-depth-2">
+                        <div class="card-content">
+                            <span class="card-title">Total</span>
+                            <p>20</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l3 m6 s12">
+                    <div class="card green lighten-2 z-depth-2">
+                        <div class="card-content">
+                            <span class="card-title">Passed</span>
+                            <p>20</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l3 m6 s12">
+                    <div class="card red lighten-2 z-depth-2">
+                        <div class="card-content">
+                            <span class="card-title">Failed</span>
+                            <p>0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l3 m6 s12">
+                    <div class="card orange lighten-2 z-depth-2">
+                        <div class="card-content">
+                            <span class="card-title">Warning</span>
+                            <p>0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--Search Tests-->
+            <div class="row">
+                <div class="input-field s12 hide-on-med-and-down">
+                    <i class="material-icons prefix">search</i>
+                    <input type="text" id="search">
+                    <label for="search">Search Tests</label>
+                </div>
+            </div>
+            
+            <!--Tests-->
+            <div class="row">
+                <table class="centered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tests">
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">1</td>
+                                <td>Navigate to Sign Up Page</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">2</td>
+                                <td>Sign Up Test</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">3</td>
+                                <td>Homepage to Login Page</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">4</td>
+                                <td>Examinee Login Test</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">5</td>
+                                <td>Logout Test</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">6</td>
+                                <td>Login to Create Exam Page</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">7</td>
+                                <td>Create Exam Test</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">8</td>
+                                <td>Join Exam Page</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">9</td>
+                                <td>View Exam (Examinee)</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">10</td>
+                                <td>Search Exam (Examinee)</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">11</td>
+                                <td>Download Questions (Examinee)</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">12</td>
+                                <td>Submit Answer Script (Examinee)</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">13</td>
+                                <td>Exam History (Examiner)</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">14</td>
+                                <td>Search Specific Exam (Examiner)</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">15</td>
+                                <td>View Participant (Examiner)</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">16</td>
+                                <td>View Submission & Download Answer Script (Examiner)</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">17</td>
+                                <td>Grading (Examiner)</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">18</td>
+                                <td>View Result, Ranking, Analysis</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">19</td>
+                                <td>Create Profile</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                            
+                                
+                            
+                            <tr class="show-modal">
+                                <td class="id">20</td>
+                                <td>Show Profile & Logout</td>
+                                <td>Pass</td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="modal1" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="btn modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
+            </div>
+
+            <!-- Steps -->
+            <div style="display: none;">
+                
+                    <div id="1">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully Navigate to Sign Up</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\0.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="2">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully Sign Up (Verification mail sent)</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\1.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="3">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully on Login page</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\2.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="4">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully on Dashboard</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\3.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="5">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully Logged out</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\4.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="6">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully on Create Exam Page</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\5.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="7">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully on Create Exam Page</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\6.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="8">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully Joined Exam</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\7.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="9">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully Navigate to View Exam</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\8.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="10">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully Searched Exam</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\9.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="11">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully Download Question</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\10.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="12">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully Submit Answer Script</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\11.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="13">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully Submit Answer Script</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\12.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="14">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully Search Specific Exam (Examiner)</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\13.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="15">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully View Participant (Examiner)</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\14.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="16">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully View Submission & Download Answer Script (Examiner)</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\15.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="17">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully Graded (Examiner)</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\16.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="18">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully View Result, Ranking, Analysis</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\17.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="19">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully Created Profile</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\18.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <div id="20">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Steps</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    
+                                        <tr>
+                                    
+                                    <td>Successfully  Show Profile & Logout</td>
+                                    <td>
+                                        
+                                            <img class="materialboxed" width="25" src="Screenshots\19.png">
+                                        
+                                    </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+            </div>
+        </div>
+    </main>
+    <!--JS & JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".modal").modal();
+
+            // Filter the Tests Table
+            $("#search").keyup(function() {
+                const data = this.value;
+                const testsRun = $("#tests").find("tr");
+                
+                if(data == "") {
+                    testsRun.show();
+                    return;
+                }
+
+                testsRun.filter(function() {
+                    $(this).toggle($(this).text().indexOf(data) > -1);
+                });
+            });
+
+            // Render the Test
+            $(".show-modal").click(function() {
+                const testNumber = $(this).find(".id").html();
+
+                $(".modal-content").html(
+                    $("#" + testNumber).html()
+                );
+
+                $(".modal").modal('open');
+                $('.materialboxed').materialbox();
+            });
+        });
+    </script>
+</body>
+</html>
